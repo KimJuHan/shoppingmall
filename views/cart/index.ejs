@@ -1,0 +1,207 @@
+<% include ../header.ejs %>
+    <h3 className="page-header">장바구니</h3>
+    <form method="GET" action="/cart/order">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th></th>
+                <th>이미지</th>
+                <th>제품명</th>
+                <th>판매가</th>
+                <th>수량</th>
+                <th>POINT</th>
+                <th>배송비</th>
+                <th>합계</th>
+                <th>선택</th>
+            </tr>
+                <% 
+                    if( Object.keys(cartList).length ){ 
+                        for( let key in cartList){
+                %>
+                    <input type="hidden" value="<%=cartList[key].price%>">
+                    <input type="hidden" value="<%=cartList[key].number%>">
+                    <tr>
+                        <td><input type="checkBox" name="checkBox" value="<%=key%>"></td>
+                        <td>
+                            <img src="/uploads/<%=cartList[key].thumbnail%>" alt="" width="50" height="50" />
+                        </td>
+                        <td><%=cartList[key].name%></td>
+                        <td class="price"><%=cartList[key].price%></td>
+                        <td class="countBox">
+                            <input class="number" type="text" value="<%=(cartList[key].amount)? cartList[key].amount : cartList[key].number%>" size="2">
+                            <a class="up" href="#"><img src="//img.echosting.cafe24.com/skin/base/common/btn_quantity_up.gif" alt="수량증가"></a>
+                            <a class="down" href="#"><img src="//img.echosting.cafe24.com/skin/base/common/btn_quantity_down.gif" alt="수량감소"></a>
+                        </td>
+                        <td>-</td>
+                        <td>2500</td>
+                        <td class="amount"><%=cartList[key].price*cartList[key].number%></td>
+                        <td>
+                            <a href="#" class="deleteCart btn btn-danger" productId="<%=key%>">삭제하기</a>
+                        </td>
+                    </tr>
+                <%
+                        } 
+                    }else{
+                %>
+                    <tr>
+                        <td colspan="9" style="text-align:center">장바구니에 아무것도 안담겼습니다.</td>
+                    </tr>
+                <%}%>
+        </table>
+
+
+        <div class="text-center" style="font-size:30px; margin-bottom:20px;">
+            <table class="table table-bordered table-hover">
+                <th>총 상품금액</th>
+                <th>총 배송비</th>
+                <th>결제예정금액</th>
+                <tr>
+                    <td class="totalAmount">-</td>
+                    <td class="deliveryCharge">-</td>
+                    <td class="totalPayAmount">-</td>
+                </tr>
+            </table>
+        </div>
+            <div class="text-center">
+                <a href="/" class="btn btn-default" style="margin-right:10px;">계속쇼핑하기</a>
+                <input type="submit" name="orderType" value="전체상품주문">
+                <input type="submit" name="orderType" value="선택상품주문">
+            </div>
+    </form>
+<script>
+//첫 화면 총 상품금액
+var totalAmount = 0;
+for (let i=0;i<$('.amount').length;i++){
+    totalAmount += parseInt($('.amount')[i].innerHTML)
+}
+$('.totalAmount').html(totalAmount)
+
+//첫 화면 결제예정금액
+if($('.deliveryCharge').html() != '-'){
+    var deliveryCharge = parseInt($('.deliveryCharge').innerHTML);
+    $('.totalPayAmount').html(totalAmount + deliveryCharge);
+}else{
+    $('.totalPayAmount').html(totalAmount)
+}
+$(document).ready(function(){
+    $('.countBox a').click(function(event){
+        event.preventDefault();
+        var presentValue = $(this).siblings('input').val()
+
+        if($(this).attr('class') == 'up'){
+            presentValue++
+        }else{
+            if(presentValue != 1){
+                presentValue--
+            }
+        }
+        $(this).siblings('input').val(presentValue);
+
+        var price = $(this).parents('td').prevAll('.price')
+        var amount = $(this).parents('td').nextAll('.amount');
+        amount.text(price.text()* presentValue);
+
+        //쿠키에 동적수량 변화 갱신시키기 
+        var amount = $(this).siblings('input').val();
+        var selectedKey = ($(this).parents('tr td').siblings('td')[0].innerHTML.split('"')[5]);
+        var decodedOriginalCartList = {};
+        (document.cookie).split(';').forEach(function(cookie){
+            // 구워진 쿠키 있는 경우
+            if(cookie !== undefined && cookie.indexOf('cartList') !== -1){
+                var originalCartList = decodeURIComponent(unescape(cookie));
+                while(originalCartList.charAt(0) == ' '){
+                    originalCartList = originalCartList.substring(1);
+                }
+                decodedOriginalCartList = JSON.parse(originalCartList.substring(9, originalCartList.length));
+                for( let key in decodedOriginalCartList ){
+                    if(key == selectedKey){
+                        decodedOriginalCartList[key]["amount"] = amount
+                    }
+                }
+                document.cookie = "cartList" + "=" + escape(JSON.stringify(decodedOriginalCartList)) + "; path=/; expires= false;";
+            }
+        }); 
+
+        //로그인된 user를 위하여 user.cartList 갱신시키기
+        if($('.logout').html()){
+            $.ajax({
+                url: '/cart/userCartList/renew',
+                method: 'POST',
+                data: JSON.stringify(decodedOriginalCartList),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function(data){
+                    console.log("성공")
+                },
+                error: function(error){
+                    console.log("에러")
+                }
+            });
+        }
+
+        //수량 +-에 따라 변하는 총 상품금액
+        var totalAmount = 0;
+        for (let i=0;i<$('.amount').length;i++){
+            totalAmount += parseInt($('.amount')[i].innerHTML)
+        }
+        $('.totalAmount').html(totalAmount)
+
+        //수량 +-에 따라 변하는 결제예정금액
+        if($('.deliveryCharge').html() != '-'){
+            var deliveryCharge = parseInt($('.deliveryCharge').innerHTML);
+            $('.totalPayAmount').html(totalAmount + deliveryCharge);
+        }else{
+            $('.totalPayAmount').html(totalAmount)
+        }
+    })
+    $('.deleteCart').click(function(event){
+        event.preventDefault(); //href의 링크로 넘어가게 하지 않는다.
+        if(confirm('삭제하시겠습니까?')){
+            var productId = $(this).attr('productId'); //아이디를 받아온다
+            //로그인되어 있는지 확인
+            if($('.logout').html()){
+                //user.cartList와 동기화
+                $.ajax({
+                    data: productId,
+                    url: '/cart',
+                    method: 'POST',
+                    // json이 아닌 object 그대로 날라간다. 
+                    dataType: 'text',
+                    success: function(){    
+                        console.log("데이터 송수신 성공");
+                        document.location.href = "/cart";
+                    },
+                    error: function(error){
+                        console.log("데이터 송수신 실패");
+                    }
+                })
+            }
+
+            //document.cookie와 동기화
+            var cartList = ""
+            document.cookie.split(';').forEach(function(cookie){
+                if(cookie.indexOf("cartList") !== -1){
+                    while(cookie.charAt(0) == ' '){
+                        cookie = cookie.substring(1);
+                    }
+                    cartList = cookie.substring(9);
+                }  
+            })          
+            var objectCartList = JSON.parse(unescape(cartList))
+            delete objectCartList[productId]
+
+            document.cookie = "cartList=" + escape(JSON.stringify(objectCartList)) + "; path=/; expires= false;";
+        
+            //cartList 쿠키가 빈 객체일 경우 삭제시킨다.
+            if(Object.keys(objectCartList).length == 0){
+                document.cookie = "cartList" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/;';
+            }
+
+            //완료후 페이지 새로고침  
+            location.reload();
+        }
+    });
+});
+
+</script>
+
+<% include ../footer.ejs %>

@@ -1,0 +1,343 @@
+<% include ../../header.ejs %>
+    <h3 className="page-header">장바구니</h3>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>이미지</th>
+            <th>제품명</th>
+            <th>판매가</th>
+            <th>수량</th>
+            <th>POINT</th>
+            <th>배송비</th>
+            <th>합계</th>
+        </tr>
+            <% 
+                if( Object.keys(cartList).length ){ 
+                    for( let key in cartList){
+            %>
+                <input type="hidden" name="price" value="<%=cartList[key].price%>">
+                <input type="hidden" name="number" value="<%=cartList[key].number%>">
+                <tr>
+                    <td>
+                        <img src="/uploads/<%=cartList[key].thumbnail%>" alt="" width="50" height="50" />
+                    </td>
+                    <td id="productName"><%=cartList[key].name%></td>
+                    <td class="price"><%=cartList[key].price%></td>
+                    <td class="countBox"><%=(cartList[key].amount) ? cartList[key].amount : cartList[key].number%></td>
+                    <td>-</td>
+                    <td>2500</td>
+                    <td class="amount"><%=cartList[key].price*cartList[key].number%></td>
+                </tr>
+            <%
+                    } 
+                }else{
+            %>
+                <tr>
+                    <td colspan="7" style="text-align:center">장바구니에 아무것도 안담겼습니다.</td>
+                </tr>
+            <%}%>
+    </table>
+    <div class="text-center" style="margin-bottom:20px;">
+        <table class="table table-bordered table-hover">
+            <th>총 상품금액</th>
+            <th>총 배송비</th>
+            <th>결제예정금액</th>
+            <tr>
+                <td class="totalAmount">-</td>
+                <td class="deliveryCharge">-</td>
+                <td class="totalPayAmount">-</td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <form action="" id="orderForm">
+        <h3>주문 정보</h3>
+        <div class="" style="margin-bottom:20px;">
+            <table class="table table-bordered table-hover">
+                <tr scope="row">
+                    <th>주문하시는 분*</th>
+                    <td><input class="" type="text" name="name" value="" size="15"></td>
+                </tr>
+                <tr scope="row">
+                    <th>주소*</th>
+                    <td>
+                        <input type="text" id="S_postCode" name="S_postCode" class="postcodify_postcode5" value="" size="6"/>
+                        <button type="button" id="postcodify_search_button">우편번호 검색*</button><br />
+                        <input type="text" id="S_address_first" name="S_address_first" class="postcodify_address" value="" size="40"/>기본주소<br />
+                        <input type="text" id="S_address_last" name="S_address_last" class="postcodify_details" value="" size="40"/>나머지주소<br />
+                    </td>
+                </tr>
+                <tr scope="row">
+                    <th>휴대전화*</th>
+                    <td>
+                        <select name="S_phoneNumber_start" class="custom-select" value="">
+                            <option value="010" selected>010</option>
+                            <option value="011">011</option>
+                            <option value="016">016</option>
+                            <option value="017">017</option>
+                            <option value="019">019</option>
+                        </select>
+                        -
+                        <input class="" type="text" name="S_phoneNumber_middle" value="" size="4">
+                        -
+                        <input class="" type="text" name="S_phoneNumber_last" value="" size="4">
+                    </td>
+                </tr>
+                <tr scope="row">
+                    <th>이메일*</th>
+                    <td>
+                        <input type="text" name="email" value="">
+                        @
+                        <input type="text" name="mailAddress" value="" readonly>
+                        <select id="email_select" class="custom-select">
+                            <option value="" selected>- 이메일 선택 -</option>
+                            <option value="naver.com">naver.com</option>
+                            <option value="daum.net">daum.net</option>
+                            <option value="nate.com">nate.com</option>
+                            <option value="gmail.com">gmail.com</option>
+                            <option value="hotmail.com">hotmail.com</option>
+                            <option value="yahoo.com">yahoo.com</option>
+                            <option value="empas.com">empas.com</option>
+                            <option value="korea.com">korea.com</option>
+                            <option value="dreamwiz.com">dreamwiz.com</option>
+                        </select>
+                        <p>-이메일을 통해 주문처리과정을 보내드립니다.</p>
+                        <p>-이메일 주소란에는 반드시 수신가능한 이메일주소를 입력해주세요.</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <h3>배송 정보</h3>
+        <div class="" style="margin-bottom:20px;">
+            <table class="table table-bordered table-hover">
+                <tr scope="row">
+                    <th>배송지 선택</th>
+                    <td>
+                        <input id="sameAddress" type="radio" name="sameAddress" value="">
+                        <label for="sameAddress">주문자 정보와 동일</label>
+                        <input id="newAddress"type="radio" name="newAddress" value="">
+                        <label for="newAddress">새로운 배송지</label>
+                    </td>
+                </tr>
+                <tr scope="row">
+                    <th>받으시는 분*</th>
+                    <td><input class="" type="text" name="name" value="" size="15"></td>
+                </tr>
+                <tr scope="row">
+                    <th>주소*</th>
+                    <td>
+                        <input type="text" id="A_postCode" name="A_postCode" class="postcodify_postcode5" value="" size="6"/>
+                        <button type="button" id="postcodify_search_button">우편번호 검색*</button><br />
+                        <input type="text" id="A_address_first" name="A_address_first" class="postcodify_address" value="" size="40"/>기본주소<br />
+                        <input type="text" id="A_address_last" name="A_address_last" class="postcodify_details" value="" size="40"/>나머지주소<br />
+                    </td>
+                </tr>
+                <tr scope="row">
+                    <th>휴대전화*</th>
+                    <td>
+                        <select name="A_phoneNumber_start" class="custom-select" value="">
+                            <option selected value="010">010</option>
+                            <option value="011">011</option>
+                            <option value="016">016</option>
+                            <option value="017">017</option>
+                            <option value="019">019</option>
+                        </select>
+                        -
+                        <input class="A_phoneNumber_middle" type="text" name="" value="" size="4">
+                        -
+                        <input class="A_phoneNumber_last" type="text" name="" value="" size="4">
+                    </td>
+                </tr>
+                <tr scope="row">
+                    <th>배송메시지</th>
+                    <td><textarea name="deliveryMessage" class="form-control" cols="70"></textarea></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <h3>결제예정금액</h3>
+        <div class="" style="margin-bottom:20px;">
+            <table class="table table-bordered table-hover">
+                <tr scope="row">
+                    <th>총 주문 금액</th>
+                    <th>총 할인+부가결제 금액</th>
+                    <th>총 결제예정 금액</th>
+                </tr>
+                <tr scope="row">
+                    <td class="totalAmount">-</td>
+                    <td class="deliveryCharge">-</td>
+                    <td class="totalPayAmount">-</td>
+                </tr>
+                <tr scope="row">
+                    <th>총 할인금액</th>
+                    <td>0원</td>
+                </tr>
+                <tr scope="row">
+                    <th>쿠폰할인</th>
+                    <td><a href="" type="button">쿠폰적용</a></td>
+                </tr>
+                <tr scope="row">
+                    <th>총 부가결제금액</th>
+                    <td>0원</td>
+                </tr>
+                <tr scope="row">
+                    <th>POINT</th>
+                    <td>
+                        <input type="text" name="mileage" value="" size="10">P(총 사용가능 POINT: 0P)
+                        <p>-POINT은 최소 100 이상일 때 결제가 가능합니다.</p>
+                        <p>-1회 구매시 POINT 최대 사용금액은 0입니다.</p>
+                        <p>-POINT으로만 결제할 경우, 결제금액이 0으로 보여지는 것은 정상이며 [결제하기] 버튼을 누르면 주문이 완료됩니다.</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <h3>결제수단</h3>
+        <div class="" style="margin-bottom:20px;overflow:hidden;border:2px solid gray">
+            <div style="float:right;width:200px;border-left: 2px solid gray">
+                <p>최종결제 금액</p>
+                <br>
+                <h2 class="totalPayAmount">-</h2>
+                <br>
+                <input type="submit" value="결제하기">
+            </div>
+            <div style="width:100%;">
+                <input type="radio" name="payMethod" value="">카드결제
+                <input type="radio" name="payMethod" value="">에스크로(실시간 계좌이체)
+                <input type="radio" name="payMethod" value="">휴대폰 결제
+                <input type="radio" name="payMethod" value="">무통장 입금
+                <input type="radio" name="payMethod" value="">에스크로(가상계좌)
+                <input type="radio" name="payMethod" value="">카카오페이(간편결제)
+                <input type="radio" name="payMethod" value="">네이버페이(간편결제)
+                <hr>
+                <br>
+            </div>
+        </div>
+    </form>
+<!-- 우편주소찾기 api -->
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
+<!-- iamport api -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<!-- 네이버 페이 버튼 생성을 위한 sdk -->
+<script type="text/javascript" src="//pay.naver.com/customer/js/naverPayButton.js"></script>
+<!-- 모바일환경인지 PC환경인지 구분하기 위한 javascript -->
+<script type='text/javascript' src="//wurfl.io/wurfl.js"></script>
+<script type="text/javascript">
+//첫 화면 총 상품금액
+var totalAmount = 0;
+for (let i=0;i<$('.amount').length;i++){
+    totalAmount += parseInt($('.amount')[i].innerHTML)
+}
+$('.totalAmount').html(totalAmount)
+
+//첫 화면 결제예정금액
+if($('.deliveryCharge').html() != '-'){
+    var deliveryCharge = parseInt($('.deliveryCharge').innerHTML);
+    $('.totalPayAmount').html(totalAmount + deliveryCharge);
+}else{
+    $('.totalPayAmount').html(totalAmount)
+}
+$(document).ready(function(){
+    // min (포함) 과 max (불포함) 사이의 임의 정수를 반환
+    // Math.round() 를 사용하면 고르지 않은 분포를 얻게된다!
+    // merchant_uid 동시주문 결제오류를 방지하기 위한 난수 생성 함수
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    $('#orderForm').submit(function(e){
+        e.preventDefault();
+        var IMP = window.IMP;
+        IMP.init("imp13574884");
+
+        //주문자, 받는사람 정보 ajax로 쏴주기
+        var merchant_uid =  '쇼핑몰이름_' + new Date().getTime() + '&' + getRandomInt(0, 1000000);
+        var name = $('#productName').text();
+        var amount = $('h2.totalPayAmount').text();
+        var buyer_email = $('input[name="email"]').val() + '@' + $('input[name="mailAddress"]').val();
+        var buyer_name = $('input[name="name"]').val();
+        var buyer_tel = $('input[name="A_phoneNumber_start"] option:selected').val() + '-' + $('input[name="A_phoneNumber_middle"]').val() + '-' +  $('input[name="A_phoneNumber_last"]').val();
+        var buyer_addr = $('#A_address_first').val() + ' ' + $('#A_address_last').val();
+        var buyer_postcode = $('#postCode').val();
+        //모바일, PC환경 구분
+        if(WURFL.is_mobile){
+            IMP.request_pay({
+                pg : 'inicis',
+                pay_method : 'card',
+                merchant_uid : '쇼핑몰이름_' + new Date().getTime() + '&' + getRandomInt(0, 1000000),
+                name : '주문명:결제테스트',
+                amount : $('h2.totalPayAmount').text(),
+                buyer_email : $('input[name="email"]').val() + '@' + $('input[name="mailAddress"]').val(),
+                buyer_name : $('input[name="name"]').val(),
+                buyer_tel : $('input[name="A_phoneNumber_start"] option:selected').val() + '-' + $('input[name="A_phoneNumber_middle"]').val() + '-' +  $('input[name="A_phoneNumber_last"]').val(),
+                buyer_addr : $('#A_address_first').val() + ' ' + $('#A_address_last').val(),
+                buyer_postcode : $('#postCode').val(),
+                m_redirect_url : 'http://localhost:4000/cart/order/complete/mobile' 
+            }
+        }else{
+            IMP.request_pay({
+                pg : 'inicis',
+                pay_method : 'card',
+                merchant_uid : '쇼핑몰이름_' + new Date().getTime() + '&' + getRandomInt(0, 1000000),
+                name : '주문명:결제테스트',
+                amount : $('h2.totalPayAmount').text(),
+                buyer_email : $('input[name="email"]').val() + '@' + $('input[name="mailAddress"]').val(),
+                buyer_name : $('input[name="name"]').val(),
+                buyer_tel : $('input[name="A_phoneNumber_start"] option:selected').val() + '-' + $('input[name="A_phoneNumber_middle"]').val() + '-' +  $('input[name="A_phoneNumber_last"]').val(),
+                buyer_addr : $('#A_address_first').val() + ' ' + $('#A_address_last').val(),
+                buyer_postcode : $('#postCode').val()
+            }, function(rsp) {
+                if ( rsp.success ) {
+                    //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+                    jQuery.ajax({
+                        url: "/cart/order/complete", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            imp_uid : rsp.imp_uid,
+                            merchant_uid : rsp.merchant_uid,
+                            name : '주문명:결제테스트',
+                            amount : $('h2.totalPayAmount').text(),
+                            buyer_email : $('input[name="email"]').val() + '@' + $('input[name="mailAddress"]').val(),
+                            buyer_name : $('input[name="name"]').val(),
+                            buyer_tel : $('input[name="A_phoneNumber_start"] option:selected').val() + '-' + $('input[name="A_phoneNumber_middle"]').val() + '-' +  $('input[name="A_phoneNumber_last"]').val(),
+                            buyer_addr : $('#A_address_first').val() + ' ' + $('#A_address_last').val(),
+                            buyer_postcode : $('#postCode').val()
+                            //기타 필요한 데이터가 있으면 추가 전달
+                        }
+                    }).done(function(data) {
+                        //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+                        if ( everythings_fine ) {
+                            var msg = '결제가 완료되었습니다.';
+                            msg += '\n고유ID : ' + rsp.imp_uid;
+                            msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+                            msg += '\결제 금액 : ' + rsp.paid_amount;
+                            msg += '카드 승인번호 : ' + rsp.apply_num;
+
+                            alert(msg);
+                        } else {
+                            //[3] 아직 제대로 결제가 되지 않았습니다.
+                            //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+                        }
+                    });
+                } else {
+                    var msg = '결제에 실패하였습니다.';
+                    msg += '에러내용 : ' + rsp.error_msg;
+
+                    alert(msg);
+                }
+            });
+        }
+    })
+    //이메일 선택시 선택된 게 input에 출력되도록 하는 함수
+    $('#email_select').change(function(){
+        $('input[name="mailAddress"]').val($('#email_select option:selected').text())
+    })
+});
+
+</script>
+
+<% include ../../footer.ejs %>

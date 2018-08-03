@@ -1,0 +1,445 @@
+<% include ../header.ejs %>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="login-panel panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">회원가입</h3>
+            </div>
+            <div class="panel-body">
+                <form role="form" action="" id="join_form" method="post">
+                    <fieldset>
+                        <div class="form-group">
+                            <input id="userId" class="form-control" placeholder="userId" name="userId" type="text" autofocus="" value="">
+                            <button type="button" class="btn btn-success userIdAuthentication">중복확인</button>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="username" name="username" type="text" autofocus="" value="">
+                        </div>
+                        <strong>*비밀번호는 8~20자리의 영문, 숫자, 특수문자 조합으로 작성해주시기 바랍니다.</strong>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Password Confirmation" name="passwordC" type="password" value="">
+                        </div>
+                        <div class="form-group">
+                            <input id="username" class="form-control" placeholder="NickName" name="nickname" type="text" value="">
+                            <button type="button" class="btn btn-success usernameAuthentication">중복확인</button>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="sex1" name="sex" type="radio" value="1">
+                            <label for="sex1">남자</label>
+                            <input class="form-control" id="sex2" name="sex" type="radio" value="2">
+                            <label for="sex2">여자</label>
+                        </div>
+                        <strong>*주민등록번호</strong>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="userCode_first" name="userCode_first" type="text" autofocus="" value="">
+                            <input class="form-control" placeholder="userCode_last" name="userCode_last" type="password" autofocus="" value="">
+                            <button type="button" class="btn btn-success userCodeAuthentication">인증하기</button>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="email" name="email" type="text" autofocus="" value="">
+                        </div>
+                        <div class="form-group">
+                            <select name="phoneNumber_start" class="custom-select" value="">
+                                <option selected value="010">010</option>
+                                <option value="011">011</option>
+                                <option value="016">016</option>
+                                <option value="017">017</option>
+                                <option value="019">019</option>
+                            </select>
+                            <input class="form-control" placeholder="phoneNumber" name="phoneNumber_first" type="text" autofocus="" value="">
+                            <input class="form-control" placeholder="phoneNumber" name="phoneNumber_last" type="text" autofocus="" value="">
+                        </div>
+                        <!-- 주소와 우편번호를 입력할 <input>들을 생성하고 적당한 name과 class를 부여한다 -->
+                        <div class="form-group">
+                            <label for="postCode">우편번호</label>
+                            <input type="text" id="postCode" name="postCode" class="form-control postcodify_postcode5" value="" />
+                            <button type="button" id="postcodify_search_button">검색</button><br />
+                            <label for="address_first">도로명주소</label>
+                            <input type="text" id="address_first" name="address_first" class="form-control postcodify_address" value="" /><br />
+                            <label for="postCode">상세주소</label>
+                            <input type="text" id="address_last" name="address_last" class="form-control postcodify_details" value="" /><br / >
+                        </div>
+                        <div class="form-group">
+                            <select name="knowHow" class="custom-select" value="">
+                                <option selected value="0">저희 사이트를 어떻게 알게되셨나요??^^</option>
+                                <option value="1">facebook</option>
+                                <option value="2">구글, 네이버 블로그 등 기타 web browser</option>
+                                <option value="3">지인 소개</option>
+                            </select>
+                        </div>
+                        <!-- Change this to a button or input when using this as a form -->
+                        <input id="form_submit" type="submit" class="btn btn-lg btn-success btn-block" value="가입하기">
+                        <div style="margin-top: 10px">
+                            <a href="/accounts/facebook" id="facebook_login" class="btn btn-lg btn-primary btn-block">
+                                <i class="fa fa-facebook" aria-hidden="true"></i> 페이스북 회원가입
+                            </a>
+                        </div>
+                        <div style="margin-top: 10px">
+                            <a id="kakao_login" href="/accounts/kakao" class="btn btn-lg btn-primary btn-block">
+                                <img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" style="width:300px;"/>
+                            </a>
+                        </div>
+                        <div style="margin-top: 10px">
+                            <a id="naver_login" href="/accounts/naver" class="btn btn-lg btn-primary btn-block">
+                                <img src="../images/naverlogin.PNG" style="width:300px;"/>
+                            </a>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 우편주소찾기 api-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
+
+<script type="text/javascript">
+(function(){
+    $(document).ready(function() {
+
+        //아이디 중복여부 ajax로 확인하기
+        $('.userIdAuthentication').on('click', function(){
+            var userId = $('#userId').val();
+            if(userId){
+                $.ajax({
+                    data: userId,
+                    url: '/accounts/IdDuplicatedCheck',
+                    method: 'POST',
+                    dataType: 'text',
+                    success: function(data){
+                        if(data=="true"){
+                            alert('이미 존재하는 아이디입니다!');
+                            $('#userId').val('');
+                            $('#userId').focus();
+                            $('#userId').data('clicked', 'false');
+                        }else{
+                            alert('사용가능한 아이디입니다.');
+                            $('#userId').data('clicked', 'true');
+                        }
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                }) 
+            }else{
+                alert('아이디를 먼저 입력해주세요')
+            }    
+        })
+
+        //닉네임 중복여부 ajax로 확인하기
+        $('.usernameAuthentication').on('click', function(){
+            var username = $('#username').val();
+            if(username){
+                $.ajax({
+                    data: username,
+                    url: '/accounts/usernameDuplicatedCheck',
+                    method: 'POST',
+                    dataType: 'text',
+                    success: function(data){
+                        if(data=="true"){
+                            alert('이미 존재하는 닉네임입니다!');
+                            $('#username').val('');
+                            $('#username').focus();
+                            $('#username').data('clicked', 'false');
+                        }else{
+                            alert('사용가능한 닉네임입니다.');
+                            $('#username').data('clicked', 'true');
+                        }
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                }) 
+            }else{
+                alert('닉네임을 먼저 입력해주세요')
+            } 
+        })
+
+        //주민번호 인증
+        $('.userCodeAuthentication').on('click', function(){
+
+            //주민번호 두 폼 합치기 
+            var $userCodeInput = $('#join_form input[name=userCode_first]').val();
+            var $userCodeInput2 = $('#join_form input[name=userCode_last]').val();
+            var $userCode = $userCodeInput + $userCodeInput2
+
+            //인증결과가 참일경우 data-clicked : true 속성 생성 
+            if (checkAlert($userCode)){
+                $(this).data('clicked', 'true');
+            }
+        })
+
+        function checkAlert(juminno)
+        {
+            var bCheck = check_juminno(juminno);
+            if( !bCheck){
+                alert('주민번호를 다시 입력해주시기 바랍니다.')
+                return false;
+            }else{
+                alert('주민번호 인증이 완료되었습니다.')
+                return true;
+            }
+        }
+
+        function check_juminno(juminno) { 
+            if(juminno=="" || juminno==null || juminno.length!=13) { 
+                    alert("주민등록번호 13자리를 적어주세요."); 
+                    return false; 
+            } 
+            var jumin1 = juminno.substr(0,6); 
+            var jumin2 = juminno.substr(6,7); 
+            var yy        = jumin1.substr(0,2);    // 년도 
+            var mm    = jumin1.substr(2,2);    // 월 
+            var dd    = jumin1.substr(4,2);    // 일 
+            var genda = jumin2.substr(0,1);    // 성별 
+            var msg, ss, cc; 
+
+            // 숫자가 아닌 것을 입력한 경우 
+            if (!isNumeric(jumin1)) { 
+                    alert("주민등록번호 앞자리를 숫자로 입력하세요."); 
+                    return false; 
+            } 
+            // 길이가 6이 아닌 경우 
+            if (jumin1.length != 6) { 
+                    alert("주민등록번호 앞자리를 다시 입력하세요."); 
+                    return false; 
+            } 
+            // 첫번째 자료에서 연월일(YYMMDD) 형식 중 기본 구성 검사 
+            if (yy < "00" || yy > "99" || 
+                    mm < "01" || mm > "12" || 
+                    dd < "01" || dd > "31") { 
+                    alert("주민등록번호 앞자리를 다시 입력하세요."); 
+                    return false; 
+            } 
+            // 숫자가 아닌 것을 입력한 경우 
+            if (!isNumeric(jumin2)) { 
+                    alert("주민등록번호 뒷자리를 숫자로 입력하세요."); 
+                    return false; 
+            } 
+            // 길이가 7이 아닌 경우 
+            if (jumin2.length != 7) { 
+                    alert("주민등록번호 뒷자리를 다시 입력하세요."); 
+                    return false; 
+            } 
+            // 성별부분이 1 ~ 4 가 아닌 경우 
+            if (genda < "1" || genda > "4") { 
+                    alert("주민등록번호 뒷자리를 다시 입력하세요."); 
+                    return false; 
+            } 
+            // 연도 계산 - 1 또는 2: 1900년대, 3 또는 4: 2000년대 
+            cc = (genda == "1" || genda == "2") ? "19" : "20"; 
+            // 첫번째 자료에서 연월일(YYMMDD) 형식 중 날짜 형식 검사 
+            if (isYYYYMMDD(parseInt(cc+yy), parseInt(mm), parseInt(dd)) == false) { 
+                    alert("주민등록번호 앞자리를 다시 입력하세요."); 
+                    return false; 
+            } 
+            // Check Digit 검사 
+            if (!isSSN(jumin1, jumin2)) { 
+                    alert("입력한 주민등록번호를 검토한 후, 다시 입력하세요."); 
+                    return false; 
+            } 
+            return true; 
+        } 
+
+        function isYYYYMMDD(y, m, d) { 
+            switch (m) { 
+            case 2:    // 2월의 경우 
+                    if (d > 29) return false; 
+                    if (d == 29) { 
+                            // 2월 29의 경우 당해가 윤년인지를 확인 
+                            if ((y % 4 != 0) || (y % 100 == 0) && (y % 400 != 0)) 
+                                    return false; 
+                    } 
+                    break; 
+            case 4:    // 작은 달의 경우 
+            case 6: 
+            case 9: 
+            case 11: 
+                    if (d == 31) return false; 
+            } 
+            // 큰 달의 경우 
+            return true; 
+        } 
+        function isNumeric(s) { 
+            for (i=0; i<s.length; i++) { 
+                    c = s.substr(i, 1); 
+                    if (c < "0" || c > "9") return false; 
+            } 
+            return true; 
+        } 
+        function isLeapYear(y) { 
+            if (y < 100) 
+            y = y + 1900; 
+            if ( (y % 4 == 0) && (y % 100 != 0) || (y % 400 == 0) ) { 
+                    return true; 
+            } else { 
+                    return false; 
+            } 
+        } 
+        function getNumberOfDate(yy, mm) { 
+            month = new Array(29,31,28,31,30,31,30,31,31,30,31,30,31); 
+            if (mm == 2 && isLeapYear(yy)) mm = 0; 
+            return month[mm]; 
+        } 
+        function isSSN(s1, s2) { 
+            n = 2; 
+            sum = 0; 
+            for (i=0; i<s1.length; i++) 
+                    sum += parseInt(s1.substr(i, 1)) * n++; 
+            for (i=0; i<s2.length-1; i++) { 
+                    sum += parseInt(s2.substr(i, 1)) * n++; 
+                    if (n == 10) n = 2; 
+            } 
+            c = 11 - sum % 11; 
+            if (c == 11) c = 1; 
+            if (c == 10) c = 0; 
+            if (c != parseInt(s2.substr(6, 1))) return false; 
+            else return true; 
+        } 
+
+        //폼 체크
+        $('#form_submit').on('click', function(){
+            
+            //비어있는 폼이 있는지 없는지 조사
+            function emptyCheckForm(){
+                for (let i=0; i< $('input').length; i++){
+                    if ($('input')[i].value == ""){
+                        $('input')[i].focus()
+                        alert($('input')[i].name + "을 입력해주세요.")
+                        return false;
+                    }
+                }
+                if ($('input[name="sex"]:checked').val() != 1 && $('input[name="sex"]:checked').val() != 2){
+                    alert('성별을 선택해주세요!');
+                    return false;
+                }
+                if ($('select[name=knowHow]').val() == "0"){
+                    alert('저희 사이트를 알게된 경로를 선택해주세요!')
+                    $('select[name=knowHow]').focus();
+                    return false;
+                }
+                return true;
+            }
+
+            //비밀번호의 유효성 검사(영문,숫자,특수문자 혼합하여 8자리~20자리 이내.(비밀번호 표준)) + 비밀번호 확인 같은지 검사
+            function passwordCheck(){
+                var regExp1 = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+                var $passwordInput = $('#join_form input[name=password]');
+                var $passwordInput2 = $('#join_form input[name=passwordC]');
+
+                if(!regExp1.test($passwordInput.val())){
+                    alert("형식에 맞춰 비밀번호를 입력하세요");
+                    $passwordInput.val('');
+                    $passwordInput2.val('');
+                    $passwordInput.focus();
+                    return false;
+                }
+                else if ($passwordInput2.val() !== $passwordInput.val()){
+                    alert("비밀번호가 동일하지 않습니다.");
+                    $passwordInput2.focus();
+                    return false;
+                }
+                return true;
+            }
+
+            //e-mail의 유효성 검사
+            function emailCheck(){
+                var regExp2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+                var $userEmailInput = $('#join_form input[name=email]');
+
+                if (!regExp2.test($userEmailInput.val())){
+                    alert("올바른 이메일 형식이 아닙니다.");
+                    $userEmailInput.focus();
+                    return false;
+                }
+                return true;
+            }
+
+            //실명인증 만들어야함.
+            var $usernameInput = $('#join_form input[name=username]');
+            //이름의 유효성 검사
+            var regname = /^[가-힝]{2,}$/;
+
+            //휴대폰 본인인증 만들어야함 
+            var $userPhoneInput = $('#join_form input[name=phoneNumber_start]');
+            var $userPhoneInput2 = $('#join_form input[name=phoneNumber_first]');
+            var $userPhoneInput3 = $('#join_form input[name=phoneNumber_last]');
+
+            //아이디 중복확인과 주민번호 확인하기 버튼이 클릭되지 않았을 경우 경고창이 뜨게한다. 
+            // if($('.userIdAuthentication').data('clicked') != "true"){
+            //     alert('아이디 중복여부를 확인해주십시오.')
+            //     return false
+            // }
+        
+            if (!emptyCheckForm()){
+                return false;
+            }
+            if($('#userId').data('clicked') != "true"){
+                var $userId = $('#userId')
+
+                alert('아이디 중복체크를 해주시기 바랍니다.')
+                $userId.focus();
+                return false
+            }
+            if($('#username').data('clicked') != "true"){
+                var $username = $('#username')
+
+                alert('닉네임 중복체크를 해주시기 바랍니다.')
+                $username.focus();
+                return false
+            }
+            if (!passwordCheck()){
+                return false;
+            }
+            if($('.userCodeAuthentication').data('clicked') != "true"){
+                var $userCodeInput = $('#join_form input[name=userCode_first]');
+                var $userCodeInput2 = $('#join_form input[name=userCode_last]');
+
+                alert('주민등록번호를 인증해주시기 바랍니다.')
+                $userCodeInput.val('');
+                $userCodeInput2.val('');
+                $userCodeInput.focus();
+                return false
+            }
+            if (!emailCheck()){
+                return false;
+            }   
+            return true;
+        });
+
+        window.addEventListener('message', function(e) {
+            if (e.data !== 'popup-done') { return; }
+            window.location.replace('/auth/popup-done');
+	    });
+
+        var loginWindow;
+        var popupWindow = function(e){
+            e.preventDefault();
+            var url = $(this).attr('href');
+            var width = 500;
+            var height = 370;
+            var w = window.outerWidth - width, h = window.outerHeight - height;
+			var left = Math.round(window.screenX + (w / 2));
+			var top = Math.round(window.screenY + (h / 2.5));
+
+			loginWindow = window.open(url, 'LogIn', 
+				'width='+width+',height='+height+',left='+left+',top='+top+
+				',toolbar=0,scrollbars=0,status=0,resizable=0,location=0,menuBar=0');
+        }
+        //카카오 팝업 로그인
+        $('#kakao_login').on('click', popupWindow)
+
+        //페북 팝업 로그인
+        $('#facebook_login').on('click', popupWindow)
+
+        //네이버 팝업 로그인
+        $('#naver_login').on('click', popupWindow)
+    });
+})();
+</script>
+<% include ../footer.ejs %>

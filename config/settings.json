@@ -1,0 +1,10 @@
+{
+    "port" : 4000,
+    "model" : {
+        "dialect" : "mysql",
+        "database" : "shoppingmall_project",
+        "db_user" : "root",
+        "db_password" : "111111",
+        "db_host" : "localhost"
+    }
+}
