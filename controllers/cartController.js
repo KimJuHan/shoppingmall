@@ -10,12 +10,8 @@ exports.cartIndex = function(req, res){
 
 exports.cartUserCookieSync = function(req, res){
     var cartList = req.body;
-    var x = JSON.parse(req.user.cartList);
-    for(let key in cartList){
-        x[key] = cartList[key];
-    }; 
     db.Users.update({
-        cartList : JSON.stringify(x)
+        cartList : JSON.stringify(cartList)
     }, {
         where : { id : req.user.id }
     }).then(function(){
@@ -54,7 +50,7 @@ exports.cartOrder = function(req, res){
             console.log(req.query);
             cartList = JSON.parse(req.cookies.cartList);
             var x = Object.keys(cartList)
-
+            
             if(req.query.checkBox || req.query.orderType.indexOf('checkBox')!=-1){
                 if(req.query.checkBox){
                     //이 경우가 로그인하고 주문하기 버튼 누른 경우 => cartList쿠키와 비교해서 빼주고, user.cartList하고 갱신시킬 필요는 x
@@ -75,10 +71,10 @@ exports.cartOrder = function(req, res){
                     })
                 }
             }
+            //장바구니를 거쳐서 주문한 경우(쿠키이용)
             res.render('cart/order/index', { cartList : cartList } );
         }else{
             //로그인이 안되어 있다.
-
             //로그인 화면으로 갔다가 => 비회원주문하기
             if(req.query.orderType.indexOf('nonUser')!= -1){
                 var x = JSON.parse(req.cookies.cartList);

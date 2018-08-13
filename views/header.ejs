@@ -38,15 +38,15 @@
                         <li><a href="/cart">마이페이지</a></li>
                     </ul> 
                     <ul class="nav navbar-nav navbar-right"> 
-                        <li class="active"><a href="/checkout/nomember">내정보</a></li>
                         <% if(isLogin){%>
-                            <li><a class="logout" href="/accounts/logout" onclick="return confirm('로그아웃 하시겠습니까?')">LOGOUT</a></li>
+                            <li class="active"><a href="/checkout/nomember">내정보</a></li>
+                            <li><a class="logout" href="/accounts/logout" onclick="return confirm('로그아웃 하시겠습니까?')">로그아웃</a></li>
                         <%}else{%>
-                            <li><a href="/accounts/signUpAgree">JOIN</a></li> 
-                            <li><a class="login" href="/accounts/login">LOGIN</a></li>  
+                            <li><a href="/accounts/signUpAgree">회원가입</a></li> 
+                            <li><a class="login" href="/accounts/login">로그인</a></li>  
                         <%}%>
                         <li class="active"><a href="/cart">장바구니</a></li>
-                        <li class="active"><a href="/checkout/nomember">ORDER</a></li>
+                        <li class="active"><a href="/myshop/checkout">주문조회</a></li>
                     </ul>
                 </div> 
                 <% if(isLogin) {%>

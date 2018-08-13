@@ -42,6 +42,7 @@ var naverAccountsHelper = function(){
                         
                         // 이름만 req.user로 지정해주는 게 아니면 상관없다.
                         // req.user property를 지정하는 순간 req.isAuthenticated() => true
+                        req.userinfo = user;
 
                         done(null, false, user);
                     })

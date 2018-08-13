@@ -23,7 +23,7 @@ var facebookAccountsHelper = function(){
             profileFields: ['id', 'displayName', 'gender', 'address', 'email'],
             passReqToCallback: true
         },
-        function(req, accessToken, refreshToken, params, profile, done) {
+        function(req, accessToken, refreshToken, profile, done) {
             db.Users.findOne({ 
                 where : {
                     userId : "fb_" + profile.id,
@@ -49,8 +49,9 @@ var facebookAccountsHelper = function(){
                         
                         // 이름만 req.user로 지정해주는 게 아니면 상관없다.
                         // req.user property를 지정하는 순간 req.isAuthenticated() => true!
+                        req.userinfo = user;
 
-                        done(null, false, user);
+                        done(null, false, user);    
                     })
                 }else{ 
                     // get('/facebook')을 눌렀는데 db에 user가 없는 경우

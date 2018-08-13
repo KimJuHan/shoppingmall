@@ -28,9 +28,10 @@ router.post('/login', passport.authenticate('local', {
     failureFlash: true 
 }), accountsController.loginAuthentication)
 
-//facebook
+//facebook : 여기서 passport.authenticate는 순전히 페이스북 창으로 연결되는 것 뿐, 페이스북패스포트 정책에 콜백함수랑은 무관하다. 
 router.get('/facebook', passport.authenticate('facebook', { authType: 'reauthenticate', scope : ['email']}));
 
+//function(req, res, next)해준 이유 : next()를 써서 콜백함수를 하나 더 쓰기 위해서
 router.get('/facebook/callback', function(req, res, next){
     passport.authenticate('facebook', function(){
         next();

@@ -84,14 +84,21 @@ exports.signUp = function(req, res){
 
 exports.login = function(req, res){
     if(req.query.orderType){
-        req.session.orderType = req.query.orderType
         var nonUserOrder = req.query.orderType
-        console.log(nonUserOrder);
+        req.session.orderType = nonUserOrder;
     }
-    res.render('accounts/loginForm', { flashMessage : req.flash().error, nonUserOrder : ((nonUserOrder) ? nonUserOrder : "")})
+    if(req.query.orderedProduct){
+        var orderedProduct = req.query.orderedProduct
+        req.session.orderedProduct = orderedProduct
+    }
+    if(req.query.checkout){
+        var checkout = req.query.checkout;
+        req.session.checkout = checkout;
+    }
+    res.render('accounts/loginForm', { flashMessage : req.flash().error, nonUserOrder : ((nonUserOrder) ? nonUserOrder : ""), orderedProduct  : ((orderedProduct) ? escape(orderedProduct) : ""), nonUserCheckout : ((checkout) ? checkout : "")})
 }
 
-exports.loginAuthentication = function(req, res){6
+exports.loginAuthentication = function(req, res){
     db.Users.findById(req.user.id).then(function(user){
         //user.cartList로 cartList 쿠키 갱신시키기 
         if(user.cartList){
@@ -102,6 +109,10 @@ exports.loginAuthentication = function(req, res){6
             var x = req.query.orderType;
             x = x.replace(/["]/gi,'')
             res.send('<script>alert("로그인 성공");location.href="/cart/order?orderType=' + x + '"</script>')
+        }else if(req.query.orderedProduct){
+            //상품상세페이지에서 바로주문하기
+            var x = req.query.orderedProduct;
+            res.send('<script>alert("로그인 성공");location.href="/nonCartOrder?orderedProduct=' + escape(x) + '"</script>')
         }else{
             //그냥 로그인페이지에서 로그인
             res.send('<script>alert("로그인 성공");location.href="/";</script>');
@@ -123,6 +134,15 @@ exports.afterAuthentication = function(req, res){
 
                 orderType = orderType.replace(/["]/gi,'')
                 res.send('<script>alert("로그인 성공");window.close();window.opener.location.href="/cart/order?orderType=' + orderType + '"</script>')
+            }else if(req.session.orderedProduct){
+                console.log('xxx')
+                //상세페이지에서 바로 주문하기 => 로그인 
+                var orderedProduct = req.session.orderedProduct;
+                console.log(orderedProduct);
+                // 변수에 집어넣은 후 session에서 삭제
+                delete req.session["orderedProduct"];
+
+                res.send('<script>alert("로그인 성공");window.close();window.opener.location.href="/nonCartOrder?orderedProduct=' + escape(orderedProduct) + '"</script>')
             }else{
                 //그냥 로그인페이지에서 로그인
                 res.send('<script>alert("로그인 성공");window.close();window.opener.location.href="/";</script>');
@@ -153,15 +173,19 @@ exports.signUpByOtherForm = function(req, res){
             smsConsent : (req.body.consent3) ? 1 : 0
         }).then(function(user){
             req.logIn(user, function(){
-                //user.cartList 와 쿠키 동기화
-                res.cookie('cartList', user.cartList, { expires : false, path: '/' })
                 if(req.session.orderType){
                     var orderType = req.session.orderType;
                     // 변수에 집어넣은 후 session에서 삭제
                     delete req.session["orderType"];
-
                     orderType = orderType.replace(/["]/gi,'')
+
                     res.send('<script>alert("로그인 성공");window.close();window.opener.location.href="/cart/order?orderType=' + x + '"</script>')
+                }else if(req.session.orderedProduct){
+                    var orderedProduct = req.session.orderedProduct;
+                    // 변수에 집어넣은 후 session에서 삭제
+                    delete req.session["orderedProduct"];
+
+                    res.send('<script>alert("로그인 성공");window.close();window.opener.location.href="/nonCartOrder?orderedProduct=' + escape(orderedProduct) + '"</script>')
                 }else{
                     res.send('<script>alert("회원가입 완료");window.close();window.opener.location.href="/";</script>')
                 }

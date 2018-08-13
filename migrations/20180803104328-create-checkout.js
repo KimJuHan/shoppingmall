@@ -20,6 +20,15 @@ module.exports = {
       amount : {
         type : Sequelize.STRING
       },
+      totalPrice : {
+        type : Sequelize.STRING
+      },
+      productImage : {
+        type : Sequelize.STRING
+      },
+      status : {
+        type : Sequelize.STRING
+      },
       buyer_email : {
         type : Sequelize.STRING
       },
@@ -33,6 +42,27 @@ module.exports = {
         type : Sequelize.STRING
       },
       buyer_postcode : {
+        type : Sequelize.STRING
+      },
+      Recipient_name : {
+        type : Sequelize.STRING
+      },
+      Recipient_addr : {
+        type : Sequelize.STRING
+      },
+      Recipient_postcode : {
+        type : Sequelize.STRING
+      },
+      Recipient_tel : {
+        type : Sequelize.STRING
+      },
+      vbank_num : {
+        type : Sequelize.STRING
+      },
+      vbank_date : {
+        type : Sequelize.STRING
+      },
+      vbank_name : {
         type : Sequelize.STRING
       },
       createdAt: {

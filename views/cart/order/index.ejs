@@ -18,7 +18,7 @@
                 <input type="hidden" name="number" value="<%=cartList[key].number%>">
                 <tr>
                     <td>
-                        <img src="/uploads/<%=cartList[key].thumbnail%>" alt="" width="50" height="50" />
+                        <img id="productImage" src="/uploads/<%=cartList[key].thumbnail%>" alt="" width="50" height="50" />
                     </td>
                     <td id="productName"><%=cartList[key].name%></td>
                     <td class="price"><%=cartList[key].price%></td>
@@ -57,13 +57,13 @@
             <table class="table table-bordered table-hover">
                 <tr scope="row">
                     <th>주문하시는 분*</th>
-                    <td><input class="" type="text" name="name" value="" size="15"></td>
+                    <td><input type="text" name="S_name" value="" size="15"></td>
                 </tr>
                 <tr scope="row">
                     <th>주소*</th>
-                    <td>
+                    <td id="S_address">
                         <input type="text" id="S_postCode" name="S_postCode" class="postcodify_postcode5" value="" size="6"/>
-                        <button type="button" id="postcodify_search_button">우편번호 검색*</button><br />
+                        <button type="button" id="S_postcodify_search_button">우편번호 검색*</button><br />
                         <input type="text" id="S_address_first" name="S_address_first" class="postcodify_address" value="" size="40"/>기본주소<br />
                         <input type="text" id="S_address_last" name="S_address_last" class="postcodify_details" value="" size="40"/>나머지주소<br />
                     </td>
@@ -87,9 +87,9 @@
                 <tr scope="row">
                     <th>이메일*</th>
                     <td>
-                        <input type="text" name="email" value="">
+                        <input type="text" name="S_email" value="">
                         @
-                        <input type="text" name="mailAddress" value="" readonly>
+                        <input type="text" name="S_mailAddress" value="" readonly>
                         <select id="email_select" class="custom-select">
                             <option value="" selected>- 이메일 선택 -</option>
                             <option value="naver.com">naver.com</option>
@@ -115,23 +115,23 @@
                 <tr scope="row">
                     <th>배송지 선택</th>
                     <td>
-                        <input id="sameAddress" type="radio" name="sameAddress" value="">
+                        <input id="sameAddress" type="radio" name="R_address" value="">
                         <label for="sameAddress">주문자 정보와 동일</label>
-                        <input id="newAddress"type="radio" name="newAddress" value="">
+                        <input id="newAddress"type="radio" name="R_address" value="">
                         <label for="newAddress">새로운 배송지</label>
                     </td>
                 </tr>
                 <tr scope="row">
                     <th>받으시는 분*</th>
-                    <td><input class="" type="text" name="name" value="" size="15"></td>
+                    <td><input class="" type="text" name="R_name" value="" size="15"></td>
                 </tr>
                 <tr scope="row">
                     <th>주소*</th>
-                    <td>
-                        <input type="text" id="A_postCode" name="A_postCode" class="postcodify_postcode5" value="" size="6"/>
-                        <button type="button" id="postcodify_search_button">우편번호 검색*</button><br />
-                        <input type="text" id="A_address_first" name="A_address_first" class="postcodify_address" value="" size="40"/>기본주소<br />
-                        <input type="text" id="A_address_last" name="A_address_last" class="postcodify_details" value="" size="40"/>나머지주소<br />
+                    <td id="R_address">
+                        <input type="text" id="R_postCode" name="R_postCode" class="postcodify_postcode5" value="" size="6"/>
+                        <button type="button" id="R_postcodify_search_button">우편번호 검색*</button><br />
+                        <input type="text" id="R_address_first" name="R_address_first" class="postcodify_address" value="" size="40"/>기본주소<br />
+                        <input type="text" id="R_address_last" name="R_address_last" class="postcodify_details" value="" size="40"/>나머지주소<br />
                     </td>
                 </tr>
                 <tr scope="row">
@@ -145,9 +145,9 @@
                             <option value="019">019</option>
                         </select>
                         -
-                        <input class="A_phoneNumber_middle" type="text" name="" value="" size="4">
+                        <input class="" type="text" name="R_phoneNumber_middle" value="" size="4">
                         -
-                        <input class="A_phoneNumber_last" type="text" name="" value="" size="4">
+                        <input class="" type="text" name="R_phoneNumber_last" value="" size="4">
                     </td>
                 </tr>
                 <tr scope="row">
@@ -204,42 +204,28 @@
                 <input type="submit" value="결제하기">
             </div>
             <div style="width:100%;">
-                <input type="radio" name="payMethod" value="">카드결제
-                <input type="radio" name="payMethod" value="">에스크로(실시간 계좌이체)
-                <input type="radio" name="payMethod" value="">휴대폰 결제
-                <input type="radio" name="payMethod" value="">무통장 입금
-                <input type="radio" name="payMethod" value="">에스크로(가상계좌)
-                <input type="radio" name="payMethod" value="">카카오페이(간편결제)
-                <input type="radio" name="payMethod" value="">네이버페이(간편결제)
+                <input type="radio" name="payMethod" value="card" checked>카드결제
+                <input type="radio" name="payMethod" value="trans">에스크로(실시간 계좌이체)
+                <input type="radio" name="payMethod" value="phone">휴대폰 결제
+                <input type="radio" name="payMethod" value="bankbook">무통장 입금
+                <input type="radio" name="payMethod" value="vbank">에스크로(가상계좌)
                 <hr>
                 <br>
+                <div id="pay_addedBox">
+                    *소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.
+                </div>
             </div>
         </div>
     </form>
 <!-- 우편주소찾기 api -->
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
+<script> $(function() { $("#S_postcodify_search_button").postcodifyPopUp({ container: $('td#S_address')}); }); </script>
+<script> $(function() { $("#R_postcodify_search_button").postcodifyPopUp({ container: $('td#R_address')}); }); </script>
 <!-- iamport api -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<!-- 네이버 페이 버튼 생성을 위한 sdk -->
-<script type="text/javascript" src="//pay.naver.com/customer/js/naverPayButton.js"></script>
 <!-- 모바일환경인지 PC환경인지 구분하기 위한 javascript -->
 <script type='text/javascript' src="//wurfl.io/wurfl.js"></script>
 <script type="text/javascript">
-//첫 화면 총 상품금액
-var totalAmount = 0;
-for (let i=0;i<$('.amount').length;i++){
-    totalAmount += parseInt($('.amount')[i].innerHTML)
-}
-$('.totalAmount').html(totalAmount)
-
-//첫 화면 결제예정금액
-if($('.deliveryCharge').html() != '-'){
-    var deliveryCharge = parseInt($('.deliveryCharge').innerHTML);
-    $('.totalPayAmount').html(totalAmount + deliveryCharge);
-}else{
-    $('.totalPayAmount').html(totalAmount)
-}
 $(document).ready(function(){
     // min (포함) 과 max (불포함) 사이의 임의 정수를 반환
     // Math.round() 를 사용하면 고르지 않은 분포를 얻게된다!
@@ -248,93 +234,171 @@ $(document).ready(function(){
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    $('#orderForm').submit(function(e){
-        e.preventDefault();
-        var IMP = window.IMP;
-        IMP.init("imp13574884");
+    //첫 화면 총 상품금액
+    var totalAmount = 0;
+    for (let i=0;i<$('.amount').length;i++){
+        totalAmount += parseInt($('.amount')[i].innerHTML)
+    }
+    $('.totalAmount').html(totalAmount)
 
-        //주문자, 받는사람 정보 ajax로 쏴주기
-        var merchant_uid =  '쇼핑몰이름_' + new Date().getTime() + '&' + getRandomInt(0, 1000000);
-        var name = $('#productName').text();
-        var amount = $('h2.totalPayAmount').text();
-        var buyer_email = $('input[name="email"]').val() + '@' + $('input[name="mailAddress"]').val();
-        var buyer_name = $('input[name="name"]').val();
-        var buyer_tel = $('input[name="A_phoneNumber_start"] option:selected').val() + '-' + $('input[name="A_phoneNumber_middle"]').val() + '-' +  $('input[name="A_phoneNumber_last"]').val();
-        var buyer_addr = $('#A_address_first').val() + ' ' + $('#A_address_last').val();
-        var buyer_postcode = $('#postCode').val();
-        //모바일, PC환경 구분
-        if(WURFL.is_mobile){
-            IMP.request_pay({
-                pg : 'inicis',
-                pay_method : 'card',
-                merchant_uid : '쇼핑몰이름_' + new Date().getTime() + '&' + getRandomInt(0, 1000000),
-                name : '주문명:결제테스트',
-                amount : $('h2.totalPayAmount').text(),
-                buyer_email : $('input[name="email"]').val() + '@' + $('input[name="mailAddress"]').val(),
-                buyer_name : $('input[name="name"]').val(),
-                buyer_tel : $('input[name="A_phoneNumber_start"] option:selected').val() + '-' + $('input[name="A_phoneNumber_middle"]').val() + '-' +  $('input[name="A_phoneNumber_last"]').val(),
-                buyer_addr : $('#A_address_first').val() + ' ' + $('#A_address_last').val(),
-                buyer_postcode : $('#postCode').val(),
-                m_redirect_url : 'http://localhost:4000/cart/order/complete/mobile' 
-            }
-        }else{
-            IMP.request_pay({
-                pg : 'inicis',
-                pay_method : 'card',
-                merchant_uid : '쇼핑몰이름_' + new Date().getTime() + '&' + getRandomInt(0, 1000000),
-                name : '주문명:결제테스트',
-                amount : $('h2.totalPayAmount').text(),
-                buyer_email : $('input[name="email"]').val() + '@' + $('input[name="mailAddress"]').val(),
-                buyer_name : $('input[name="name"]').val(),
-                buyer_tel : $('input[name="A_phoneNumber_start"] option:selected').val() + '-' + $('input[name="A_phoneNumber_middle"]').val() + '-' +  $('input[name="A_phoneNumber_last"]').val(),
-                buyer_addr : $('#A_address_first').val() + ' ' + $('#A_address_last').val(),
-                buyer_postcode : $('#postCode').val()
-            }, function(rsp) {
-                if ( rsp.success ) {
-                    //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-                    jQuery.ajax({
-                        url: "/cart/order/complete", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
-                        type: 'POST',
-                        dataType: 'json',
-                        data: {
-                            imp_uid : rsp.imp_uid,
-                            merchant_uid : rsp.merchant_uid,
-                            name : '주문명:결제테스트',
-                            amount : $('h2.totalPayAmount').text(),
-                            buyer_email : $('input[name="email"]').val() + '@' + $('input[name="mailAddress"]').val(),
-                            buyer_name : $('input[name="name"]').val(),
-                            buyer_tel : $('input[name="A_phoneNumber_start"] option:selected').val() + '-' + $('input[name="A_phoneNumber_middle"]').val() + '-' +  $('input[name="A_phoneNumber_last"]').val(),
-                            buyer_addr : $('#A_address_first').val() + ' ' + $('#A_address_last').val(),
-                            buyer_postcode : $('#postCode').val()
-                            //기타 필요한 데이터가 있으면 추가 전달
-                        }
-                    }).done(function(data) {
-                        //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-                        if ( everythings_fine ) {
-                            var msg = '결제가 완료되었습니다.';
-                            msg += '\n고유ID : ' + rsp.imp_uid;
-                            msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-                            msg += '\결제 금액 : ' + rsp.paid_amount;
-                            msg += '카드 승인번호 : ' + rsp.apply_num;
-
-                            alert(msg);
-                        } else {
-                            //[3] 아직 제대로 결제가 되지 않았습니다.
-                            //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-                        }
-                    });
-                } else {
-                    var msg = '결제에 실패하였습니다.';
-                    msg += '에러내용 : ' + rsp.error_msg;
-
-                    alert(msg);
-                }
-            });
-        }
-    })
+    //첫 화면 결제예정금액
+    if($('.deliveryCharge').html() != '-'){
+        var deliveryCharge = parseInt($('.deliveryCharge').innerHTML);
+        $('.totalPayAmount').html(totalAmount + deliveryCharge);
+    }else{
+        $('.totalPayAmount').html(totalAmount)
+    }
+    
     //이메일 선택시 선택된 게 input에 출력되도록 하는 함수
     $('#email_select').change(function(){
         $('input[name="mailAddress"]').val($('#email_select option:selected').text())
+    })
+
+    //주문자 정보와 동일 버튼 누를시 배송정보와 일치화시키기
+    $('#sameAddress').change(function(){
+        if($('#sameAddress').is(":checked")){
+            var a = $('select[name="S_phoneNumber_start"] option:selected').val();
+            var b = $('input[name="S_name"]').val();
+            var c = $('input[name="S_address_first"]').val();
+            var d = $('input[name="S_address_last"]').val();
+            var e = $('input[name="S_postCode"]').val();
+            var f = $('input[name="S_phoneNumber_middle"]').val();
+            var g = $('input[name="S_phoneNumber_last"]').val();
+
+            if (a!= '' && b!= '' && c!='' && d!='' && e!='' && f!='' && g!=''){
+                $('input[name="R_name"]').val(b);
+                $('input[name="R_address_first"]').val(c);
+                $('input[name="R_address_last"]').val(d);
+                $('input[name="R_postCode"]').val(e);
+                $('select[name="R_phoneNumber_start"] option[value=a]').attr("selected", "selected");
+                $('input[name="R_phoneNumber_middle"]').val(f)
+                $('input[name="R_phoneNumber_last"]').val(g)
+            }else{
+                alert("주문정보가 완벽히 입력되지 않았습니다.");
+                $('#sameAddress').prop('checked', false);
+            }
+        }
+    })
+
+    //결제수단 버튼 클릭시 뜨는 UI
+    $('input[name="payMethod"]').change(function(){
+        if($('input[name="payMethod"]:checked').val() == 'bankbook'){
+            $('#pay_addedBox').html(
+                "<table><tr><th>입금자명</th><td><input></td></tr><tr><th>입금은행</th><td><select><option selected>:: 선택해 주세요 ::</option><option>신한은행110-353-247636</option></select></td></tr></table>"
+            )
+        }else if($('input[name="payMethod"]:checked').val() == 'trans' || $('input[name="payMethod"]:checked').val() == 'vbank'){
+            $('#pay_addedBox').html(
+                "<table><tr><th>에스크로</th><td><input id='escrow' type='checkbox'>에스크로(구매안전)서비스를 적용합니다.</td></tr></table>"
+            )
+        }else{
+            $('#pay_addedBox').html(
+                "*소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다."
+            )
+        }
+    })
+
+    //결제하기
+    $('#orderForm').submit(function(e){
+        e.preventDefault();
+        //무통장 입금일 경우 iamport안 쓴다.
+        
+        var IMP = window.IMP;
+        IMP.init("imp13574884");
+
+        //주문자, 받는사람 정보 db에 넣을 필요 있음. 
+        var merchant_uid =  '쇼핑몰이름_' + new Date().getTime() + '&' + getRandomInt(0, 1000000);
+        var name = $('#productName').text();
+        var totalPrice = $('h2.totalPayAmount').text();
+        var productImage = $('#productImage').prop('src');
+        var amount = $('.countBox').val()
+        var buyer_email = $('input[name="S_email"]').val() + '@' + $('input[name="S_mailAddress"]').val();
+        var buyer_name = $('input[name="S_name"]').val();
+        var buyer_tel = $('select[name="S_phoneNumber_start"] option:selected').val() + '-' + $('input[name="S_phoneNumber_middle"]').val() + '-' +  $('input[name="S_phoneNumber_last"]').val();
+        var buyer_addr = $('input[name="S_address_first"]').val() + ' ' + $('input[name="S_address_last"]').val();
+        var buyer_postcode = $('input[name="S_postCode"]').val();
+        var Recipient_name = $('input[name="R_name"]').val();
+        var Recipient_addr = $('input[name="R_address_first"]').val() + ' ' + $('input[name="R_address_last"]').val();
+        var Recipient_postcode = $('input[name="R_postCode"]').val();
+        var Recipient_tel = $('select[name="R_phoneNumber_start"] option:selected').val() + '-' + $('input[name="R_phoneNumber_middle"]').val() + '-' +  $('input[name="R_phoneNumber_last"]').val();
+        var deliveryMessage = $('textarea[name="deliveryMessage"]').val();
+
+        //우리 서버 db에 주문정보 기록
+        jQuery.ajax({
+            url: "/cart/order/recordBeforeComplete", 
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                name : name,
+                totalPrice : totalPrice
+                amount : amount,
+                productImage : productImage
+                buyer_email : buyer_email,
+                buyer_name : buyer_name,
+                buyer_tel : buyer_tel,
+                buyer_addr : buyer_addr,
+                buyer_postcode : buyer_postcode,
+                Recipient_name : Recipient_name,
+                Recipient_addr : Recipient_addr,
+                Recipient_postcode : Recipient_postcode,
+                Recipient_tel : Recipient_tel
+                //기타 필요한 데이터가 있으면 추가 전달
+            },
+            success: function(data){
+                console.log("결제전주문정보DB입력완료")
+            },
+            error: function(error){
+                console.log("결제전주문정보DB입력실패")
+            }
+        })
+
+        //이니시스 결제연동
+        IMP.request_pay({
+            pg : 'html5_inicis',
+            pay_method : $('input[name="payMethod"]:checked').val(),
+            merchant_uid : '쇼핑몰이름_' + new Date().getTime() + '&' + getRandomInt(0, 1000000),
+            name : name,
+            amount : amount,
+            buyer_email : buyer_email,
+            buyer_name : buyer_name,
+            buyer_tel : buyer_tel,
+            buyer_addr : buyer_addr,
+            buyer_postcode : buyer_postcode,
+            escrow : ($('#escrow:checked').val() == 'on') ? true : false,
+            //모바일, PC환경 구분 : 모바일일 경우에는 콜백이 실행되지 않고 리다이렉션됨 
+            m_redirect_url : (WURFL.is_mobile) ? 'http://localhost:4000/cart/order/complete/mobile' : undefined
+        }, function(rsp) {
+            if ( rsp.success ) {
+                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+                jQuery.ajax({
+                    url: "/cart/order/complete", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        imp_uid : rsp.imp_uid,
+                        merchant_uid : rsp.merchant_uid
+                    }
+                }).done(function(data) {
+                    //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+                    if ( everythings_fine ) {
+                        var msg = '결제가 완료되었습니다.';
+                        msg += '\n고유ID : ' + rsp.imp_uid;
+                        msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+                        msg += '\결제 금액 : ' + rsp.paid_amount;
+                        msg += '카드 승인번호 : ' + rsp.apply_num;
+
+                        alert(msg);
+                    } else {
+                        //[3] 아직 제대로 결제가 되지 않았습니다.
+                        //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+                    }
+                });
+            } else {
+                var msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+
+                alert(msg);
+            }
+        });
     })
 });
 

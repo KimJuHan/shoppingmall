@@ -35,13 +35,37 @@
                                 <img src="../images/naverlogin.PNG" style="width:300px;"/>
                             </a>
                         </div>
-                        <% if(nonUserOrder){%>
-                            <div>
+                        <div>
+                            <% if(nonUserOrder) {%>
+                                <!-- 장바구니에서 넘어온 경우 -->
                                 <a href="/cart/order?orderType=<%=nonUserOrder%>%nonUser">비회원으로 주문하기</a>
-                            </div>
-                        <%}%>
+                            <%}%>
+                            <% if(orderedProduct) {%>
+                                <!-- 바로주문하기로 하는 경우 -->
+                                <a href="/nonCartOrder?orderedProduct=<%=orderedProduct%>%nonUser">비회원으로 주문하기</a>
+                            <%}%>
+                        </div>
                     </fieldset>
                 </form>
+                <% if(nonUserCheckout) {%>
+                    <form action="/myshop/checkout" method="POST">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>이름</th>
+                                <td><input type="" name="name" value=""></td>
+                            </tr>
+                            <tr>
+                                <th>주문번호</th>
+                                <td><input type="" name="orderNumber" value=""></td>
+                            </tr>
+                            <tr>
+                                <th>주문조회 비밀번호</th>
+                                <td><input type="" name="password" value=""></td>
+                            </tr>
+                        </table>
+                        <p>비회원의 경우, 주문시의 주문번호로 주문이 가능합니다.</p>
+                    </form>
+                <%}%>
             </div>
         </div>
     </div>

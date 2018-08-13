@@ -19,6 +19,12 @@ module.exports = (sequelize, DataTypes) => {
     amount : {
       type : DataTypes.STRING
     },
+    totalPrice : {
+      type : DataTypes.STRING
+    },
+    productImage : {
+      type : DataTypes.STRING
+    },
     buyer_email : {
       type : DataTypes.STRING
     },
@@ -32,6 +38,30 @@ module.exports = (sequelize, DataTypes) => {
       type : DataTypes.STRING
     },
     buyer_postcode : {
+      type : DataTypes.STRING
+    },
+    Recipient_name : {
+      type : DataTypes.STRING
+    },
+    Recipient_addr : {
+      type : DataTypes.STRING
+    },
+    Recipient_postcode : {
+      type : DataTypes.STRING
+    },
+    Recipient_tel : {
+      type : DataTypes.STRING
+    },
+    status : {
+      type : DataTypes.STRING
+    },
+    vbank_num : {
+      type : DataTypes.STRING
+    },
+    vbank_date : {
+      type : DataTypes.STRING
+    },
+    vbank_name : {
       type : DataTypes.STRING
     },
     createdAt: {
