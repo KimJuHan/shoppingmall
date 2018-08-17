@@ -61,22 +61,19 @@ exports.usernameDuplicationCheck = function(req, res){
 }
 
 exports.signUp = function(req, res){
-    bcrypt.hash(req.body.password, 8, function(err, hash){
+    bcrypt.hash(req.body.register_password, 8, function(err, hash){
         db.Users.create({
-            userId : req.body.userId,
-            password : hash,
-            usercode : req.body.userCode_first + req.body.userCode_last,
-            email : req.body.email,
-            phoneNumber : req.body.phoneNumber_start + req.body.phoneNumber_first + req.body.phoneNumber_last,
-            knowHow : req.body.knowHow,
-            nickname : req.body.nickname,
-            sex : req.body.sex,
-            postCode : req.body.postCode,
-            addressCode : req.body.address_first + req.body.address_last,
-            smsConsent : req.session.smsConsent ? req.session.smsConsent : 0 
+            userId : req.body.register_user_id,
+            password: hash,
+            username: req.body.register_username,
+            postcode: req.body.register_postcode,
+            addressCode: req.body.register_first_address + " " + req.body.register_last_address,
+            phone: req.body.register_phone1 + req.body.register_phone2 + req.body.register_phone3,
+            mobile: req.body.register_mobile1 + req.body.register_mobile2 + req.body.register_mobile3,
+            email: req.body.register_email + "@" + req.body.register_email_address,
+            smsConsent: req.body.smsConsent,
+            emailConsent: req.body.emailConsent
         }).then(function(){
-            delete req.session.userConsent;
-            delete req.session.smsConsent;
             res.send('<script>alert("회원가입 성공");location.href="/accounts/login";</script>')
         })
     })

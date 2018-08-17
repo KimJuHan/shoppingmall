@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "111111",
-    "database": "shoppingmall_project",
-    "host": "127.0.0.1",
+    "password": "qpxmska1!",
+    "database": "koreana",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {

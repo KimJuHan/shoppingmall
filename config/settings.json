@@ -2,9 +2,9 @@
     "port" : 4000,
     "model" : {
         "dialect" : "mysql",
-        "database" : "shoppingmall_project",
+        "database" : "koreana",
         "db_user" : "root",
-        "db_password" : "111111",
+        "db_password" : "qpxmska1!",
         "db_host" : "localhost"
     }
 }

@@ -1,0 +1,856 @@
+/* font */
+/*@import url('https://fonts.googleapis.com/css?family=Nanum+Myeongjo:400,700');*/
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&subset=korean');
+
+
+html {
+    font-size: 10px;
+}
+
+body {
+/*    font-family: 'Nanum Myeongjo', serif;*/
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* reset */
+body, ul, h1, h2, h3, h4, h5, h6, p{
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* layouts */
+
+.l-desktop-wrapper {
+    max-width: 1980px;
+    height: auto;
+    margin: 0 auto;
+/*    background-color: green;*/
+}
+
+.l-wrapper {
+    max-width: 1040px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.l-wrapper-absolute {
+    max-width: 1360px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.l-header-menu-detail-row {
+    overflow: hidden;
+    margin: 0 -1rem;
+}
+
+.l-header-menu-detail-col {
+    float: left;
+    width: 20%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.l-content-product-row {
+    overflow: hidden;
+    margin: 0 -1.5rem;
+}
+
+.l-content-product-col {
+    float: left;
+    width: 25%;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+}
+
+.l-content-review-row {
+    margin: 0 -1.5rem;
+/*    overflow: hidden;*/
+}
+
+.l-content-review-col {
+    float: left;
+    width: 33.33333%;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+}
+
+/* grid coloumns */
+
+.l-row {
+    overflow: hidden;
+    margin: 0 -1rem;
+}
+
+.l-col {
+    padding: 0 1rem;
+    float: left;
+    box-sizing: border-box;
+}
+
+.l-col-12-4 {
+    width: 33.33333%;
+}
+
+
+
+/* style */
+
+/*
+/* header
+header-menu-detail 5단 그리드 => mobile => 2단그리드 */
+
+body {
+    background-color: #fff;
+}
+
+.header-wrapper-container {
+    margin-top: 4.5rem;
+    border-top: 1px solid #2b2b2b;
+    border-bottom: 1px solid #ddd;    
+}
+
+.header-wrapper-container.index {
+    
+}
+
+.header-menu {
+    font-size: 1.15rem;
+    color: #666;
+    overflow: hidden;
+    margin-top: 1.5rem;
+    letter-spacing: 0.05rem;
+}
+
+.header-menu ul li {
+    float: left;
+}
+
+.header-menu ul li a {
+    display: block;
+    padding: 0 2rem;
+    border-right: 1px solid #cacaca;
+}
+
+.header-menu ul li:last-child a {
+    border-right: none;
+}
+
+.header-menu-left-side {
+    float: left;
+/*    margin-left: 20px;*/
+}
+
+.header-menu-left-side li:first-child a {
+    padding-left: 0;
+}
+
+.header-menu-right-side {
+    float: right;
+}
+
+.header-menu-right-side li:last-child a {
+    padding-right: 0;
+}
+
+.header-brand-logo {
+    display: block;
+    width: 94.44px;
+    height: 100px;
+    margin: 0 auto;
+    margin-top: 6rem;
+}
+
+.header-brand-logo img {
+    width: 94.44px;
+    height: 100px;
+}
+
+.header-menu-detail {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.header-menu-detail a {
+    display: block;
+    text-align: center;
+    padding: 1.6rem;
+    letter-spacing: 0.1rem
+}
+
+/* content */
+
+.content {
+    margin-top: 2.5rem;
+}
+
+.content-slide-cover-main {
+    padding-top: 35%;
+    position: relative;
+    overflow: hidden;
+/*    background-color:green;*/
+}
+
+.content-slide-main {
+    margin-left: -20%;
+    width: 140%;
+    height: auto;
+    position: absolute;
+    top: 0;
+}
+
+.content-slide img {
+    vertical-align: top;
+/*
+    slick slider 사용하지 않을때는 밑에 option들로 반응형을 잡는다
+    margin-left: -20%;
+    width: 140%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    background-color: red;
+*/
+}
+
+.content-slide-next-block {
+    display: inline-block;
+    position: absolute;
+    width: 10%;
+    padding-top: 35%;
+    top: 0;
+    right: 0;
+    text-indent: -9999px;
+    z-index: 9999;
+}
+
+.content-slide-prev-block {
+    display: inline-block;
+    position: absolute;
+    width: 10%;
+    padding-top: 35%;
+    top: 0;
+    left: 0;
+    text-indent: -9999px;
+    z-index: 9999;
+}
+
+.content-slide-arrow-container {
+    background-color: lightyellow;
+    padding-top: 37.05%;
+    position: relative;
+}
+
+.content-slide-next-arrow {
+    width: 25px;
+    height: 30px;
+    margin-top: -15px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+}
+
+.content-slide-prev-arrow {
+    width: 30px;
+    height: 40px;
+    margin-top: -15px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+
+.content-slide-next-arrow.small, .content-slide-prev-arrow.small {
+    width: 15px;
+    height: 20px;
+}
+
+
+.content-slide-cover-sub {
+    padding-top: 13.63922%;
+    position: relative;  
+    margin-top: 8rem;
+}
+
+.content-slide-sub {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+}
+
+.content-slide-sub img {
+    vertical-align: top;
+}
+
+/* 베스트상품 */
+
+.content-title.best {
+    margin-top: 5rem;
+}
+
+.content-title.event {
+    margin-top: 10rem;
+}
+
+.product_sorting{
+    font-size: 1.2rem;
+    color: #707274;
+    letter-spacing: 5px;
+    width: 178px;
+    margin: 0 auto;
+    line-height: 40px;
+    text-align: center;
+    border-top: 1px solid #2b2b2b;
+    border-bottom: 1px solid #2b2b2b;
+}
+
+.content-product {
+    margin-top: 5rem;
+}
+
+.product_image_container {
+    overflow: hidden;
+}
+
+.product_image_container:hover ~ .product_desc .product_name {
+    border-bottom: 1px solid black;
+}
+
+.product_image {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.product_image:hover {
+    transform:scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+
+.product_desc {
+    margin-top: 1.5rem;
+    font-weight: 800;
+}
+
+.product_name {
+    text-align: center;
+    border-bottom: 1px solid rgb(232, 232, 232);
+    padding-bottom: 1rem;
+}
+
+.product_name span {
+    font-size: 1.5rem;
+    color: #555555
+}
+
+.product_price {
+    margin-top: 1.3rem;
+    text-align: center;
+}
+
+.product_price span {
+    font-size: 1.3rem;
+    color: #f73660;
+}
+
+/* 메인리뷰 */
+
+.review-container {
+    margin-top: 5rem;
+    overflow: hidden;
+}
+
+.review-slide {
+    overflow: hidden;
+}
+/* slick-slide 클래스는 slick slider에서 제공해주는 pseudo 클래스 */
+.slick-slide .review-wrapper {
+    opacity: 0.4;
+}
+
+.slick-current .review-wrapper{
+    opacity: 1;
+}
+
+.review-wrapper {
+    overflow: hidden;
+    border: 1px solid rgb(232, 232, 232);
+}
+
+.review-image-container {
+    width: 50%;
+    float: left;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 50%;
+}
+
+.first {
+    background-image: url(images/review1.jpg);
+}
+
+.second {
+    background-image: url(images/review2.jpg);
+}
+
+.third {
+    background-image: url(images/review3.jpg);
+}
+
+.fourth {
+    background-image: url(images/review1.jpg);
+}
+
+.fifth {
+    background-image: url(images/review4.jpg);
+}
+
+
+.review-desc {
+    margin-left: 1rem;
+    overflow: hidden;
+}
+
+.review-desc h4 {
+    font-weight: 500;
+    font-size: 1.4rem;
+    text-align: center;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 3em;
+/*
+    white-space: normal;
+    line-height: 1.2;
+    word-wrap: break-word;
+*/
+/*    height: 3.6em; */
+/*
+    text-align: left;
+*/
+}
+
+.review-desc p {
+    font-size: 1rem;
+    text-align: left;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.review-more-button-container {
+    position: relative;
+}
+
+
+.review-more-button {
+    width: 130px;
+    margin: 0 auto;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #2b2b2b;
+    margin-top: 3rem;
+}
+
+.review-more-button span {
+    font-size: 1.2rem;
+    color: #707274;
+    letter-spacing: 5px;
+}
+
+.review-slide-arrow {
+    position: absolute;
+    width: 20px;
+    top: 50%;
+    margin-top: -8px;
+}
+
+.prev {
+    left: 30%;
+}
+
+.next {
+    right: 30%;
+}
+
+.footer-menu {
+    overflow: hidden;
+    margin-top: 10rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgb(232, 232, 232);;
+}
+
+.footer-menu li {
+    float: left;
+    padding: 0 1rem;
+    border-right: 1px solid #888;
+}
+
+.footer-menu li:first-child {
+    padding-left: 0;
+}
+
+.footer-menu li:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+
+.footer-menu li a {
+    display: block;
+    color: #2e2e2e;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.address {
+    margin-top: 1.5rem;
+    color: #757575;
+    line-height: 20px;
+    font-size: 1.1rem;
+}
+
+.address strong {
+    padding: 0 10px 0 0;
+}
+
+.address span {
+    padding: 0 15px 0 0;
+}
+
+/* login form module */
+
+.section_container {
+    margin-top: 5rem;   
+    text-align: center;
+    position: relative;
+}
+
+.section_title {
+    font-weight: normal;
+    display: inline-block;
+    border-bottom: 1px solid #222;
+    line-height: 40px;
+    color: #0f2155;
+}
+
+.login_form_container {
+    margin-top: 3.5rem;
+    position: relative;
+    width: 500px;
+    left: 50%;
+    margin-left: -250px;
+    border: 1px solid #ddd;
+    text-align: initial;
+}
+
+.login_form_wrapper {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.login_form_title {
+    color: #333333;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin-top: 5rem;
+}
+
+.login_form {
+    margin-top: 5rem;
+    overflow: hidden;
+}
+
+.login_id_label, .login_password_label {
+    display: block;   
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+    margin-bottom: 2.5rem;    
+}
+
+.login_password_label {
+    margin-bottom: 1.5rem;
+}
+
+.login_id_label span, .login_password_label span {
+    display: inline-block;
+    margin-top: 0.3rem;
+    float: left;
+}
+
+.login_id, .login_password {
+    float: right;
+    width: 340px;
+    border: none;
+    margin-bottom: 0.75rem;
+}
+
+input, .login_id:focus, .login_password:focus {
+    outline: none;
+}
+
+.security_login {
+    margin-left: 1rem;
+}
+
+.login_option_list {
+    margin-top: 0.5rem;
+    display: inline-block;
+    overflow: hidden;
+    float: right;
+}
+
+.login_option_list li {
+    float: right;
+    margin-right: 1.5rem;
+}
+
+.login_option_list li:first-child {
+    margin: 0;
+}
+
+.login_button {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-top: 2.5rem;
+    padding: 1rem 0;
+    background-color: #f73660;
+    color: #fff;
+    border: none;
+    margin-bottom: 1.5rem;
+}
+
+.naver, .fb, .kakao {
+    margin: 0;    
+}
+
+.background-login-logo {
+    background-repeat: no-repeat;
+    background-size: 20%;
+    background-position: 10% center;
+    margin-bottom: 5rem;
+}
+
+.naver {
+    background-image: url(/images/naver_login.png);
+    background-color: #26c826;
+}
+
+.fb {
+    background-image: url(/images/facebook_login.png);
+    background-color: #536fab;
+}
+
+.kakao {
+    background-image: url(/images/kakao_login.png);
+    background-color: #ffeb03;
+    color: black;
+}
+
+.naver span, .fb span, .kakao span {
+    margin-left: 10%;
+}
+
+/* register form container */
+
+caption {
+    display: none;
+}
+
+.register_form_container {
+    margin-top: 4rem;
+}
+
+.register_form_container h3 span, .register_form_container h3 img {
+    float: right;
+    margin-right: 0.5rem;
+    font-weight: normal;
+    font-size: 1.2rem;
+}
+
+.register_form {
+    margin-top: 1.5rem;
+}
+
+.register_form h3 {
+    font-size: 1.3rem;
+}
+
+.registration_table {
+    color: color: #353535;;
+    border: 1px solid #d7d5d5;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.registration_table th {
+    font-weight: normal;
+    padding: 1rem 0 1rem 1.5rem;
+    text-align: left;
+    background-color: #fbfafa;
+    line-height: 2rem;
+    background-image: url(/images/required.gif);
+    background-repeat: no-repeat;
+    background-position: 2.5% 40%;
+}
+
+.registration_table td {
+    padding-left: 1rem;
+}
+
+.registration_table td input {
+    line-height: 1.7rem;
+}
+
+.register_password, .register_password_check {
+    letter-spacing: 0.2rem;
+}
+
+.register_address input {
+    margin-bottom: 0.7rem;
+}
+
+.register_address button {
+    margin-left: 0.5rem;
+}
+
+.register_address input:first-child {
+    margin-top: 0.7rem;
+}
+
+.register_post_code {
+    width: 5rem;
+}
+
+.register_main_address, .register_sub_address {
+    width: 25rem;
+}
+
+select { 
+    -webkit-appearance: none; /* 네이티브 외형 감추기 */ 
+    -moz-appearance: none; 
+    appearance: none; 
+}
+
+/* IE 10, 11의 네이티브 화살표 숨기기 */
+select::-ms-expand { 
+    display: none; 
+}
+
+select { 
+    display: inline-block;
+    width: 5rem; /* 원하는 너비설정 */ 
+    font-family: inherit; /* 폰트 상속 */ 
+    line-height: 19px;
+    padding-top: 0.23rem;
+    background: url(/images/arrow_down.png) no-repeat 90% 60%; 
+    background-size: 12%;
+    /* 네이티브 화살표 대체 */ 
+    border: 1px solid #d7d5d5;
+    background-color: white;
+    border-radius: 0;
+    border: 1px solid #d5d5d5;
+    text-indent: 0.7rem;
+    background-color: rgb(248, 248, 248);
+    
+    /* iOS 둥근모서리 제거 */
+}
+
+.phone2, .phone3, .mobile2, .mobile3 {
+    width: 50px;
+    border: 1px solid #d5d5d5;
+}
+
+.default_val span {    
+    color: green;
+}
+
+.email_selection {
+    width: 10rem;
+    background: url(/images/arrow_down.png) no-repeat 90% 60%; 
+    background-size: 6%;
+    background-color: rgb(248, 248, 248);
+}
+
+select option span{
+    color: green;
+}
+
+.entire_agree_container {
+    margin-top: 1.5rem;
+    background-color: #fbfafa;
+    border: 1px solid #d8d5d5;
+    font-size: 1.1rem;
+}
+
+.agree_section {
+    border-bottom: 1px solid #d8d5d5;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.agree_section:last-child {
+    border-bottom: none;
+}
+
+.agree_section_inner {
+    padding: 0 2rem;
+}
+
+.check_all strong {
+    font-size: 1.3rem;
+}
+
+.agree_section h4 {
+    margin-bottom: 1.5rem;
+}
+
+.agree_scroll_description {
+    overflow: scroll;
+    background-color: #fff;
+    height: 13rem;
+    padding: 1.3rem;
+    line-height: 2.5rem;
+    word-spacing: 0.1rem;
+    border: 1px solid #d5d5d5;
+}
+
+.agree_scroll_description p {
+    color: #747474;
+    padding: 1rem 1rem;
+}
+
+.do_you_agree {
+    margin-top: 1rem;
+}
+
+.registration_submit_button {
+    
+}
+
+
+
+
+
+

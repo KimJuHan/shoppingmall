@@ -22,18 +22,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //db sync
 var db = require('./models');
-db.sequelize.authenticate()
-  .then(function(){
-    console.log('Connection has been established successfully');
-    //sync메소드가 db에 session table을 자동으로 생성한다. 그렇다면 sequelize migration으로 작업하려면 어떻게 해야하나? 수동으로 할 수 밖에 없을듯.. 
-    // return db.sequelize.sync();
-  })
-  .then(function(){
-    console.log('DB sync complete.');
-  })
-  .catch(function(err){
-    console.error('Unable to connect to the database', err);
-  })
+//db.sequelize.authenticate()
+//  .then(function(){
+//    console.log('Connection has been established successfully');
+//    //sync메소드가 db에 session table을 자동으로 생성한다. 그렇다면 sequelize migration으로 작업하려면 어떻게 해야하나? 수동으로 할 수 밖에 없을듯.. 
+//    //return db.sequelize.sync();
+//  })
+//  .then(function(){
+//    console.log('DB sync complete.');
+//  })
+//  .catch(function(err){
+//    console.error('Unable to connect to the database', err);
+//  })
 
 //session middleware
 var sessionHelper = require('./helper/sessionHelper');

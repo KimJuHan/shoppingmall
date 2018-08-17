@@ -1,40 +1,59 @@
-<% include ../header.ejs %>
-<div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <%if(typeof flashMessage !=='undefined') {%>
-            <div class="alert alert-danger" role="alert"><%=flashMessage%></div>
-        <%}%>
-        <div class="login-panel panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">로그인</h3>
-            </div>
-            <div class="panel-body">
-                <form role="form" action="" id="login_form" method="post">
-                    <fieldset>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="ID" name="username" type="text" autofocus="" required="">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Password" name="password" type="password" value="" required="">
-                        </div>
-                        <!-- Change this to a button or input when using this as a form -->
-                        <input type="submit" class="btn btn-lg btn-success btn-block" value="로그인">
-                        <div style="margin-top: 10px">
-                            <a href="/accounts/facebook" id="facebook_login" class="btn btn-lg btn-primary btn-block">
-                                <i class="fa fa-facebook" aria-hidden="true"></i> 페이스북 로그인
-                            </a>
-                        </div>
-                        </div>
-                        <div style="margin-top: 10px">
-                            <a id="kakao_login" href="/accounts/kakao" class="btn btn-lg btn-primary btn-block">
-                                <img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" style="width:300px;"/>
-                            </a>
-                        </div>
-                        <div style="margin-top: 10px">
-                            <a id="naver_login" href="/accounts/naver" class="btn btn-lg btn-primary btn-block">
-                                <img src="../images/naverlogin.PNG" style="width:300px;"/>
-                            </a>
-                        </div>
+<% include ../partials/header.ejs %>
+
+        <div class="content">
+            <div class="l-wrapper">
+                    <div class="section_container">
+                    <h3 class="section_title"><span>로그인</span></h3>
+                    <div class="login_form_container">
+                        <div class="login_form_wrapper">
+                            <h6 class="login_form_title">로그인</h6>
+
+
+
+
+
+
+                            <form class="login_form" method="post" action="">
+                                <label class="login_id_label">
+                                    <span>아이디</span>
+                                    <input class="login_id" type="text">
+                                </label>
+                                <label class="login_password_label">
+                                    <span>패스워드</span>
+                                    <input class="login_password" type="password">
+                                </label>
+                                <input type="checkbox">아이디저장
+                                <img class="security_login" src="/images/security.gif">
+                                <span>보안접속</span>
+
+                                <ul class="login_option_list">
+                                    <li><a>비밀번호찾기</a></li>
+                                    <li><a>아이디찾기</a></li>
+                                    <li><a>회원가입</a></li>
+                                </ul>
+
+                                <button class="login_button" type="submit">로그인</button>
+                                <div class="l-row">
+                                    <div class="l-col l-col-12-4">
+                                        <a href="/accounts/naver" class="login_button background-login-logo naver">
+                                            <span>네이버 로그인</span>
+                                        </a>
+                                    </div>
+                                    <div class="l-col l-col-12-4">
+                                        <a href="/accounts/facebook" class="login_button background-login-logo fb">
+                                            <span>페북 로그인</span>
+                                        </a>
+                                    </div>
+                                    <div class="l-col l-col-12-4">
+                                        <a href="/accounts/kakao" class="login_button background-login-logo kakao">
+                                            <span>카카오 로그인</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+
+
+
                         <div>
                             <% if(nonUserOrder) {%>
                                 <!-- 장바구니에서 넘어온 경우 -->
@@ -45,9 +64,18 @@
                                 <a href="/nonCartOrder?orderedProduct=<%=orderedProduct%>%nonUser">비회원으로 주문하기</a>
                             <%}%>
                         </div>
-                    </fieldset>
-                </form>
-                <% if(nonUserCheckout) {%>
+
+
+
+
+
+                            </form>
+
+
+
+
+
+                        <% if(nonUserCheckout) {%>
                     <form action="/myshop/checkout" method="POST">
                         <table class="table table-bordered">
                             <tr>
@@ -62,23 +90,31 @@
                                 <th>주문조회 비밀번호</th>
                                 <td><input type="" name="password" value=""></td>
                             </tr>
+                            <tr>
+                                <th><input type="submit" name="nonUserCheckout" value="조회하기"></th>
+                            </tr>
                         </table>
                         <p>비회원의 경우, 주문시의 주문번호로 주문이 가능합니다.</p>
                     </form>
-                <%}%>
+                        <%}%>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- kakao 로그인 api -->
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+    <!-- kakao 로그인 api -->
 <script type="text/javascript">
     $(document).ready(function(){
         window.addEventListener('message', function(e) {
             if (e.data !== 'popup-done') { return; }
             window.location.replace('/auth/popup-done');
-	    });
-    
+       });
+
         var loginWindow;
         var popupWindow = function(e){
             e.preventDefault();
@@ -89,18 +125,17 @@
             var left = Math.round(window.screenX + (w / 2));
             var top = Math.round(window.screenY + (h / 2.5));
 
-            loginWindow = window.open(url, 'LogIn', 
+            loginWindow = window.open(url, 'LogIn',
                 'width='+width+',height='+height+',left='+left+',top='+top+
                 ',toolbar=0,scrollbars=0,status=0,resizable=0,location=0,menuBar=0');
         }
         //카카오 팝업 로그인
-        $('#kakao_login').on('click', popupWindow)
+        $('.kakao').on('click', popupWindow)
 
         //페북 팝업 로그인
-        $('#facebook_login').on('click', popupWindow)
+        $('.fb').on('click', popupWindow)
 
         //네이버 팝업 로그인
-        $('#naver_login').on('click', popupWindow)
+        $('.naver').on('click', popupWindow)
     })
 </script>
-<% include ../footer.ejs %>
