@@ -7,25 +7,6 @@ var dotenv = require('dotenv');
 var urlencode = require('urlencode');
 dotenv.config();
 
-exports.signUp_agree = function(req, res){
-    res.render('accounts/joinAgree');
-}
-
-exports.signUp_agree_post = function(req, res){
-    if ( req.body.consent1 == '1' && req.body.consent2 == '1'){
-        req.session.userConsent = 1;
-        //sms 수신동의
-        if(req.body.consent3 == '1'){
-            req.session.smsConsent = 1;
-        }else{
-            req.session.smsConsent = 0;
-        }
-        res.send('<script>location.href="/accounts/join"</script>')
-    }else{  
-        res.send('<script>alert("동의함에 체크해주시기 바랍니다.");location.href="/accounts/signUpAgree";</script>');
-    }
-}
-
 exports.signUpPage = function(req, res){
     res.render('accounts/joinForm');
 }
@@ -61,16 +42,17 @@ exports.usernameDuplicationCheck = function(req, res){
 }
 
 exports.signUp = function(req, res){
+    console.log(req.body);
     bcrypt.hash(req.body.register_password, 8, function(err, hash){
         db.Users.create({
-            userId : req.body.register_user_id,
+            userId : req.body.register_userid,
             password: hash,
             username: req.body.register_username,
-            postcode: req.body.register_postcode,
+            postCode: req.body.register_postcode,
             addressCode: req.body.register_first_address + " " + req.body.register_last_address,
             phone: req.body.register_phone1 + req.body.register_phone2 + req.body.register_phone3,
             mobile: req.body.register_mobile1 + req.body.register_mobile2 + req.body.register_mobile3,
-            email: req.body.register_email + "@" + req.body.register_email_address,
+            email: req.body.register_email + "@" + req.body.selectEmail,
             smsConsent: req.body.smsConsent,
             emailConsent: req.body.emailConsent
         }).then(function(){
@@ -158,39 +140,38 @@ exports.popupSignupPage = function(req, res){
 
 exports.signUpByOtherForm = function(req, res){
     var user = req.session.user;
-    if (req.body.consent1 == '1' && req.body.consent2 == '1'){
-        db.Users.create({
-            userId : user.userId,
-            password : user.password,
-            username : user.nickname,
-            sex : user.sex,
-            nickname : req.body.username,
-            phoneNumber : req.body.phoneNumber_start + req.body.phoneNumber_first + req.body.phoneNumber_last,
-            email : req.body.email,
-            smsConsent : (req.body.consent3) ? 1 : 0
-        }).then(function(user){
-            req.logIn(user, function(){
-                if(req.session.orderType){
-                    var orderType = req.session.orderType;
-                    // 변수에 집어넣은 후 session에서 삭제
-                    delete req.session["orderType"];
-                    orderType = orderType.replace(/["]/gi,'')
+    delete req.session.user;
+    db.Users.create({
+        userId : user.userId,
+        password : user.password,
+        username : req.body.register_username,
+        postCode : req.body.register_postcode,
+        addressCode : req.body.register_first_address + ' ' + req.body.register_last_address,
+        email : req.body.register_email + '@' + req.body.register_email_address,
+        emailConsent : req.body.emailConsent,
+        smsConsent : req.body.smsConsent, 
+        phone : req.body.register_phone1 + req.body.register_phone2 + req.body.register_phone3,
+        mobile : req.body.register_mobile1 + req.body.register_mobile2 + req.body.register_mobile3
+    }).then(function(user){
+        req.logIn(user, function(){
+            if(req.session.orderType){
+                var orderType = req.session.orderType;
+                // 변수에 집어넣은 후 session에서 삭제
+                delete req.session["orderType"];
+                orderType = orderType.replace(/["]/gi,'')
 
-                    res.send('<script>alert("로그인 성공");window.close();window.opener.location.href="/cart/order?orderType=' + x + '"</script>')
-                }else if(req.session.orderedProduct){
-                    var orderedProduct = req.session.orderedProduct;
-                    // 변수에 집어넣은 후 session에서 삭제
-                    delete req.session["orderedProduct"];
+                res.send('<script>alert("로그인 성공");window.close();window.opener.location.href="/cart/order?orderType=' + x + '"</script>')
+            }else if(req.session.orderedProduct){
+                var orderedProduct = req.session.orderedProduct;
+                // 변수에 집어넣은 후 session에서 삭제
+                delete req.session["orderedProduct"];
 
-                    res.send('<script>alert("로그인 성공");window.close();window.opener.location.href="/nonCartOrder?orderedProduct=' + escape(orderedProduct) + '"</script>')
-                }else{
-                    res.send('<script>alert("회원가입 완료");window.close();window.opener.location.href="/";</script>')
-                }
-            });
-        })
-    }else{
-        res.send('<script>alert("동의함에 체크해주시기 바랍니다.");window.history.back();</script>');
-    }
+                res.send('<script>alert("로그인 성공");window.close();window.opener.location.href="/nonCartOrder?orderedProduct=' + escape(orderedProduct) + '"</script>')
+            }else{
+                res.send('<script>alert("회원가입 완료");window.close();window.opener.location.href="/";</script>')
+            }
+        });
+    })
 }
 
 exports.logout = function(req, res){

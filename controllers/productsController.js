@@ -1,9 +1,8 @@
 var db = require('../models');
 
-exports.productDetail = function(req, res){
-    db.Products.findById(req.params.id).then(function(product){
-        res.render('products/productDetail', {product:product})
-    })
+exports.productDetail = async function(req, res){
+    const product = await db.Products.find({where : {id : req.params.id}, include : [db.Reviews, db.Options]});
+    res.render('products/productDetail', {product:product});
 }
 
 exports.cartInsert = function(req, res){

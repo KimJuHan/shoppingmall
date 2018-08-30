@@ -1,5 +1,4 @@
 <% include ../partials/header.ejs %>
-
         <div class="content">
             <div class="l-wrapper">
                     <div class="section_container">
@@ -7,20 +6,17 @@
                     <div class="login_form_container">
                         <div class="login_form_wrapper">
                             <h6 class="login_form_title">로그인</h6>
-
-
-
-
-
-
+                            <%if(typeof flashMessage !=='undefined') {%>
+                                <div class="alert alert-danger" role="alert"><%=flashMessage%></div>
+                            <%}%>
                             <form class="login_form" method="post" action="">
                                 <label class="login_id_label">
                                     <span>아이디</span>
-                                    <input class="login_id" type="text">
+                                    <input class="login_id" name="username" type="text">
                                 </label>
                                 <label class="login_password_label">
                                     <span>패스워드</span>
-                                    <input class="login_password" type="password">
+                                    <input class="login_password" name="password" type="password">
                                 </label>
                                 <input type="checkbox">아이디저장
                                 <img class="security_login" src="/images/security.gif">
@@ -50,57 +46,39 @@
                                         </a>
                                     </div>
                                 </div>
-
-
-
-
-                        <div>
-                            <% if(nonUserOrder) {%>
-                                <!-- 장바구니에서 넘어온 경우 -->
-                                <a href="/cart/order?orderType=<%=nonUserOrder%>%nonUser">비회원으로 주문하기</a>
-                            <%}%>
-                            <% if(orderedProduct) {%>
-                                <!-- 바로주문하기로 하는 경우 -->
-                                <a href="/nonCartOrder?orderedProduct=<%=orderedProduct%>%nonUser">비회원으로 주문하기</a>
-                            <%}%>
-                        </div>
-
-
-
-
-
+                                <div>
+                                    <% if(nonUserOrder) {%>
+                                        <!-- 장바구니에서 넘어온 경우 -->
+                                        <a href="/cart/order?orderType=<%=nonUserOrder%>%nonUser">비회원으로 주문하기</a>
+                                    <%}%>
+                                    <% if(orderedProduct) {%>
+                                        <!-- 바로주문하기로 하는 경우 -->
+                                        <a href="/nonCartOrder?orderedProduct=<%=orderedProduct%>%nonUser">비회원으로 주문하기</a>
+                                    <%}%>
+                                </div>
                             </form>
-
-
-
-
-
-                        <% if(nonUserCheckout) {%>
-                    <form action="/myshop/checkout" method="POST">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>이름</th>
-                                <td><input type="" name="name" value=""></td>
-                            </tr>
-                            <tr>
-                                <th>주문번호</th>
-                                <td><input type="" name="orderNumber" value=""></td>
-                            </tr>
-                            <tr>
-                                <th>주문조회 비밀번호</th>
-                                <td><input type="" name="password" value=""></td>
-                            </tr>
-                            <tr>
-                                <th><input type="submit" name="nonUserCheckout" value="조회하기"></th>
-                            </tr>
-                        </table>
-                        <p>비회원의 경우, 주문시의 주문번호로 주문이 가능합니다.</p>
-                    </form>
-                        <%}%>
-
-
-
-
+                            <% if(nonUserCheckout) {%>
+                                <form action="/myshop/checkout" method="POST">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>이름</th>
+                                            <td><input type="" name="name" value=""></td>
+                                        </tr>
+                                        <tr>
+                                            <th>주문번호</th>
+                                            <td><input type="" name="orderNumber" value=""></td>
+                                        </tr>
+                                        <tr>
+                                            <th>주문조회 비밀번호</th>
+                                            <td><input type="" name="password" value=""></td>
+                                        </tr>
+                                        <tr>
+                                            <th><input type="submit" name="nonUserCheckout" value="조회하기"></th>
+                                        </tr>
+                                    </table>
+                                    <p>비회원의 경우, 주문시의 주문번호로 주문이 가능합니다.</p>
+                                </form>
+                            <%}%>
                         </div>
                     </div>
                 </div>

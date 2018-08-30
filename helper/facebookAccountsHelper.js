@@ -19,7 +19,7 @@ var facebookAccountsHelper = function(){
             // https://developers.facebook.com에서 appId 및 scretID 발급
             clientID: process.env.FACEBOOK_CLIENTID, 
             clientSecret: process.env.FACEBOOK_SECRETCODE, 
-            callbackURL: "http://localhost:4000/accounts/facebook/callback",
+            callbackURL: "http://localhost:5000/accounts/facebook/callback",
             profileFields: ['id', 'displayName', 'gender', 'address', 'email'],
             passReqToCallback: true
         },
@@ -42,10 +42,6 @@ var facebookAccountsHelper = function(){
                         var user = {};
                         user.userId = "fb_" + profile.id
                         user.password = hash
-                        user.nickname = profile.displayName
-                        user.addressCode = profile.address
-                        user.smsConsent = req.cookies.smsConsent
-                        user.sex = (profile.gender == 'male') ? 1 : 2
                         
                         // 이름만 req.user로 지정해주는 게 아니면 상관없다.
                         // req.user property를 지정하는 순간 req.isAuthenticated() => true!

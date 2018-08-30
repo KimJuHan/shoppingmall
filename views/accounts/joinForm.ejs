@@ -1,5 +1,4 @@
 <% include ../partials/header.ejs %>
-
         <div class="content">
             <div class="l-wrapper">
                 <div class="section_container">
@@ -8,17 +7,6 @@
             </div>
             <div class="register_form_container">
                 <div class="l-wrapper">
-<!--
-                    <h3>기본정보
-                        <span>필수입력</span><img src="images/required.gif">
-                    </h3>
--->
-
-
-
-
-
-
                     <form class="register_form" action="" method="post">
                         <h3>기본정보
                             <span>필수입력</span><img src="/images/required.gif">
@@ -61,7 +49,7 @@
                             <tr>
                                 <th class="non-required" style="background-image: none">주소</th>
                                 <td class="register_address">
-                                    <input class="register_post_code postcodify_postcode5" name="register_postcode" type="text"><button id="postcodify_search_button">우편번호 검색</button>
+                                    <input class="register_post_code postcodify_postcode5" name="register_postcode" type="text"><button type="button" id="postcodify_search_button">우편번호 검색</button>
                                     <br>
                                     <input class="register_main_address postcodify_address" name="register_first_address"type="text">
                                     <span>기본주소</span>
@@ -74,7 +62,7 @@
                                 <th class="non-required" style="background-image: none">일반전화</th>
                                 <td>
                                     <select class="phone1" name="register_phone1">
-                                        <option value="02 selected">02</option>
+                                        <option value="02" selected>02</option>
                                         <option value="031">031</option>
                                         <option value="032">032</option>
                                         <option value="033">033</option>
@@ -114,7 +102,7 @@
                                 <th>휴대전화</th>
                                 <td>
                                     <select class="mobile1" name="register_mobile1">
-                                        <option value="010 selected">010</option>
+                                        <option value="010" selected>010</option>
                                         <option value="011">011</option>
                                         <option value="016">016</option>
                                         <option value="017">017</option>
@@ -130,9 +118,9 @@
                             <tr>
                                 <th>이메일</th>
                                 <td>
-                                    <input type="text" name="str_email01" name="register_email" id="str_email01">
+                                    <input type="text" name="register_email" id="str_email01">
                                     @
-                                    <input type="text" name="str_email02" name="register_email_address" id="str_email02" disabled>
+                                    <input type="text" name="register_email_address" id="str_email02" disabled>
                                     <select class="email_selection" style= "margin-right:10px" name="selectEmail" id="selectEmail">
                                     <option value="1" selected><span>-직접입력-</span></option>
                                     <option value="naver.com">naver.com</option>
@@ -215,25 +203,14 @@
                         </div>
                         <input type="submit" class="registration_submit_button" value="회원가입">
                     </form>
-
                 </div>
             </div>
-
-
-
         </div>
 
-
-
-
-
         <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <!--[if lte IE 8]>
-        <script src="path/to/poly-checked.min.js"></script>
-        <![endif]-->
         <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-
+        <script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#selectEmail').change(function(){
@@ -247,12 +224,6 @@
                         }
                     });
                 });
-                $(function() {
-                    $("#postcodify_search_button").postcodifyPopUp();
-                });
-                $('form').submit(function(e){
-                    e.preventDefault();
-                });
 
                 $(function(){
                     $(".agree_all").click(function(){
@@ -263,12 +234,6 @@
                         }
                     })
                 })
-
-
-
-
-
-
 //아이디 중복여부 ajax로 확인하기
         $('.userIdAuthentication').on('click', function(){
             var userId = $('.register_user_id').val();
@@ -336,15 +301,18 @@
                 return true;
             }
 
+            //동의 체크했는지 확인
             function isConsentChecked(){
-                var $usingCheck = $('.using_agree:checked');
-                var $agreeCheck = $('.private_agree:checked');
+                var $usingCheck = $('.using_agree:checked').length;
+                var $agreeCheck = $('.private_agree:checked').length;
 
                 var isAllChecked = $usingCheck + $agreeCheck;
 
-                if(isAllChecked == 2 ){
-                    return true;
+                if(isAllChecked != 2 ){
+                    alert("동의함에 체크해주시기 바랍니다.")
+                    return false;
                 }
+                return true;
             }
 
             if (!emptyCheckForm()){
@@ -360,12 +328,13 @@
             if (!passwordCheck()){
                 return false;
             }
-            return true;
 
             if(!isConsentChecked()){
                 return false;
             }
-    });
+            return true;
+            
+        });
 });
 
         </script>

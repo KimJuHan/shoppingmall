@@ -1,0 +1,21 @@
+<% include ../partials/header %>
+    <% include ./navbar %>
+    <div style="width:500px;margin:0 auto;">
+        <table style="border:1px solid gray">
+            <tr>
+                <th>제품명</th>
+                <th>판매수량</th>
+                <th>현재재고</th>
+                <th>총계</th>
+            </tr>
+            <% products.forEach(function(product){%>
+                <tr>
+                    <th><%=product.name%></th>
+                    <th><%=product.sales%></th>
+                    <th><%=product.stock%></th>
+                    <th><%=product.sales+product.stock%></th>
+                </tr>
+            <%})%>
+        </table>
+    </div>
+<% include ../partials/footer %>

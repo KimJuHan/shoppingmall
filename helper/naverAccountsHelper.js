@@ -19,7 +19,7 @@ var naverAccountsHelper = function(){
             // https://developers.naver.com에서 appId 및 scretID 발급
             clientID: process.env.NAVER_CLIENTID,
             clientSecret: process.env.NAVER_SECRETCODE, 
-            callbackURL: "http://localhost:4000/accounts/naver/callback",
+            callbackURL: "http://localhost:5000/accounts/naver/callback",
             passReqToCallback: true 
         },
         function(req, accessToken, refreshToken, profile, done) {
@@ -32,13 +32,10 @@ var naverAccountsHelper = function(){
                 console.log(accessToken);
                 if (!user){  
                     bcrypt.hash(profile.id, 8, function(err, hash){
+                        console.log(profile);
                         var user = {};
                         user.userId = "n_" + profile.id
                         user.password = hash
-                        user.nickname = profile.displayName
-                        user.addressCode = profile.address
-                        user.smsConsent = req.cookies.smsConsent
-                        user.sex = (profile.gender == 'male') ? 1 : 2
                         
                         // 이름만 req.user로 지정해주는 게 아니면 상관없다.
                         // req.user property를 지정하는 순간 req.isAuthenticated() => true

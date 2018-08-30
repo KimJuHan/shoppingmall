@@ -24,25 +24,48 @@ var adminRequired = require('../helper/adminRequired');
 
 router.use(adminRequired)
 
-router.get('/products', adminController.productsList);
+/*관리자 인덱스페이지*/
+router.get('/', adminController.indexPage);
 
+/*상품관리*/
+//상품관리 인덱스페이지
+router.get('/products', adminController.productIndexPage);
+
+//상품등록페이지
 router.get('/products/register', csrfProtection, adminController.productsRegisterPage);
 
 router.post('/products/register', upload.single('thumbnail'), csrfProtection, adminController.productRegister);
 
-router.post('/products/ajax_summernote', upload.array('descriptionImages', 10), function(req, res){
+router.post('/products/register/ajax_summernote', upload.array('descriptionImages', 10), function(req, res){
     console.log(req.files);
     res.send(req.files);
 })
 
-router.get('/product/:id', adminController.productDetail);
+//상품목록페이지
+router.get('/products/list', adminController.productsList)
 
+//재고관리페이지
+router.get('/products/stockOperation', adminController.stockOperation);
+
+//상품상세 페이지
 router.get('/product/edit/:id', csrfProtection, adminController.productEditPage);
 
 router.post('/product/edit/:id', upload.single('thumbnail'), csrfProtection, adminController.productEdit)
 
 router.get('/product/delete/:id', adminController.productDestroy);
 
+// //주문리스트 페이지
+// router.get('/orderList', adminController);
+
+// router.post('/orderList', adminController);
+
+// //공지사항 작성하기 페이지
+// router.get('/notice_register', adminController);
+
+// router.post('/notice_register', adminController);
+
+// //분석
+// router/get('/analytics', adminController);
 
 
 module.exports = router;

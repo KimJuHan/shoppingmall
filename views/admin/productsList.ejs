@@ -1,10 +1,18 @@
-<% include ../header.ejs %>
-    <% include ./sidebar.ejs %>
-    <div class="col-sm-10">
-        <table class="table table-bordered table-hover">
+<% include ../partials/header.ejs %>
+    <% include ./navbar %>
+    <br>
+    <h2 style="text-align:center;">상품목록화면입니다.</h2>
+    <hr>
+    <div style="width:500px;margin:0 auto;">
+        <table style="border:1px solid gray">
             <tr>
-                <th>제목</th>
-                <th>작성일</th>
+                <th>상품이미지</th>
+                <th>품명</th>
+                <th>재고</th>
+                <th>가격</th>
+                <th>BestProduct여부</th>
+                <th>EventProduct여부</th>
+                <th>상품등록날짜</th>
                 <th>삭제</th>
             </tr>
             <% products.forEach(function(product){ 
@@ -12,23 +20,35 @@
             %>
             <tr>
                 <td>
-                    <a href="/admin/product/<%=product.id%>">
+                    <img src="/uploads/<%=product.thumbnail%>" alt="" width="300px;">
+                </td>
+                <td>
+                    <a href="/admin/product/edit/<%=product.id%>">
                         <%=product.name%>
                     </a>
                 </td>
+                <td>
+                    <%=product.stock%>
+                </td>
+                <td>
+                    <%=product.price%>
+                </td>
+                <th>
+                    <%=(product.bestProduct == true) ? "O" : "X" %>
+                </th>
+                <th>
+                    <%=(product.eventProduct == true) ? "O" : "X" %>
+                </th>
                 <td>
                     <%=date.getFullYear()%> -
                     <%=date.getMonth()+1%> -
                     <%=date.getDate()%>
                 </td>
                 <td>    
-                    <a href="/admin/product/delete/<%=product.id%>" 
-                    class="btn btn-danger" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
+                    <a href="/admin/product/delete/<%=product.id%>" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
                 </td>
             </tr>
             <%});%>
         </table>
-
-        <a href="/admin/products/register" class="btn btn-default">작성하기</a>
     </div>
-<% include ../footer.ejs %>
+<% include ../partials/footer.ejs %>

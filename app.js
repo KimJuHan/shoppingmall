@@ -22,11 +22,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //db sync
 var db = require('./models');
-//db.sequelize.authenticate()
+// db.sequelize.authenticate()
 //  .then(function(){
 //    console.log('Connection has been established successfully');
-//    //sync메소드가 db에 session table을 자동으로 생성한다. 그렇다면 sequelize migration으로 작업하려면 어떻게 해야하나? 수동으로 할 수 밖에 없을듯.. 
-//    //return db.sequelize.sync();
+//   //  sync메소드가 db에 session table을 자동으로 생성한다. 그렇다면 sequelize migration으로 작업하려면 어떻게 해야하나? 수동으로 할 수 밖에 없을듯.. 
+//    return db.sequelize.sync();
 //  })
 //  .then(function(){
 //    console.log('DB sync complete.');
@@ -61,6 +61,7 @@ var productsRouter = require('./routes/products');
 var cartRouter = require('./routes/cart');
 var nonCartOrderRouter = require('./routes/nonCartOrder');
 var myshopRouter = require('./routes/myshop');
+var boardRouter = require('./routes/board');
 
 //matching routing 
 app.use('/', homeRouter);
@@ -70,6 +71,7 @@ app.use('/product', productsRouter);
 app.use('/cart', cartRouter);
 app.use('/nonCartOrder', nonCartOrderRouter);
 app.use('/myshop', myshopRouter);
+app.use('/board', boardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

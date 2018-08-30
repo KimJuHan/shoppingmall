@@ -8,9 +8,12 @@
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
         <link rel="stylesheet" href="/css/style.css">
-
-        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </head>
     <body>
         <div class="header">
@@ -25,12 +28,12 @@
                         <li><a href="#">제품보기</a></li>
                         <li><a href="#">커뮤니티</a></li>
                         <% if(typeof(userData) !== 'undefined' && userData.userId === 'admin'){ %>
-                        <li><a href="#">관리자</a></li>
+                        <li><a href="/admin">관리자</a></li>
                         <% } %>
                     </ul>
                     <ul class="header-menu-right-side">
                       <% if(isLogin){ %>
-                        <li><a href="/checkout/nomemeber">내정보</a></li>
+                        <li><a href="/myshop/index">내정보</a></li>
                         <li><a href="/accounts/logout">로그아웃</a></li>
                       <% }else{ %>
                         <li><a href="/accounts/join">회원가입</a></li>
@@ -54,7 +57,7 @@
                     <div class="header-menu-detail">
                         <ul class="l-header-menu-detail-row">
                             <li class="l-header-menu-detail-col">
-                                <a href="#">홈으로</a>
+                                <a href="/">홈으로</a>
                             </li>
                             <li class="l-header-menu-detail-col">
                                 <a href="#">브랜드소개</a>

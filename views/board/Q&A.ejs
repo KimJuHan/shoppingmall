@@ -1,0 +1,43 @@
+<% include ../partials/header %>
+<br>
+<h3 style="text-align:center;">상품Q&A</h3>
+<hr>
+    <form action="/board/QnA/search" method="GET">
+        검색어 : <input type="text" name="searchQnA">
+        <input type="submit" value="찾기">
+    </form>
+    <table>
+        <tr>
+            <th>NO</th>
+            <th>SUBJECT</th>
+            <th>TITLE</th>
+            <th>NAME</th>
+            <th>DATE</th>
+        </tr>
+        <% QnAs.forEach(function(QnA){%>
+            <tr>
+                <td><%= QnA.id %></td>
+                <% if(QnA.Product){%>
+                    <td><img src="/uploads/<%= QnA.Product.dataValues.thumbnail%>" style="width:100px;height:100px;" alt=""><br><%= QnA.Product.dataValues.name%></td>            
+                <%}%>
+                <% if(QnA.category == 'delivery'){%>
+                    <td><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDYxMiA2MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDYxMiA2MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMjI2Ljc2NCwzNzUuMzVjLTI4LjI0OSwwLTUxLjA3OCwyMi45MS01MS4wNzgsNTEuMTZjMCwyOC4xNjYsMjIuODI5LDUxLjA3OCw1MS4wNzgsNTEuMDc4czUxLjA3OC0yMi45MTIsNTEuMDc4LTUxLjA3OCAgICBDMjc3Ljg0MSwzOTguMjYsMjU1LjAxMywzNzUuMzUsMjI2Ljc2NCwzNzUuMzV6IE0yMjYuNzY0LDQ1Mi4wNDljLTE0LjEyNSwwLTI1LjU0LTExLjQ5OC0yNS41NC0yNS41NDEgICAgYzAtMTQuMTIzLDExLjQxNS0yNS41MzksMjUuNTQtMjUuNTM5YzE0LjEyNCwwLDI1LjUzOSwxMS40MTYsMjUuNTM5LDI1LjUzOUMyNTIuMzAyLDQ0MC41NTEsMjQwLjg4OCw0NTIuMDQ5LDIyNi43NjQsNDUyLjA0OXogICAgIE02MTIsMzM3LjU2MXY1NC41NDFjMCwxMy42MDUtMTEuMDI5LDI0LjYzNS0yNC42MzYsMjQuNjM1aC0yNi4zNmMtNC43NjMtMzIuNjg0LTMyLjkyOS01Ny44MTItNjYuOTI3LTU3LjgxMiAgICBjLTMzLjkxNCwwLTYyLjA4MiwyNS4xMjktNjYuODQ1LDU3LjgxMkgyOTMuNjI1Yy00Ljc2My0zMi42ODQtMzIuOTMtNTcuODEyLTY2Ljg0NS01Ny44MTJjLTMzLjkxNSwwLTYyLjA4MiwyNS4xMjktNjYuODQ0LDU3LjgxMiAgICBoLTMzLjAxMmMtMTMuNjA2LDAtMjQuNjM1LTExLjAyOS0yNC42MzUtMjQuNjM1di01NC41NDFINjEyTDYxMiwzMzcuNTYxeiBNNDk0LjE0MywzNzUuMzVjLTI4LjI0OSwwLTUxLjE2LDIyLjkxLTUxLjE2LDUxLjE2ICAgIGMwLDI4LjE2NiwyMi45MTIsNTEuMDc4LDUxLjE2LDUxLjA3OGMyOC4xNjYsMCw1MS4wNzctMjIuOTEyLDUxLjA3Ny01MS4wNzhDNTQ1LjIyLDM5OC4yNiw1MjIuMzA5LDM3NS4zNSw0OTQuMTQzLDM3NS4zNXogICAgIE00OTQuMTQzLDQ1Mi4wNDljLTE0LjEyNSwwLTI1LjUzOS0xMS40OTgtMjUuNTM5LTI1LjU0MWMwLTE0LjEyMywxMS40MTQtMjUuNTM5LDI1LjUzOS0yNS41MzkgICAgYzE0LjA0MiwwLDI1LjUzOSwxMS40MTYsMjUuNTM5LDI1LjUzOUM1MTkuNjgyLDQ0MC41NTEsNTA4LjE4NSw0NTIuMDQ5LDQ5NC4xNDMsNDUyLjA0OXogTTYwMi4yOTMsMjgyLjYzN2wtOTYuODE3LTk1Ljc1MSAgICBjLTYuMTU5LTYuMDc3LTE0LjQ1My05LjUyNi0yMy4wNzYtOS41MjZoLTQ4Ljg2di0xOC4zMTNjMC0xMy42MzEtMTEuMDA0LTI0LjYzNS0yNC42MzUtMjQuNjM1SDEyNi45MDcgICAgYy0xMy41NSwwLTI0LjYzNSwxMS4wMDUtMjQuNjM1LDI0LjYzNXYzLjg2TDIuMywxNzQuNDI5bDE3Ny4xNDYsMjMuMDY4TDAsMjE1LjMyM2wxNzguODE0LDI1LjQyM0wwLDI1Ni4yNWwxMDIuMjc4LDE5LjI5ICAgIGwtMC4wMDcsNDguNDAzaDUwOS43MTJ2LTE3Ljk4NUM2MTEuOTgzLDI5Ny4xNzEsNjA4LjQ1MiwyODguNzk2LDYwMi4yOTMsMjgyLjYzN3ogTTU2MC4wODQsMjg1LjgzOWgtOTMuNjk3ICAgIGMtMi4xMzUsMC0zLjg2LTEuNzI0LTMuODYtMy44NTl2LTcyLjM0N2MwLTIuMTM1LDEuNzI1LTMuODYsMy44Ni0zLjg2aDE3LjgyYzAuOTg1LDAsMS45NzEsMC40MTEsMi43MSwxLjA2OGw3NS43OTYsNzIuMzQ3ICAgIEM1NjUuMjU3LDI4MS41NjksNTYzLjUzMiwyODUuODM5LDU2MC4wODQsMjg1LjgzOXoiIGZpbGw9IiMwMDAwMDAiLz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" style="width:100px;height:100px;"/><br>배송문의</td>
+                <%}%>
+                <% if(QnA.category == 'exchange'){%>
+                    <td><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDUxMS42MjQgNTExLjYyMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTExLjYyNCA1MTEuNjIzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTkuMTM1LDIwMC45OTZoMzkyLjg2MnY1NC44MThjMCwyLjQ3NSwwLjksNC42MTMsMi43MDcsNi40MjRjMS44MTEsMS44MSwzLjk1MywyLjcxMyw2LjQyNywyLjcxMyAgICBjMi42NjYsMCw0Ljg1Ni0wLjg1NSw2LjU2My0yLjU2OWw5MS4zNjUtOTEuMzYyYzEuNzA3LTEuNzEzLDIuNTYzLTMuOTAzLDIuNTYzLTYuNTY1YzAtMi42NjctMC44NTYtNC44NTgtMi41Ny02LjU2NyAgICBsLTkxLjA3LTkxLjA3OGMtMi4yODYtMS45MDYtNC41NzItMi44NTYtNi44NTgtMi44NTZjLTIuNjYyLDAtNC44NTMsMC44NTYtNi41NjMsMi41NjhjLTEuNzExLDEuNzE1LTIuNTY2LDMuOTAxLTIuNTY2LDYuNTY3ICAgIHY1NC44MThIOS4xMzVjLTIuNDc0LDAtNC42MTUsMC45MDMtNi40MjMsMi43MTJTMCwxMzQuNTY4LDAsMTM3LjA0MnY1NC44MThjMCwyLjQ3NCwwLjkwMyw0LjYxNSwyLjcxMiw2LjQyMyAgICBTNi42NjEsMjAwLjk5Niw5LjEzNSwyMDAuOTk2eiIgZmlsbD0iIzAwMDAwMCIvPgoJCTxwYXRoIGQ9Ik01MDIuNDksMzEwLjYzN0gxMDkuNjMydi01NC44MmMwLTIuNDc0LTAuOTA1LTQuNjE1LTIuNzEyLTYuNDIzYy0xLjgwOS0xLjgwOS0zLjk1MS0yLjcxMi02LjQyNC0yLjcxMiAgICBjLTIuNjY3LDAtNC44NTQsMC44NTYtNi41NjcsMi41NjhMMi41NjgsMzQwLjYwN0MwLjg1OSwzNDIuMzI1LDAsMzQ0LjUwOSwwLDM0Ny4xNzljMCwyLjQ3MSwwLjg1NSw0LjU2OCwyLjU2OCw2LjI3NSAgICBsOTEuMDc3LDkxLjM2NWMyLjI4NSwxLjkwMiw0LjU2OSwyLjg1MSw2Ljg1NCwyLjg1MWMyLjQ3MywwLDQuNjE1LTAuOTAzLDYuNDIzLTIuNzA3YzEuODA3LTEuODEzLDIuNzEyLTMuOTQ5LDIuNzEyLTYuNDI3VjM4My43MiAgICBINTAyLjQ5YzIuNDc4LDAsNC42MTMtMC44OTksNi40MjctMi43MWMxLjgwNy0xLjgxMSwyLjcwNy0zLjk0OSwyLjcwNy02LjQyN3YtNTQuODE2YzAtMi40NzUtMC45MDMtNC42MTMtMi43MDctNi40MiAgICBDNTA3LjEwMywzMTEuNTQsNTA0Ljk2NywzMTAuNjM3LDUwMi40OSwzMTAuNjM3eiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" style="width:100px;height:100px;"/><br>교환/환불문의</td>
+                <%}%>
+                <td>
+                    <a href="/board/QnA/<%=QnA.id%>">
+                        <%= QnA.title %>
+                        <% if(QnA.display == "off"){%>
+                            <img src="//img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_lock.gif" alt="">
+                        <%}%>
+                    </a>
+                </td>
+                <td><%= (QnA.User) ? (QnA.User.dataValues.username) : "" %></td>
+                <td><%= QnA.createdAt %></td>
+            </tr>
+        <%})%>
+    </table>
+    <a type="button" href="/board/QnA/write">글쓰기</a>
+<% include ../partials/footer %>

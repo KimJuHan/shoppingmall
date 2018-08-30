@@ -1,10 +1,10 @@
 {
-    "port" : 4000,
+    "port" : 5000,
     "model" : {
         "dialect" : "mysql",
-        "database" : "koreana",
+        "database" : "testing",
         "db_user" : "root",
-        "db_password" : "qpxmska1!",
+        "db_password" : "111111",
         "db_host" : "localhost"
     }
 }

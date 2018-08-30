@@ -21,23 +21,14 @@ module.exports = (sequelize, DataTypes) => {
     cartList: {
       type: DataTypes.TEXT
     },
-    usercode: {
-      type: DataTypes.INTEGER(20)
-    },
     email: {
       type: DataTypes.STRING
     },
-    phoneNumber: {
-      type: DataTypes.INTEGER(20)
-    },
-    knowHow: {
-      type: DataTypes.INTEGER
-    },
-    nickname : {
+    phone: {
       type: DataTypes.STRING
     },
-    sex : {
-      type: DataTypes.INTEGER
+    mobile: {
+      type: DataTypes.STRING
     },
     postCode : {
       type: DataTypes.STRING
@@ -45,8 +36,20 @@ module.exports = (sequelize, DataTypes) => {
     addressCode : {
       type: DataTypes.STRING
     },
+    emailConsent : {
+      type : DataTypes.STRING
+    },
     smsConsent : {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING
+    },
+    class : {
+      type : DataTypes.STRING
+    },
+    mileage : {
+      type : DataTypes.INTEGER
+    },
+    deliveryAddress : {
+      type : DataTypes.STRING
     },
     createdAt: {
       allowNull: false,
@@ -57,5 +60,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE
     }
   });
+  Users.associate = function(models){
+    Users.hasMany(models.Reviews);
+    Users.hasMany(models.QnAs);
+    Users.hasMany(models.Checkouts);
+  }
   return Users;
 };

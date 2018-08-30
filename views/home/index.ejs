@@ -49,49 +49,27 @@
                 </div>
                 <div class="content-product">
                     <div class="l-content-product-row">
-                        <div class="l-content-product-col">
-                            <div class="product_container">
-                                <div class="product_image_container">
-                                    <img class="product_image" src="images/bestproduct1.png">
-                                </div>
-                                <div class="product_desc">
-                                    <h3 class="product_name">
-                                        <span>[쏙쏭] 미팩토리 BRAND SALE (~52% off)</span>
-                                    </h3>
-                                    <h4 class="product_price">
-                                        <span>2,250원</span>
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="l-content-product-col">
-                            <div class="product_container">
-                                <div class="product_image_container">
-                                    <img class="product_image" src="images/bestproduct2.png">
-                                </div>
-                                <div class="product_desc">
-                                    <h3 class="product_name">
-                                        <span>3단 돼지코팩</span>
-                                    </h3>
-                                    <h4 class="product_price">
-                                        <span>7,110원</span>
-                                    </h4>
+                        <% bestProducts.forEach(function(product){ %>
+                            <div class="l-content-product-col">
+                                <div class="product_container">
+                                    <div class="product_image_container">
+                                        <a href="/product/<%=product.id%>">
+                                            <%if(product.thumbnail){%>
+                                                <img class="product_image" src="/uploads/<%=product.thumbnail%>">
+                                            <%}%>
+                                        </a>
+                                    </div>
+                                    <div class="product_desc">
+                                        <h3 class="product_name">
+                                            <span><%= product.description %></span>
+                                        </h3>
+                                        <h4 class="product_price">
+                                            <span><%= product.price %>원</span>
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="l-content-product-col">
-                            <div class="product_image_container">
-                                <img class="product_image" src="images/bestproduct3.png">
-                            </div>
-                            <div class="product_desc">
-                                <h3 class="product_name">
-                                    <span>콘크리트 필오프팩</span>
-                                </h3>
-                                <h4 class="product_price">
-                                    <span>10,800원</span>
-                                </h4>
-                            </div>
-                        </div>
+                        <%})%>
                     </div>
                 </div>
             </div>
@@ -104,62 +82,27 @@
                 </div>
                 <div class="content-product">
                     <div class="l-content-product-row">
-                        <div class="l-content-product-col">
-                            <div class="product_container">
-                                <div class="product_image_container">
-                                    <img class="product_image" src="images/eventproduct1.png">
-                                </div>
-                                <div class="product_desc">
-                                    <h3 class="product_name">
-                                        <span>노폐물 공사 SET</span>
-                                    </h3>
-                                    <h4 class="product_price">
-                                        <span>16,900원</span>
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="l-content-product-col">
-                            <div class="product_container">
-                                <div class="product_image_container">
-                                    <img class="product_image" src="images/eventproduct2.png">
-                                </div>
-                                <div class="product_desc">
-                                    <h3 class="product_name">
-                                        <span>[쏙쏭] 미팩토리 BRAND SALE (~52% off)</span>
-                                    </h3>
-                                    <h4 class="product_price">
-                                        <span>2,250원</span>
-                                    </h4>
+                        <% eventProducts.forEach(function(product){ %>
+                            <div class="l-content-product-col">
+                                <div class="product_container">
+                                    <div class="product_image_container">
+                                        <a href="/product/<%=product.id%>">
+                                            <%if(product.thumbnail){%>
+                                                <img class="product_image" src="/uploads/<%=product.thumbnail%>">
+                                            <%}%>
+                                        </a>
+                                    </div>
+                                    <div class="product_desc">
+                                        <h3 class="product_name">
+                                            <span><%= product.description %></span>
+                                        </h3>
+                                        <h4 class="product_price">
+                                            <span></span>
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="l-content-product-col">
-                            <div class="product_image_container">
-                                <img class="product_image" src="images/eventproduct3.png">
-                            </div>
-                            <div class="product_desc">
-                                <h3 class="product_name">
-                                    <span>메이크업 순삭돼지 SET</span>
-                                </h3>
-                                <h4 class="product_price">
-                                    <span>12,340원</span>
-                                </h4>
-                            </div>
-                        </div>
-                        <div class="l-content-product-col">
-                            <div class="product_image_container">
-                                <img class="product_image" src="images/eventproduct4.png">
-                            </div>
-                            <div class="product_desc">
-                                <h3 class="product_name">
-                                    <span>몬스터 2단 입술패치</span>
-                                </h3>
-                                <h4 class="product_price">
-                                    <span>8,010원</span>
-                                </h4>
-                            </div>
-                        </div>
+                        <%})%>
                     </div>
                 </div>
             </div>
@@ -172,56 +115,18 @@
                 <div class="review-container">
                     <div class="l-content-review-row">
                         <div class="review-slide">
-                            <div class="l-content-review-col">
-                                <div class="review-wrapper">
-                                    <div class="review-image-container first">
-
-                                    </div>
-                                    <div class="review-desc">
-                                        <h4>3단 돼지코팩</h4>
-                                        <p></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="l-content-review-col">
-                                <div class="review-wrapper">
-                                    <div class="review-image-container second">
-                                    </div>
-                                    <div class="review-desc">
-                                        <h4>노폐물 공사 SET</h4>
+                            <% Reviews.forEach(function(review){%>
+                                <div class="l-content-review-col">
+                                    <div class="review-wrapper">
+                                        <div class="review-image-container" style="background-image: url(<%=review.image%>)">
+                                        </div>
+                                        <div class="review-desc">
+                                            <h4><%= review.content %></h4>
+                                            <p></p>
+                                        </div>
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="l-content-review-col">
-                                <div class="review-wrapper">
-                                    <div class="review-image-container third">
-                                    </div>
-                                    <div class="review-desc">
-                                        <h4>3단 돼지코팩</h4>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="l-content-review-col">
-                                <div class="review-wrapper">
-                                    <div class="review-image-container fourth">
-                                    </div>
-                                    <div class="review-desc">
-                                        <h4>노폐물 공사 SET</h4>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="l-content-review-col">
-                                <div class="review-wrapper">
-                                    <div class="review-image-container fifth">
-                                    </div>
-                                    <div class="review-desc">
-                                        <h4>3단 돼지코팩</h4>
-                                    </div>
-                                </div>
-                            </div>
+                            <%})%>
                         </div>
                     </div>
                 </div>

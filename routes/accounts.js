@@ -8,10 +8,6 @@ require('../helper/facebookAccountsHelper')();
 require('../helper/kakaoAccountsHelper')();
 require('../helper/naverAccountsHelper')();
 
-router.get('/signUpAgree', accountsController.signUp_agree);
-
-router.post('/signUpAgree', accountsController.signUp_agree_post);
-
 router.get('/join', accountsController.signUpPage);
 
 router.post('/join', accountsController.signUp); 

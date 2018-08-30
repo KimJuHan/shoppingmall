@@ -1,0 +1,16 @@
+<% include ../partials/header %>
+    <table>
+        <tr>
+            <th><h2>#<%=QnA.id%></h2></th>
+        </tr>
+        <tr>
+            <th><h2>제목 : <%=QnA.title%></h2></th>
+        </tr>
+        <tr>
+            <td><h3>카테고리 : <%= QnA.category %></h3>Date : <%=QnA.createdAt%><br><%=(QnA.User) ? QnA.User.dataValues.username : "" %></td>
+        </tr>
+        <tr>
+            <td><%= QnA.content.replace(/<[^>]*>/g, "") %></td>
+        </tr>
+    </table>
+<% include ../partials/footer %>

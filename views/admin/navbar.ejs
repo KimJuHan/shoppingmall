@@ -1,0 +1,72 @@
+<style>
+    .admin-navbar{
+        overflow:hidden;
+        width:500px;
+        margin:0 auto;
+    }
+    .nav-menu-item{
+        padding: 10px;
+    }
+    .nav-menu-item.nondrop{
+        float:left;
+    }
+    .dropdown{
+        overflow:hidden;
+        float:left;
+    }
+    .dropdown-content {
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 100px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+    .products-dropdown{
+        display: none;
+    }
+    .order-dropdown{
+        display: none;
+    }
+    .board-dropdown{
+        display: none;
+    }
+    /* Show the dropdown menu on hover */
+    .products-dropdown-wrapper:hover .products-dropdown {
+        display: block;
+    }
+    .order-dropdown-wrapper:hover .order-dropdown{
+        display: block;
+    }
+    .board-dropdown-wrapper:hover .board-dropdown{
+        display: block;
+    }
+</style>
+<div class="admin-navbar">
+    <ul>
+        <div class="dropdown products-dropdown-wrapper">
+            <li id="products" class="nav-menu-item"><a href="/admin/products">상품관리</a></li>
+            <div class="dropdown-content products-dropdown">
+                <li class="product-dropdown-item"><a href="/admin/products/register">상품등록</a></li>
+                <li class="product-dropdown-item"><a href="/admin/products/list">상품목록</a></li>
+                <li class="product-dropdown-item"><a href="/admin/products/stockOperation">재고관리</a></li>
+            </div>
+        </div>
+        <div class="dropdown order-dropdown-wrapper">
+            <li id="order" class="nav-menu-item"><a href="/admin/orders">주문관리</a></li>
+            <div class="dropdown-content order-dropdown">
+                <li class="order-dropdown-item"><a href="">전체주문목록</a></li>
+                <li class="order-dropdown-item"><a href="">취소/교환/반품/환불 관리</a></li>
+                <li class="order-dropdown-item"><a href="">현금영수증 관리</a></li>
+            </div>
+        </div>
+        <div class="dropdown board-dropdown-wrapper">
+            <li id="board" class="nav-menu-item"><a href="/admin/board">게시판관리</a></li>
+            <div class="dropdown-content board-dropdown">
+                <li class="board-dropdown-item"><a href="">공지사항 등록</a></li>
+                <li class="board-dropdown-item"><a href="">Q&A목록(댓글관리)</a></li>
+            </div>
+        </div>
+        <li id="users" class="nav-menu-item nondrop"><a href="/admin/users">회원관리</a></li>
+        <li id="analytics" class="nav-menu-item nondrop"><a href="/admin/analytics">GOOGLE ANALYTICS</a></li>
+    </ul>
+</div>

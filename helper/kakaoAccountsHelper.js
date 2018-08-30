@@ -18,7 +18,7 @@ var kakaoAccountsHelper = function(){
     passport.use(new kakaoStrategy({
             // https://developers.kakao.com에서 appId 및 scretID 발급
             clientID: process.env.KAKAO_RESTAPI, 
-            callbackURL: "http://localhost:4000/accounts/kakao/callback",
+            callbackURL: "http://localhost:5000/accounts/kakao/callback",
             passReqToCallback: true 
         },
         function(req, accessToken, refreshToken, params, profile, done) {
@@ -36,10 +36,6 @@ var kakaoAccountsHelper = function(){
                         var user = {};
                         user.userId = "k_" + profile.id
                         user.password = hash
-                        user.nickname = profile.displayName
-                        user.addressCode = profile.address
-                        user.smsConsent = req.cookies.smsConsent
-                        user.sex = (profile.gender == 'male') ? 1 : 2
                         
                         // 이름만 req.user로 지정해주는 게 아니면 상관없다.
                         // req.user property를 지정하는 순간 req.isAuthenticated() => true!

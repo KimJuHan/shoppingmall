@@ -13,16 +13,28 @@ module.exports = (sequelize, DataTypes) => {
     imp_uid : {
       type : DataTypes.STRING(1200)
     },
-    name : {
+    orderList : {
+      type : DataTypes.TEXT
+    },
+    directOrder : {
+      type : DataTypes.TEXT
+    },
+    productId : {
+      type : DataTypes.INTEGER
+    },
+    optionId : {
+      type : DataTypes.INTEGER
+    },
+    orderStatus : {
       type : DataTypes.STRING
     },
-    amount : {
+    status : {
       type : DataTypes.STRING
     },
-    totalPrice : {
-      type : DataTypes.STRING
+    totalPayAmount : {
+      type : DataTypes.INTEGER
     },
-    productImage : {
+    password : {
       type : DataTypes.STRING
     },
     buyer_email : {
@@ -52,9 +64,6 @@ module.exports = (sequelize, DataTypes) => {
     Recipient_tel : {
       type : DataTypes.STRING
     },
-    status : {
-      type : DataTypes.STRING
-    },
     vbank_num : {
       type : DataTypes.STRING
     },
@@ -63,6 +72,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     vbank_name : {
       type : DataTypes.STRING
+    },
+    deliveryMessage : {
+      type : DataTypes.TEXT
     },
     createdAt: {
       allowNull: false,
@@ -73,5 +85,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE
     }
   });
+
+  Checkouts.associate = function(models){
+    Checkouts.belongsTo(models.Users);
+    Checkouts.hasMany(models.Carts);
+  }
+  
   return Checkouts;
 };

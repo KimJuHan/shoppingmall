@@ -19,6 +19,18 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.TEXT
     },
+    stock : {
+      type: DataTypes.INTEGER
+    },
+    bestProduct : {
+      type : DataTypes.BOOLEAN
+    },
+    eventProduct : {
+      type : DataTypes.BOOLEAN
+    },
+    sales : {
+      type : DataTypes.INTEGER
+    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE
@@ -28,5 +40,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE
     }
   });
+  Products.associate = function(models){
+    Products.hasMany(models.Reviews);
+    Products.hasMany(models.QnAs);
+    Products.hasMany(models.Options);
+  }
   return Products;
 };
