@@ -21,23 +21,14 @@ module.exports = (sequelize, DataTypes) => {
     cartList: {
       type: DataTypes.TEXT
     },
-    usercode: {
-      type: DataTypes.INTEGER(20)
-    },
     email: {
       type: DataTypes.STRING
     },
-    phoneNumber: {
-      type: DataTypes.INTEGER(20)
-    },
-    knowHow: {
-      type: DataTypes.INTEGER
-    },
-    nickname : {
+    phone: {
       type: DataTypes.STRING
     },
-    sex : {
-      type: DataTypes.INTEGER
+    mobile: {
+      type: DataTypes.STRING
     },
     postCode : {
       type: DataTypes.STRING
@@ -46,7 +37,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     smsConsent : {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING
+    },
+    emailConsent : {
+      type: DataTypes.STRING
     },
     createdAt: {
       allowNull: false,

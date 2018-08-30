@@ -37,7 +37,7 @@ a {
 }
 
 .l-wrapper {
-    max-width: 1040px;
+    max-width: 1680px;
     height: auto;
     margin: 0 auto;
 }
@@ -277,11 +277,11 @@ body {
     height: 20px;
 }
 
-
 .content-slide-cover-sub {
     padding-top: 13.63922%;
-    position: relative;  
-    margin-top: 8rem;
+    position: relative;
+    margin-top: 5rem;
+    overflow: hidden;
 }
 
 .content-slide-sub {
@@ -290,6 +290,22 @@ body {
     position: absolute;
     top: 0;
 }
+
+.slick-slide img {
+    width: 100%;
+}
+
+/*
+.hidden {
+    visibility: hidden;
+}
+*/
+
+/*
+.content-slide-sub.slick-initialized {
+    visibility: visible;
+}
+*/
 
 .content-slide-sub img {
     vertical-align: top;
@@ -845,12 +861,21 @@ select option span{
     margin-top: 1rem;
 }
 
+.register_button_wrapper {
+    margin-top: 3rem;
+    text-align: center;
+}
+
 .registration_submit_button {
-    
+    padding: 1.3rem 6rem;
+    background: none; 
+    border: 1px solid #ccc;
+}
+
+.registration_submit_button:hover {
+    border: 1px solid #333;
 }
 
 
-
-
-
+/* 관리자페이지 */
 

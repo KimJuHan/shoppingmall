@@ -63,10 +63,10 @@ exports.usernameDuplicationCheck = function(req, res){
 exports.signUp = function(req, res){
     bcrypt.hash(req.body.register_password, 8, function(err, hash){
         db.Users.create({
-            userId : req.body.register_user_id,
+            userId : req.body.register_userid,
             password: hash,
             username: req.body.register_username,
-            postcode: req.body.register_postcode,
+            postCode: req.body.register_postcode,
             addressCode: req.body.register_first_address + " " + req.body.register_last_address,
             phone: req.body.register_phone1 + req.body.register_phone2 + req.body.register_phone3,
             mobile: req.body.register_mobile1 + req.body.register_mobile2 + req.body.register_mobile3,

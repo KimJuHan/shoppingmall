@@ -20,7 +20,7 @@ router.post('/IdDuplicatedCheck', accountsController.userIdDuplicationCheck);
 
 router.post('/usernameDuplicatedCheck', accountsController.usernameDuplicationCheck);
 
-router.get('/login',  accountsController.login);
+router.get('/login', accountsController.login);
 
 //local
 router.post('/login', passport.authenticate('local', { 

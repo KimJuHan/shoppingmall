@@ -1,0 +1,362 @@
+/* font */
+/*@import url('https://fonts.googleapis.com/css?family=Nanum+Myeongjo:400,700');*/
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&subset=korean');
+
+
+html {
+    font-size: 10px;
+}
+
+body {
+/*    font-family: 'Nanum Myeongjo', serif;*/
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* reset */
+body, ul, h1, h2, h3, h4, h5, h6, p{
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* layouts */
+
+.l-desktop-wrapper {
+    max-width: 1980px;
+    height: auto;
+    margin: 0 auto;
+/*    background-color: green;*/
+}
+
+.l-wrapper {
+    max-width: 1080px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.l-wrapper-absolute {
+    max-width: 1360px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.l-header-menu-detail-row {
+    overflow: hidden;
+    margin: 0 -1rem;
+}
+
+.l-header-menu-detail-col {
+    float: left;
+    width: 20%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.l-content-product-row {
+    overflow: hidden;
+    margin: 0 -1.5rem;
+}
+
+.l-content-product-col {
+    float: left;
+    width: 25%;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+}
+
+.l-content-review-row {
+    margin: 0 -1.5rem;
+/*    overflow: hidden;*/
+}
+
+.l-content-review-col {
+    float: left;
+    width: 33.33333%;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+}
+
+/* grid coloumns */
+
+.l-row {
+    overflow: hidden;
+    margin: 0 -1rem;
+}
+
+.l-btn-row {
+    margin: 0 -0.5rem;
+}
+
+.l-col {
+    padding: 0 1rem;
+    float: left;
+    box-sizing: border-box;
+}
+
+.l-btn-col {
+    padding: 0 0.5rem;
+}
+
+.l-col-12-4 {
+    width: 33.33333%;
+}
+
+.l-col-12-6 {
+    width: 50%;
+}
+
+.l-col-12-3 {
+    width: 25%;
+}
+
+.l-row-no-margin {
+    margin: 0;
+}
+
+.l-col-no-padding {
+    padding: 0;
+}
+
+/* style */
+
+/*
+/* 공통 header (user + register)
+header-menu-detail 5단 그리드 => mobile => 2단그리드 */
+
+body {
+    background-color: #fff;
+}
+
+.header-wrapper-container {
+    margin-top: 4.5rem;
+    border-top: 1px solid #2b2b2b;
+    border-bottom: 1px solid #ddd;    
+}
+
+.header-menu {
+    font-size: 1.15rem;
+    color: #666;
+    overflow: hidden;
+    margin-top: 1.5rem;
+    letter-spacing: 0.05rem;
+}
+
+.header-menu ul li {
+    float: left;
+}
+
+.header-menu ul li a {
+    display: block;
+    padding: 0 2rem;
+    border-right: 1px solid #cacaca;
+}
+
+.header-menu ul li:last-child a {
+    border-right: none;
+}
+
+.header-menu-left-side {
+    float: left;
+/*    margin-left: 20px;*/
+}
+
+.header-menu-left-side li:first-child a {
+    padding-left: 0;
+}
+
+.header-menu-right-side {
+    float: right;
+}
+
+.header-menu-right-side li:last-child a {
+    padding-right: 0;
+}
+
+.header-brand-logo {
+    display: block;
+    width: 40px;
+    height: 42px;
+    margin: 0 auto;
+
+}
+
+.header-brand-logo img {
+    width: 100%;
+}
+
+
+
+.header-menu-detail {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.dropdown {
+
+}
+
+.dropdown-content {
+    display: none;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    position: absolute;
+    z-index: 9999;
+    border: 1px solid black;
+    background-color: green;
+}
+
+.header-menu-detail a {
+    display: block;
+    text-align: center;
+    padding: 1.6rem;
+    letter-spacing: 0.1rem;
+}
+
+
+/*
+
+table {
+    color: #353535;
+    border: 1px solid #d7d5d5;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+table th {
+    width: 25%;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 1rem 0 1rem 1.5rem;
+    background-color: #fbfafa;
+    line-height: 2rem;
+    text-align: center;
+}
+
+table td {
+    width: 25%;
+    padding-left: 1rem;
+    line-height: 2rem;
+    text-align: center;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+*/
+
+/* 관리자 - 상품리스트 */
+
+.register-row {
+    color: #353535;
+    margin-top: 5rem;
+}
+
+.register-row {
+    margin-top: 5rem;
+/*
+    margin-left: -1rem;
+    margin-right: -1rem;
+*/
+}
+
+.register-col {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.register_product_th, .register_product_td {
+    display: block;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.register_product_th {
+    background-color: #fbfafa;
+}
+
+
+.register_product_td {
+    background-color: #fff;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 관리자 - 상품업로드 */
+
+.register_product_upload_table {
+    color: #353535;
+    border: 1px solid #d7d5d5;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    margin-top: 5rem;
+}
+
+.register_product_upload_table th {
+    width: 20%;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1rem 0 1rem 1.5rem;
+    background-color: #fbfafa;
+    line-height: 2rem;
+    text-align: center;
+}
+
+.register_product_upload_table th {
+    border: 1px solid #d7d5d5;
+}
+
+.register_product_upload_table td {
+    width: auto;
+    padding-left: 1rem;
+    border-bottom: 1px solid #d7d5d5;
+/*
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+*/
+}
+
+.register_product_upload_table td input {
+    outline: none;
+    border: 0;
+    line-height: 4rem;
+    width: 100%;
+}
+
+
+.register_product_upload_button_container {
+    text-align: center;
+}
+
+
+.register_product_upload_button {
+    margin-top: 5rem;
+    width: 10rem;
+    height: 3rem;
+}
+
+.register_product_upload_button:hover {
+    border: 1px solid black;
+    background-color: #333;
+    color: #fff;
+}
+

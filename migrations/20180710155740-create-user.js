@@ -20,23 +20,14 @@ module.exports = {
       cartList: {
         type: Sequelize.TEXT
       },
-      usercode: {
-        type: Sequelize.STRING
-      },
       email: {
         type: Sequelize.STRING
       },
-      phoneNumber: {
+      phone: {
         type: Sequelize.STRING
       },
-      knowHow: {
-        type: Sequelize.INTEGER(20)
-      },
-      nickname : {
+      mobile: {
         type: Sequelize.STRING
-      },
-      sex : {
-        type: Sequelize.INTEGER
       },
       postCode : {
         type: Sequelize.STRING
@@ -45,7 +36,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       smsConsent : {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
+      },
+      emailConsent: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

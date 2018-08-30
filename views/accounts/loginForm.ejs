@@ -16,11 +16,11 @@
                             <form class="login_form" method="post" action="">
                                 <label class="login_id_label">
                                     <span>아이디</span>
-                                    <input class="login_id" type="text">
+                                    <input class="login_id" name="username" type="text">
                                 </label>
                                 <label class="login_password_label">
                                     <span>패스워드</span>
-                                    <input class="login_password" type="password">
+                                    <input class="login_password" name="password" type="password">
                                 </label>
                                 <input type="checkbox">아이디저장
                                 <img class="security_login" src="/images/security.gif">
@@ -54,9 +54,9 @@
 
 
 
-                        <div>
                             <% if(nonUserOrder) {%>
                                 <!-- 장바구니에서 넘어온 경우 -->
+                        <div>
                                 <a href="/cart/order?orderType=<%=nonUserOrder%>%nonUser">비회원으로 주문하기</a>
                             <%}%>
                             <% if(orderedProduct) {%>
@@ -139,3 +139,5 @@
         $('.naver').on('click', popupWindow)
     })
 </script>
+
+<% include ../partials/footer.ejs %>

@@ -7,9 +7,15 @@
             <div class="l-desktop-wrapper">
                 <div class="content-slide-cover-main">
                     <div class="content-slide-main">
+                        <div class="slick-slide">
                         <img src="images/slide-image1.jpg">
+                        </div>
+                        <div class="slick-slide">
                         <img src="images/slide-image2.png">
+                        </div>
+                        <div class="slick-slide">
                         <img src="images/slide-image3.png">
+                        </div>
                     </div>
 
                     <div class='l-wrapper-absolute'>
@@ -31,11 +37,16 @@
             <div class="l-wrapper">
                 <div class="content-slide-cover-sub">
                     <div class="content-slide-sub">
+                        <div class="slick-slide">
                         <img src="images/sub-slide-image1.jpg">
+                        </div>
+                        <div class="slick-slide">
                         <img src="images/sub-slide-image2.png">
+                        </div>
+                        <div class="slick-slide">
                         <img src="images/sub-slide-image3.png">
+                        </div>
                     </div>
-
                     <img class="content-slide-prev-arrow small" src="images/arrowL.png">
                     <img class="content-slide-next-arrow small" src="images/arrowR.png">
                 </div>
@@ -238,6 +249,7 @@
 
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
         <script type="text/javascript">
+
             $(document).ready(function(){
                 $('.content-slide-main').slick({
                     fade: true,
@@ -252,6 +264,7 @@
                     prevArrow: $('.content-slide-prev-block'),
                     nextArrow: $('.content-slide-next-block')
                 });
+
                 $('.content-slide-sub').slick({
                     fade: true,
                     infinite: true,
@@ -265,6 +278,7 @@
                     prevArrow: $('.content-slide-prev-arrow.small'),
                     nextArrow: $('.content-slide-next-arrow.small')
                 });
+
                 $('.review-slide').slick({
                     centerMode: true,
                     infinite: true,
