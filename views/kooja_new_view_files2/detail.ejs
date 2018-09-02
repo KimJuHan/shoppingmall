@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <title>한방에간다</title>    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        
+        <link rel="stylesheet" href="style.css">
+        
+    </head>
+    <body>       
+        <div class="header">
+           
+<!--            맨 위 메뉴-->
+            
+            <div class="l-wrapper">
+                <div class="header-menu">
+                    <ul class="header-menu-left-side">
+                        <li><a class="menu_favor" href="#"><span>즐겨찾기</span></a></li>
+                        <li><a class="menu_best_product" href="#"><span>베스트상품</span></a></li>
+                        <li class="small-dropdown small-dropdown-products">
+                            <a href="#" class="menu_show_products"><span>제품보기</span></a>
+                            <div class="small-dropdown-content">
+                                <a class="men_product" href="#">남성용품</a>
+                                <a class="women_product" href="#">여성용품</a>
+                                <a class="couple_product" href="#">커플용품</a>
+                                <a class="etc_product" href="#">기타용품</a>
+                            </div>
+                        </li>
+                        <li class="small-dropdown small-dropdown-community">
+                            <a href="#" class="menu_community"><span>커뮤니티</span></a>
+                            <div class="small-dropdown-content">
+                                <a class="men_product" href="#">브랜드소개</a>
+                                <a class="women_product" href="#">공지사항</a>
+                                <a class="couple_product" href="#">고객문의</a>
+                                <a class="etc_product" href="#">제품리뷰</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="header-menu-right-side">
+                        <li><a href="#" class="menu_join"><span>회원가입</span></a></li>
+                        <li><a href="#" class="menu_login"><span>로그인</span></a></li>
+                        <li><a href="#" class="menu_deliver_information"><span>주문정보</span></a></li>
+                        <li><a href="#" class="menu_cart"><span>장바구니</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            
+<!--            브랜드로고-->        
+<!--
+            <a class="header-brand-logo" href="#">
+                <img src="images/brandlogo.png">
+            </a>
+-->
+            
+<!--            아래메뉴-->
+<!--
+            <div class="header-wrapper-container index">
+                <div class="l-wrapper">
+                    <div class="header-menu-detail">
+                        <ul class="l-header-menu-detail-row">
+                            <li class="l-header-menu-detail-col">
+                                <a class="to_home" href="#">홈으로</a>
+                            </li>
+                            <li class="l-header-menu-detail-col">
+                                <a class="brand_intro" href="#">브랜드소개</a>
+                            </li>
+                            <li class="l-header-menu-detail-col dropdown">
+                                <a class="dropdown-btn show_products" href="#">제품보기</a>
+                                <div class="dropdown-content">
+                                    <a class="men_product" href="#">남성용품</a>
+                                    <a class="women_product" href="#">여성용품</a>
+                                    <a class="couple_product" href="#">커플용품</a>
+                                    <a class="etc_product" href="#">기타용품</a>
+                                </div>
+                            </li>
+                            <li class="l-header-menu-detail-col">
+                                <a class="product_review" href="#">사용후기</a>
+                            </li>
+                            <li class="l-header-menu-detail-col">
+                                <a class="notification" href="#">공지사항</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+-->
+        
+        <!-- 상품 상세페이지 -->
+        
+        <div class="content">
+            <div class="l-wrapper">
+                <div class="product_detail_container">
+                    <div class="product_detail_image_cover_container">
+                        <div class="product_detail_image_cover">
+                                <img class="fake_image" src="images/product_detail_image1.jpg">
+                                <img class="product_image" src="images/product_detail_image1.jpg">
+                        </div>
+                    </div>
+                    <div class="product_detail_desc_container">
+                        <h2 class="product_name">3CE WHITE MILK LOTION
+                        <span>[세부제목]</span></h2>
+                        <table class="product_desc_table">
+                            <tr>
+                                <th>판매가</th>
+                                <td>38,000원</td>
+                            </tr>
+                            <tr>
+                                <th>할인가</th>
+                                <td>30,000원</td>
+                            </tr>
+                            <tr>
+                                <th>품번</th>
+                                <td>31852111006</td>
+                            </tr>
+                            <tr>
+                                <th>재고</th>
+                                <td>O</td>
+                            </tr>
+                            <tr class="product_desc_with_select_box">
+                                <th>할인가능여부</th>
+                                <td>
+                                    <select class="product_detail_selection">
+                                        <option>-옵션선택-</option>
+<!--                                        <option>사용가능쿠폰이없습니다</option>-->
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>추가상품구매</th>
+                                <td>
+                                    <select class="product_detail_selection">
+                                        <option>-옵션선택-</option>
+                                        <option>크림1 (+3,000원)</option>
+                                        <option>크림2 (+4,500원)</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="product_detail_name_price">
+                            <span class="product_detail_name">3CE WHITE MILK LOTION</span>
+<!--                            <div class="quantity_price_cover">-->
+                               <strong class="product_detail_price">30,000</strong>
+                                <select class="product_detail_quantity">
+                                    <option>1</option>
+                                </select>
+<!--                            </div>-->
+                        </div>
+                        <div class="total_value">
+                            <span><strong>TOTAL</strong> (QUANTITY)</span><span class="delimeter">:</span><span><strong>30,000원</strong></span><span> (1개)</span> 
+                        </div>
+                        <div class="product_detail_btn_area">
+                            <div class="l-row l-btn-row">
+                                <div class="l-col l-col-12-6 l-btn-col">
+                                    <a class="purchase" href="#">구매하기</a>
+                                </div>
+                                <div class="l-col l-col-12-3 l-btn-col">
+                                    <a class="put_cart" href="#">장바구니</a>
+                                </div>
+                                <div class="l-col l-col-12-3 l-btn-col">
+                                    <a class="put_like" href="#">찜하기</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                
+                <!-- 
+                    product_for_customers => 이하 pfc로 클래스name 통일 
+                    pfc_container는 총 네개 => 상품상세설명, 상품후기, 상품문의, 배송/교환/환불
+                       
+                    상품후기같은경우는 클래스가 pfc_review로 들어가게됨
+                    
+                -->
+                
+                <div class="product_for_customers_container">
+                   
+                    <!-- 상품상세설명 부분 -->
+                    <div class="product_for_customers pfc_desc_activated">
+                        <ul class="l-row l-row-no-margin">
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_desc">상품상세설명</a>
+                            </li>
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_review">상품후기</a>
+                            </li>
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_inquiry">상품문의</a>
+                            </li>
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_delivery">배송/교환/환불</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    
+                    <!-- 상품후기 부분 -->
+                    <div class="product_for_customers pfc_review_activated">
+                        <ul class="l-row l-row-no-margin">
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_desc">상품상세설명</a>
+                            </li>
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_review">상품후기</a>
+                            </li>
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_inquiry">상품문의</a>
+                            </li>
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_delivery">배송/교환/환불</a>
+                            </li>
+                        </ul>
+                        
+                        
+                        
+                        <!-- 사용자가 상품후기 출력하는 부분 -->
+                        <div class="pfc_table_order">
+                            <h3>상품후기</h3>
+                            <span class="order_newest">최신순</span>
+                            <span class="order_rates">평점순</span>
+                            
+                            <table class="pfc_table">
+                                <colgroup>
+                                    <col width="10%">
+                                    <col>
+                                    <col width="10%">
+                                    <col width="12.5%">
+                                </colgroup>
+                                <tr class="pfc_table_headrow">
+                                    <th>번호</th>
+                                    <th>후기</th>
+                                    <th>평점</th>
+                                    <th>작성자</th>
+                                </tr>
+<!--
+                                <tr>
+                                    <td colspan="4" class="nodata">
+                                        <span>등록된 상품후기 게시글이 없습니다.</span>
+                                    </td>
+                                </tr>
+-->
+
+                                <tr class="pfc_table_datarow">
+                                    <td>1</td>
+                                    <td class="datarow_review">
+                                            탁월한 상품에 감탄하고갑니다
+                                            탁월한 상품에 감탄하고갑니다
+                                            탁월한 상품에 감탄하고갑니다
+                                    </td>
+                                    <td class="datarow_rates">
+                                        <img src="images/rate_star.gif"><img src="images/rate_star.gif"><img src="images/rate_star.gif"><img src="images/rate_star.gif"><img src="images/rate_star.gif">
+                                    </td>
+                                    <td>
+                                        <div>구자운</div>
+                                        <div>2018-09-01</div>
+                                    </td>
+                                </tr>
+                                
+                                
+                                
+                                <tr class="pfc_table_datarow">
+                                    <td>2</td>
+                                    <td class="datarow_review">
+                                        상품이 아주 좋네요 마음에 쏙 듭니다
+                                    </td>
+                                    <td class="datarow_rates">
+                                        <img src="images/rate_star.gif"><img src="images/rate_star.gif"><img src="images/rate_star.gif"><img src="images/rate_star.gif"><img src="images/rate_star.gif">
+                                    </td>
+                                    <td>
+                                        <div>김주한</div>
+                                        <div>2018-08-30</div>
+                                    </td>
+                                </tr>                                
+                            </table>
+                            
+                            <div class="pfc_review_write">
+                                <a class="pfc_review_write_button">상품후기작성</a>
+                            </div>
+                            
+                            
+                            <!-- 사용자가 상품후기 입력하는 부분 -->
+                            <div class="pfc_customer_container pfc_review_container">
+                               
+                                                                                      
+                                <form class="pfc_customer_form">
+
+                                    <ul class="pfc_customer_information">
+                                        <li>
+                                            <h3>작성자</h3>
+                                            <input type="text">
+                                        </li>
+
+                                        <li>
+                                            <h3>비밀번호</h3><input class="pfc_customer_password" type="password" disabled>
+                                        </li>
+                                    </ul>    
+                                   
+                                    <textarea class="pfc_customer_textarea" rows="7"></textarea>
+                                
+                                    <input class="pfc_customer_submit" type="button" value="리뷰작성" onclick="submitReviewForms()">
+                                    <a href="#">
+                                        <span>이미지첨부</span>
+                                        <input class="pfc_customer_image" type="file">
+                                    </a>
+                                    
+                                    <div class="pfc_review_stars"> 
+                                        <div class="star_container">
+                                            <span style="color: #727072; font-size: 12px; margin-right: 7px; margin-left: 1px">* 평점</span>
+                                           
+                                            <input type="radio" name="review_score" id="score05" value="5" checked>
+                                            <label for="score05">
+                                                <img src="images/rate_star.gif"><img src="images/rate_star.gif"><img src="images/rate_star.gif"><img src="images/rate_star.gif"><img src="images/rate_star.gif">
+                                            </label>                                
+
+                                            <input type="radio" name="review_score" id="score04" value="4">
+                                            <label for="score04">
+                                                <img src="images/rate_star.gif"><img src="images/rate_star.gif"><img src="images/rate_star.gif"><img src="images/rate_star.gif">
+                                            </label>
+                                            <input type="radio" name="review_score" id="score03" value="3">
+                                            <label for="score03">
+                                                <img src="images/rate_star.gif"><img src="images/rate_star.gif"><img src="images/rate_star.gif">
+                                            </label>
+                                            <input type="radio" name="review_score" id="score02" value="2">
+                                            <label for="score02">
+                                                <img src="images/rate_star.gif"><img src="images/rate_star.gif">
+                                            </label>
+                                            <input type="radio" name="review_score" id="score01" value="1">
+                                            <label for="score01">
+                                                <img src="images/rate_star.gif">
+                                            </label>
+                                        </div>
+                                    </div>
+                               
+                                </form>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <!-- 상품문의 부분 -->
+                    <div class="product_for_customers pfc_inquiry_activated">
+
+                        <ul class="l-row l-row-no-margin">
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_desc">상품상세설명</a>
+                            </li>
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_review">상품후기</a>
+                            </li>
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_inquiry">상품문의</a>
+                            </li>
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_delivery">배송/교환/환불</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- 사용자의 상품문의 출력하는 부분 -->
+                        <div class="pfc_table_order">
+                            <h3>상품문의</h3>
+                            <span class="order_newest">전체보기</span>
+                            <span class="order_rates">답변완료</span>
+                            
+                            <table class="pfc_table">
+                                <colgroup>
+                                    <col width="10%">
+                                    <col width="15%">
+                                    <col>
+                                    <col width="10%">
+                                </colgroup>
+                                <tr class="pfc_table_headrow">
+                                    <th>번호</th>
+                                    <th>상태</th>
+                                    <th>문의내용</th>
+                                    <th>작성자</th>
+                                </tr>
+<!--
+                                <tr>
+                                    <td colspan="4" class="nodata">
+                                        <span>등록된 상품후기 게시글이 없습니다.</span>
+                                    </td>
+                                </tr>
+-->
+
+                                <tr class="pfc_table_datarow">
+                                    <td>1</td>
+                                    <td class="datarow_inquiry_condition">
+                                        <span>대기중</span>
+                                    </td>
+                                    <td class="datarow_inquiry">
+                                        배송기간이어떻게되나요?
+                                    </td>
+                                    <td>
+                                        <div>구자운</div>
+                                        <div>2018-09-01</div>
+                                    </td>
+                                </tr>
+                                <tr class="pfc_table_datarow">
+                                    <td>2</td>
+                                    <td class="datarow_inquiry_condition">
+                                        답변완료
+                                    </td>
+                                    <td class="datarow_inquiry">
+                                        상품이너무안와요
+                                    </td>
+                                    <td>
+                                        <div>김주한</div>
+                                        <div>2018-09-01</div>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <div class="pfc_review_write">
+                                <a class="pfc_inquiry_write_button">상품문의하기</a>
+                            </div>
+                            
+                            
+                            
+                            
+                            <!-- 사용자가 상품문의 입력하는 부분 -->
+                            <div class="pfc_customer_container pfc_inquiry_container">
+                                                          
+                                <form class="pfc_customer_form">
+                                  
+                                    <div class="pfc_inquiry_title">
+                                        <h3>소구분</h3>
+                                        <select>
+                                            <option>상품문의</option>
+                                            <option>배송문의</option>
+                                            <option>교환/환불문의</option>
+                                            <option>주문/결제문의</option>
+                                        </select>
+                                    </div>
+                                   
+                                    <ul class="pfc_customer_information">                                       
+                                       
+<!--
+                                        <li class="pfc_inquiry_title">
+                                            <h3>내용구분</h3>
+                                            <select>
+                                                <option>상품문의</option>
+                                                <option>배송문의</option>
+                                                <option>교환/환불문의</option>
+                                                <option>주문/결제문의</option>
+                                            </select>
+                                        </li>
+-->
+                                       
+                                        <li>
+                                            <h3>작성자</h3>
+                                            <input type="text">
+                                        </li>
+
+                                        <li>
+                                            <h3>비밀번호</h3><input class="pfc_customer_password" type="password" disabled>
+                                        </li>
+                                        
+                                        <input class="is_inquiry_secret" type="checkbox">
+                                        <span>비밀글</span>
+                                        
+                                    </ul>
+                                    
+                                    <textarea class="pfc_customer_textarea" rows="7"></textarea>
+                            
+                                   
+                                    <input class="pfc_customer_submit" type="submit" value="문의하기">
+                                    <a href="#">
+                                        <span>이미지첨부</span>
+                                        <input class="pfc_customer_image" type="file">
+                                    </a>
+                                    
+                                    
+                                    <div class="etc_span_container">
+                                        <span class="etc_span">
+                                        * 사업 및 제휴문의는 하단 메일주소로 문의주세요
+                                        </span>
+                                    </div>
+                               
+                                </form>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <!-- 배송/교환/환불 부분 -->
+                    <div class="product_for_customers pfc_delivery_activated">
+                        <ul class="l-row l-row-no-margin">
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_desc">상품상세설명</a>
+                            </li>
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_review">상품후기</a>
+                            </li>
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_inquiry">상품문의</a>
+                            </li>
+                            <li class="l-col l-col-12-3 l-col-no-padding">
+                                <a href="#" class="pfc_delivery">배송/교환/환불</a>
+                            </li>
+                        </ul>
+                        <div class="pfc_delivery_desc_container">
+                            <p class="pfc_delivery_desc">
+                <span style="color:#f7365f"> - 주문 전 아래 공지사항을 확인후 주문 부탁드립니다.</span><br/><br/>
+                                <span class="pfc_delivery_category">[배송안내]</span>
+<span class="pfc_delivery_content delivery_notification">
+<br/>
+배송업체 : 우체국택배<br/>
+배송비용 : 1,800원 / 실결제 금액 50,000원 이상 시 무료배송 <br/>
+배송기간 : 5일 ~ 10일 (영업일 기준)<br/><br/>
+
+- 이벤트(세일)기간내 주문의 경우에는 기본 배송일 이상 소요되며, 이벤트 종료 이후 순차 배송됩니다.<br/>
+- 공급처 사정으로 인하여 지연 및 품절이 발생될 수 있습니다. <br/>
+- '주문폭주', '인기상품'의 경우 기본 배송기간 이상 소요됩니다.<br/>
+- 기본 배송기간 이상 소요되는 상품이거나, 품절된 상품은 개별 연락 드리겠습니다.
+</span>
+                                <br/><br/><br/>
+
+                                <span class="pfc_delivery_category">[교환/반품안내]</span>
+                                <span class="pfc_delivery_content">
+                                <br/>
+                                단순 변심의 경우 수령일로부터 7일 이내까지 교환∙반품이 가능합니다(교환∙반품비 고객님 부담).<br/>
+상품 하자, 오배송의 경우 수령일로부터 3개월 이내, 그 사실을 알 수 있었던 날로부터 30일 이내까지 교환∙반품이 가능합니다(교환∙반품비 무료). <br/><br/>
+
+단, 다음의 경우에는 교환∙반품 가능기간에도 불구하고 거절될 수 있습니다. <br/>
+- 고객님의 사용흔적이 있는 경우<br/>
+- 고객님의 책임 있는 사유로 제품이 멸실 또는 훼손된 경우<br/>
+- 시간의 경과에 의하여 재판매가 곤란할 정도로 제품의 가치가 현저히 감소한 경우<br/>
+- 고객님의 주문에 따라 개별적으로 생산되는 제품의 경우<br/><br/>
+
+교환∙반품 가능기간 이내에 “한방에간다 게시판 또는 고객센터 접수” 후 물품을 “교환∙반품 신청서”와 함께 아래 반품 주소로 보내주셔야 합니다.<br/>
+(미접수, 신청서 미동봉시 별도의 확인 시간이 소요될 수 있습니다). <br/><br/>
+
+보내주실 때 받아보신 그대로 포장 후 우체국 택배를 이용하여 착불로 보내주세요. (사용흔적이 있으면 반품처리 불가합니다) <br/>
+교환∙반품 배송비는 단순 변심의 경우 고객님 부담, 상품 하자 및 오배송의 경우 회사부담입니다. 배송비를 입금하시는 경우 꼭 주문자 성함으로 입금해 주시기 바랍니다.<br/><br/> 
+
+반품 주소 : 서울특별시 관악구 봉천동 1574-15 204 ㈜더블케이<br/>
+(반품 배송비 고객 선불부담)<br/><br/><br/>
+                                </span>
+                    <span class="pfc_delivery_category">[취소/환불안내]</span>
+                    
+                    <span class="pfc_delivery_content">
+                                        <br/>
+                    입금 전 취소, 배송 전 취소 모두 마이페이지에서 고객님이 직접 취소가 가능합니다. <br/>
+금액 취소 처리 건이 있으시면 고객센터나 문의 게시판에 꼭 남겨주세요.<br/><br/>
+
+환불<br/>
+환불은 요청하신 날로부터 1~2일 후 계좌로 환불됩니다.<br/><br/>                
+                
+카드 취소<br/>
+- 부분취소는 불가하여 부분배송 받아보시는 상품 금액만큼을 따로 재결제 혹은 입금해주시면 카드 전체 취소 처리해드립니다. <br/>
+- 가맹점을 통해 취소가 되므로 처리 시일은 최대 7일 정도 소요됩니다. <br/><br/>
+
+휴대폰 취소<br/>
+- 휴대폰은 당월 취소만 가능합니다, <br/>
+- 부분취소는 불가하여 일부구매하는 상품금액을 입금해주시거나 개인결제창으로 재결제해주시면 휴대폰 전체취소로 처리가능합니다.<br/><br/><br/>
+                                </span>
+                                <a class="pfc_delivery_category">
+                    <span>[품질보증기준]</span>
+                                </a>
+                                
+                    <span class="pfc_delivery_content">
+                    <br/>
+                - 본 제품의 수명을 연장시키기 위하여 제품의 취급주의 사항과 세탁 방법을 필히 확인해 주시기 바랍니다.<br/>
+- 본 제품의 품질에 이상이 있을 경우 공정거래위원회 고시에 의거하여 보상해 드리며, 고객센터로 연락주시기 바랍니다.<br/>
+- 소비자 취급 부주의 또는 품질보증기간이 경과된 제품은 피해 보상의 책임을 지지 않습니다.<br/>
+- 교환.반품을 원하시는 경우 교환 및 반품 안내를 참조하시기 바랍니다.
+                    </span>
+<!--<br/><br/>-->
+
+<!--
+[해외배송]<br/>
+1. 주문서 작성 : 주문서 작성 시 해외배송 여부에 "예"로 체크<br/>
+2. 문의 게시판 : 주문서 넣은 후 문의 게시판에 받아보실 해외 주소, 연락처 기재<br/>
+3. 배송비 측정 : 지역과 무게 확인 후 해외배송비 측정하여 답변<br/>
+4. 상품 준비 및 배송 : 결제가 완료되면 상품이 준비되는 대로 발송<br/><br/>
+
+[통관과 관세]<br/>
+스타일난다는 EMS 우체국 배송을 사용하고 있으며 한국에서 직접 배송하고 있습니다.<br/>
+국가 세관의 규정에 따르면, 배송 과정에서 나라별로 관세가 발생할 수 있으며 관세는 고객님 부담입니다.<br/>
+상세 문의사항은 EMS 우체국 고객센터 1588-1300을 이용해주시거나 거주하시는 지역 우체국에 문의바랍니다.<br/>
+반송 과정에서 발생되는 모든 비용 (반품 배송비, 통관비용 및 관세)은 구매자가 부담하며 환불 시 차감됩니다.
+-->
+            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script>
+              $(document).ready(function() {
+                $(".pfc_delivery_category").click(function () {
+                    $(this).next().toggle()
+                });
+                $(".pfc_review_write_button").click(function () {
+                    $('.pfc_review_container').toggle();
+                });
+                $(".pfc_inquiry_write_button").click(function () {
+                    $('.pfc_inquiry_container').toggle();
+                });
+                  
+                $(function() {
+                  $(".is_inquiry_secret").click(enableInquiryPassword);
+                });
+                  
+                function enableInquiryPassword() {
+                  if (this.checked) {
+                    $(".pfc_customer_password").removeAttr("disabled");
+                  } else {
+                    $(".pfc_customer_password").attr("disabled", true);
+                  }
+                }
+
+              });            
+        </script>
+    </body>
+
