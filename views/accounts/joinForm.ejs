@@ -7,6 +7,13 @@
             </div>
             <div class="register_form_container">
                 <div class="l-wrapper">
+<!--
+                    <h3>기본정보
+                        <span>필수입력</span><img src="images/required.gif">
+                    </h3>
+-->
+
+
                     <form class="register_form" action="" method="post">
                         <h3>기본정보
                             <span>필수입력</span><img src="/images/required.gif">
@@ -21,9 +28,7 @@
                                 <th>아이디</th>
                                 <td>
                                     <input class="register_user_id" name="register_userid" type="text" value="">
-
                                     <button type="button" class="userIdAuthentication">중복확인</button>
-
                                     <span>아이디를 입력해 주세요. (영문소문자/숫자, 4~16자)</span>
                                 </td>
                             </tr>
@@ -49,9 +54,10 @@
                             <tr>
                                 <th class="non-required" style="background-image: none">주소</th>
                                 <td class="register_address">
-                                    <input class="register_post_code postcodify_postcode5" name="register_postcode" type="text"><button type="button" id="postcodify_search_button">우편번호 검색</button>
+                                    <input class="register_post_code postcodify_postcode5" disabled name="register_postcode" type="text">
+                                    <button id="postcodify_search_button" type="button">우편번호 검색</button>
                                     <br>
-                                    <input class="register_main_address postcodify_address" name="register_first_address"type="text">
+                                    <input class="register_main_address postcodify_address" disabled name="register_first_address" type="text">
                                     <span>기본주소</span>
                                     <br>
                                     <input class="register_sub_address postcodify_details postcodify_extra_info" name="register_last_address" type="text">
@@ -121,7 +127,7 @@
                                     <input type="text" name="register_email" id="str_email01">
                                     @
                                     <input type="text" name="register_email_address" id="str_email02" disabled>
-                                    <select class="email_selection" style= "margin-right:10px" name="selectEmail" id="selectEmail">
+                                    <select class="email_selection" style= "margin-right:10px" name="register_email_address" id="selectEmail">
                                     <option value="1" selected><span>-직접입력-</span></option>
                                     <option value="naver.com">naver.com</option>
                                     <option value="hanmail.net">hanmail.net</option>
@@ -201,7 +207,10 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="submit" class="registration_submit_button" value="회원가입">
+                        <div class="register_button_wrapper">
+                        <button class="registration_submit_button">회원가입</button>
+                        <div>
+
                     </form>
                 </div>
             </div>
@@ -282,7 +291,7 @@
 
             //비밀번호의 유효성 검사(영문,숫자,특수문자 혼합하여 8자리~20자리 이내.(비밀번호 표준)) + 비밀번호 확인 같은지 검사
             function passwordCheck(){
-                var regExp1 = /^.*(?=.{8,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+                var regExp1 = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
                 var $passwordInput = $('.register_form input[name=register_password]');
                 var $passwordInput2 = $('.register_form input[name=register_passwordCheck]');
 
@@ -308,13 +317,14 @@
 
                 var isAllChecked = $usingCheck + $agreeCheck;
 
-                if(isAllChecked != 2 ){
-                    alert("동의함에 체크해주시기 바랍니다.")
+                if(isAllChecked == 2 ){
+                    return true;
+                } else {
+                    alert("약관에 동의해주시길 바랍니다");
                     return false;
                 }
-                return true;
             }
-
+            
             if (!emptyCheckForm()){
                 return false;
             }
@@ -328,13 +338,13 @@
             if (!passwordCheck()){
                 return false;
             }
-
             if(!isConsentChecked()){
                 return false;
             }
             return true;
-            
-        });
+    });
 });
 
         </script>
+
+<% include ../partials/footer.ejs %>

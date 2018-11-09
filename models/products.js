@@ -16,6 +16,12 @@ module.exports = (sequelize, DataTypes) => {
     price: {
       type: DataTypes.INTEGER
     },
+    sale_price : {
+      type : DataTypes.INTEGER
+    },
+    product_num : {
+      type : DataTypes.STRING
+    },
     description: {
       type: DataTypes.TEXT
     },

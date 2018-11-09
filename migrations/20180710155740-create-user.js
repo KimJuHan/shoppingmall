@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       mobile: {
-        type : Sequelize.STRING
+        type: Sequelize.STRING
       },
       postCode : {
         type: Sequelize.STRING
@@ -39,7 +39,10 @@ module.exports = {
         type : Sequelize.STRING
       },
       smsConsent : {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
+      },
+      emailConsent: {
+        type: Sequelize.STRING
       },
       class : {
         type: Sequelize.STRING

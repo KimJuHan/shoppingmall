@@ -4,26 +4,26 @@
 
 <!--            main 슬라이드-->
 
-            <div class="l-desktop-wrapper">
+            <div class="l-desktop-wrapper"> 
                 <div class="content-slide-cover-main">
                     <div class="content-slide-main">
                         <img src="images/slide-image1.jpg">
                         <img src="images/slide-image2.png">
-                        <img src="images/slide-image3.png">
+                        <img src="images/slide-image3.png">            
                     </div>
 
                     <div class='l-wrapper-absolute'>
-                        <img class="content-slide-prev-arrow" src="images/arrowL.png">
+                        <img class="content-slide-prev-arrow" src="images/arrowL.png">   
                         <img class="content-slide-next-arrow" src="images/arrowR.png">
                     </div>
-
+                    
                     <a class="content-slide-next-block">
                         <span>next-slide</span>
                     </a>
                     <a class="content-slide-prev-block">
                         <span>prev-slide</span>
-                    </a>
-                </div>
+                    </a>  
+                </div>      
             </div>
 
 <!--            sub 슬라이드-->
@@ -35,10 +35,10 @@
                         <img src="images/sub-slide-image2.png">
                         <img src="images/sub-slide-image3.png">
                     </div>
-
-                    <img class="content-slide-prev-arrow small" src="images/arrowL.png">
+                    
+                    <img class="content-slide-prev-arrow small" src="images/arrowL.png">   
                     <img class="content-slide-next-arrow small" src="images/arrowR.png">
-                </div>
+                </div>    
             </div>
 
 <!--            베스트상품-->
@@ -143,6 +143,7 @@
 
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
         <script type="text/javascript">
+
             $(document).ready(function(){
                 $('.content-slide-main').slick({
                     fade: true,
@@ -157,6 +158,7 @@
                     prevArrow: $('.content-slide-prev-block'),
                     nextArrow: $('.content-slide-next-block')
                 });
+
                 $('.content-slide-sub').slick({
                     fade: true,
                     infinite: true,
@@ -170,6 +172,7 @@
                     prevArrow: $('.content-slide-prev-arrow.small'),
                     nextArrow: $('.content-slide-next-arrow.small')
                 });
+
                 $('.review-slide').slick({
                     centerMode: true,
                     infinite: true,
@@ -201,6 +204,27 @@
                     autoplaySpeed: 4000,
                     prevArrow: $('.review-slide-arrow.prev'),
                     nextArrow: $('.review-slide-arrow.next')
+                });
+
+                $(".dropdown").on("mouseenter", function(){
+                    $(".show_products").css("color", "#f73660");  
+                });
+                $(".dropdown").on("mouseleave", function(){
+                    $(".show_products").css("color", "#333");  
+                });
+                                
+                $(".small-dropdown-products").on("mouseenter", function(){
+                    $(".menu_show_products").css("color", "#f73660");  
+                });
+                $(".small-dropdown-products").on("mouseleave", function(){
+                    $(".menu_show_products").css("color", "#333");  
+                });
+                
+                $(".small-dropdown-community").on("mouseenter", function(){
+                    $(".menu_community").css("color", "#f73660");  
+                });
+                $(".small-dropdown-community").on("mouseleave", function(){
+                    $(".menu_community").css("color", "#333");  
                 });
             });
         </script>

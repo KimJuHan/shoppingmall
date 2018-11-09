@@ -19,31 +19,47 @@
         <div class="header">
 
 <!--            맨 위 메뉴-->
-
             <div class="l-wrapper">
                 <div class="header-menu">
                     <ul class="header-menu-left-side">
-                        <li><a href="#">즐겨찾기</a></li>
-                        <li><a href="#">베스트상품</a></li>
-                        <li><a href="#">제품보기</a></li>
-                        <li><a href="#">커뮤니티</a></li>
+                        <li><a class="menu_favor" href="#"><span>즐겨찾기</span></a></li>
+                        <li><a class="menu_best_product" href="#"><span>베스트상품</span></a></li>
+                        <li class="small-dropdown small-dropdown-products">
+                            <a href="#" class="menu_show_products"><span>제품보기</span></a>
+                            <div class="small-dropdown-content">
+                                <a class="men_product" href="#">남성용품</a>
+                                <a class="women_product" href="#">여성용품</a>
+                                <a class="couple_product" href="#">커플용품</a>
+                                <a class="etc_product" href="#">기타용품</a>
+                            </div>
+                        </li>
+                        <li class="small-dropdown small-dropdown-community">
+                            <a href="#" class="menu_community"><span>커뮤니티</span></a>
+                            <div class="small-dropdown-content">
+                                <a class="men_product" href="#">브랜드소개</a>
+                                <a class="women_product" href="#">공지사항</a>
+                                <a class="couple_product" href="#">고객문의</a>
+                                <a class="etc_product" href="#">제품리뷰</a>
+                            </div>
+                        </li>
                         <% if(typeof(userData) !== 'undefined' && userData.userId === 'admin'){ %>
                         <li><a href="/admin">관리자</a></li>
                         <% } %>
                     </ul>
                     <ul class="header-menu-right-side">
-                      <% if(isLogin){ %>
-                        <li><a href="/myshop/index">내정보</a></li>
-                        <li><a href="/accounts/logout">로그아웃</a></li>
-                      <% }else{ %>
-                        <li><a href="/accounts/join">회원가입</a></li>
-                        <li><a href="/accounts/login">로그인</a></li>
-                      <% } %>
-                        <li><a href="/cart">주문정보</a></li>
-                        <li><a href="/myshop/checkout">장바구니</a></li>
+                        <% if(isLogin) {%>
+                            <li><a href="/myshop/index" class="">내정보</a></li>
+                            <li><a href="/accounts/logout" class="logout">로그아웃</a></li>
+                        <%}else {%>
+                            <li><a href="/accounts/join" class="menu_join"><span>회원가입</span></a></li>
+                            <li><a href="/accounts/login" class="menu_login"><span>로그인</span></a></li>
+                        <%}%>
+                            <li><a href="/cart" class="menu_deliver_information"><span>주문정보</span></a></li>
+                            <li><a href="/myshop/checkout" class="menu_cart"><span>장바구니</span></a></li>
                     </ul>
                 </div>
             </div>
+
 
 <!--            브랜드로고-->
 
@@ -57,19 +73,25 @@
                     <div class="header-menu-detail">
                         <ul class="l-header-menu-detail-row">
                             <li class="l-header-menu-detail-col">
-                                <a href="/">홈으로</a>
+                                <a class="to_home" href="#">홈으로</a>
                             </li>
                             <li class="l-header-menu-detail-col">
-                                <a href="#">브랜드소개</a>
+                                <a class="brand_intro" href="#">브랜드소개</a>
+                            </li>
+                            <li class="l-header-menu-detail-col dropdown">
+                                <a class="dropdown-btn show_products" href="#">제품보기</a>
+                                <div class="dropdown-content">
+                                    <a class="men_product" href="#">남성용품</a>
+                                    <a class="women_product" href="#">여성용품</a>
+                                    <a class="couple_product" href="#">커플용품</a>
+                                    <a class="etc_product" href="#">기타용품</a>
+                                </div>
                             </li>
                             <li class="l-header-menu-detail-col">
-                                <a href="#">제품보기</a>
+                                <a class="product_review" href="#">사용후기</a>
                             </li>
                             <li class="l-header-menu-detail-col">
-                                <a href="#">사용후기</a>
-                            </li>
-                            <li class="l-header-menu-detail-col">
-                                <a href="#">공지사항</a>
+                                <a class="notification" href="#">공지사항</a>
                             </li>
                         </ul>
                     </div>

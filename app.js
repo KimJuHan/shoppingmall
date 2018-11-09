@@ -62,6 +62,7 @@ var cartRouter = require('./routes/cart');
 var nonCartOrderRouter = require('./routes/nonCartOrder');
 var myshopRouter = require('./routes/myshop');
 var boardRouter = require('./routes/board');
+var orderRouter = require('./routes/order');
 
 //matching routing 
 app.use('/', homeRouter);
@@ -72,6 +73,7 @@ app.use('/cart', cartRouter);
 app.use('/nonCartOrder', nonCartOrderRouter);
 app.use('/myshop', myshopRouter);
 app.use('/board', boardRouter);
+app.use('/order', orderRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

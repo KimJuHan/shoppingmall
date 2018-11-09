@@ -51,9 +51,9 @@
                                         <!-- 장바구니에서 넘어온 경우 -->
                                         <a href="/cart/order?orderType=<%=nonUserOrder%>%nonUser">비회원으로 주문하기</a>
                                     <%}%>
-                                    <% if(orderedProduct) {%>
+                                    <% if(orderList) {%>
                                         <!-- 바로주문하기로 하는 경우 -->
-                                        <a href="/nonCartOrder?orderedProduct=<%=orderedProduct%>%nonUser">비회원으로 주문하기</a>
+                                        <a href="/order?orderList=<%=orderList%>">비회원으로 주문하기</a>
                                     <%}%>
                                 </div>
                             </form>
@@ -117,3 +117,5 @@
         $('.naver').on('click', popupWindow)
     })
 </script>
+
+<% include ../partials/footer.ejs %>

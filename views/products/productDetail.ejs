@@ -1,203 +1,628 @@
-<% include ../header.ejs %>
-    
-
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <%=product.product_name%>
-        </div>
-        <div class="panel-body">
-            <div style="padding-bottom: 10px">
-                작성일 : 
-                    <% var date = new Date(product.createdAt); %>
-                    <%=date.getFullYear()%> -
-                    <%=date.getMonth()+1%> -
-                    <%=date.getDate()%>
-            </div>
-
-            <% if(product.thumbnail){%>
-            <p>
-                <img src="/uploads/<%=product.thumbnail%>" style="max-width: 100%"/>
-            </p>
-            <% } %>
-
-            <%-product.description%>
-
-            <hr />
-            
-    <form action="" method="post" id="cartForm">
-            <!--가격 -->
-            <input type="hidden" name="price" value="<%=product.price%>">
-            <!--갯수 -->
-            <input type="hidden" name="number" value="1">
-            <!--선택한 갯수 * 가격 = 구매가격 -->
-            <input type="hidden" name="amount" value="<%=product.price%>">
+<% include ../partials/header.ejs %>
+<!-- 상품 상세페이지 -->
         
+    <div class="content">
+        <div class="l-wrapper">
+            <div class="product_detail_container">
+                <div class="product_detail_image_cover_container">
+                    <div class="product_detail_image_cover">
+                            <img class="fake_image" src="/uploads/<%=product.thumbnail%>">
+                            <img class="product_image" src="/uploads/<%=product.thumbnail%>">
+                    </div>
+                </div>
+                <div class="product_detail_desc_container">
+                    <h2 class="product_name">3CE WHITE MILK LOTION
+                    <span>[세부제목]</span></h2>
+                    <table class="product_desc_table">
+                        <tr>
+                            <th>판매가</th>
+                            <td><%=product.price%>원</td>
+                        </tr>
+                        <tr>
+                            <th>할인가</th>
+                            <td><%=product.sale_price%>원</td>
+                        </tr>
+                        <tr>
+                            <th>품번</th>
+                            <td><%=product.product_num%></td>
+                        </tr>
+                        <tr class="product_desc_with_select_box">
+                            <th>할인가능여부</th>
+                            <td>
+                                <select id="sales_availability" class="product_detail_selection" value="">
+                                    <option>-옵션선택-</option>
+<!--                                        <option>사용가능쿠폰이없습니다</option>-->
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>추가상품구매</th>
+                            <td>
+                                <select id="additional_purchase" class="product_detail_selection" value="">
+                                    <option>-옵션선택-</option>
+                                    <% product.Options.forEach(function(option){%>
+                                        <option value="<%=option.dataValues.id%>"><%=option.dataValues.description%></option>
+                                    <%})%>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="product_detail_name_price">
+                        <span class="product_detail_name">3CE WHITE MILK LOTION</span>
+<!--                            <div class="quantity_price_cover">-->
+                            <!--<strong class="product_detail_price"><%=product.price%></strong>-->
+                            <input name="number" class="product_detail_quantity" type="number" value="1">
+<!--                            </div>-->
+                    </div>
+                    <div class="total_value">
+                        <span><strong>TOTAL</strong> (QUANTITY)</span><span class="delimeter">:</span><span><strong id="priceSpan"><%=product.price%>원</strong></span><span id="amountSpan">(1개)</span> 
+                    </div>
+                    <div class="product_detail_btn_area">
+                        <div class="l-row l-btn-row">
+                            <div class="l-col l-col-12-6 l-btn-col">
+                                <a id="directOrder" class="purchase" href="#">구매하기</a>
+                            </div>
+                            <div class="l-col l-col-12-3 l-btn-col">
+                                <a id="cartInsert" class="put_cart" href="#">장바구니</a>
+                            </div>
+                            <div class="l-col l-col-12-3 l-btn-col">
+                                <a class="put_like" href="#">찜하기</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product_for_customers_container">
+                <div class="product_for_customers pfc_desc_activated">
+                    <ul class="l-row l-row-no-margin">
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_desc">상품상세설명</a>
+                        </li>
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_review">상품후기</a>
+                        </li>
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_inquiry">상품문의</a>
+                        </li>
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_delivery">배송안내</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="product_for_customers pfc_review_activated">
+                    <ul class="l-row l-row-no-margin">
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_desc">상품상세설명</a>
+                        </li>
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_review">상품후기</a>
+                        </li>
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_inquiry">상품문의</a>
+                        </li>
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_delivery">배송안내</a>
+                        </li>
+                    </ul>
+                    
+                    <div class="pfc_table_order">
+                        <h3>상품후기</h3>
+                        <a href="#"><span class="order_newest reviews">최신순</span></a>
+                        <a href="#"><span class="order_rates reviews">평점순</span></a>
+                    
+                        <table id="reviews_table" class="pfc_table">
+                            <colgroup>
+                                <col width="10%">
+                                <col>
+                                <col width="10%">
+                                <col width="12.5%">
+                            </colgroup>
+                            <tr class="pfc_table_headrow">
+                                <th>번호</th>
+                                <th>후기</th>
+                                <th>평점</th>
+                                <th>작성자</th>
+                            </tr>
 
-            <div>
-                <div class="printNum">갯수 : </div>
-                <div class="CountBox">
-                    <a href="#" type="minus">-</a>
-                    <p id="amountHtml">1</p>
-                    <a href="#" type="plus">+</a>
+                            <% product.Reviews.forEach(function(review){%>
+                                <% if(!review){ %>
+                                    <tr>
+                                        <td colspan="4" class="nodata">
+                                            <span>등록된 상품후기 게시글이 없습니다.</span>
+                                        </td>
+                                    </tr>
+                                <% }else{ %>
+                                    <tr class="pfc_table_datarow reviews_row">
+                                        <td><%=review.id%></td>
+                                        <td class="datarow_review">
+                                            <%=review.content%>
+                                        </td>
+                                        <td class="datarow_rates">
+                                            <% for(var i=0;i<review.star;i++){%>
+                                                <img src="/images/rate_star.gif">
+                                            <%}%>
+                                        </td>
+                                        <td>
+                                            <div><%=review.User.dataValues.username%></div>
+                                            <div><%=review.createdAt%></div>
+                                        </td>
+                                    </tr>
+                                <% } %>
+                            <%})%>                              
+                        </table>
+                        
+                        <div class="pfc_review_write">
+                            <a href="pass">상품후기작성</a>
+                        </div>
+                        
+                    </div>
+                    
                 </div>
-                <div class="priceWrap">
-                    금액 : <span id="priceHtml"><%=product.price%></span>
+                
+                
+                
+                
+                <div class="product_for_customers pfc_inquiry_activated">
+
+                    <ul class="l-row l-row-no-margin">
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_desc">상품상세설명</a>
+                        </li>
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_review">상품후기</a>
+                        </li>
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_inquiry">상품문의</a>
+                        </li>
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_delivery">배송안내</a>
+                        </li>
+                    </ul>
+                    
+                    
+                    <div class="pfc_table_order">
+                        <h3>상품문의</h3>
+                        <a href=""><span class="order_newest qnas">전체보기</span></a>
+                        <a href=""><span class="order_rates qnas">답변완료</span></a>
+                        
+                        <table id="qnas_table" class="pfc_table">
+                            <colgroup>
+                                <col width="10%">
+                                <col width="15%">
+                                <col>
+                                <col width="10%">
+                            </colgroup>
+                            <tr class="pfc_table_headrow">
+                                <th>번호</th>
+                                <th>상태</th>
+                                <th>문의내용</th>
+                                <th>작성자</th>
+                            </tr>
+<!--
+                            <tr>
+                                <td colspan="4" class="nodata">
+                                    <span>등록된 상품후기 게시글이 없습니다.</span>
+                                </td>
+                            </tr>
+-->
+                            <% product.QnAs.forEach(function(QnA){%>
+                                <% if(!QnA){ %>
+                                    <tr>
+                                        <td colspan="4" class="nodata">
+                                            <span>등록된 문의 게시글이 없습니다.</span>
+                                        </td>
+                                    </tr>
+                                <% }else{ %>
+                                    <tr class="pfc_table_datarow qnas_row">
+                                        <td><%=QnA.id%></td>
+                                        <td class="datarow_review">
+                                            <%=QnA.status%>
+                                        </td>
+                                        <td class="datarow_rates">
+                                            <%=QnA.content%>
+                                        </td>
+                                        <td>
+                                            <div><%=(QnA.User) ? QnA.User.username : undefined %></div>
+                                            <div><%=QnA.createdAt%></div>
+                                        </td>
+                                    </tr>
+                                <% } %>
+                            <%})%> 
+                        </table>
+                        
+                        <div class="pfc_review_write">
+                            <a>상품문의하기</a>
+                        </div>
+                        
+                    </div>
                 </div>
-                <div style="clear:both"></div>
+                <div class="product_for_customers pfc_delivery_activated">
+                    <ul class="l-row l-row-no-margin">
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_desc">상품상세설명</a>
+                        </li>
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_review">상품후기</a>
+                        </li>
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_inquiry">상품문의</a>
+                        </li>
+                        <li class="l-col l-col-12-3 l-col-no-padding">
+                            <a href="#" class="pfc_delivery">배송안내</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <a id="order" href="#">바로주문하기</a>
-    <a href="/" class="btn btn-default">목록으로</a>
-    <button class="btn btn-primary">장바구니 담기</button>
-
-    </form>
-
-<style>
-.printNum { 
-    float:left;
-    margin-right: 10px; 
-}
-.CountBox { 
-    width: 100px; 
-    float:left; 
-}
-.CountBox a { 
-    border : 1px solid #ddd; 
-    display:block; 
-    float:left; 
-    padding: 4px 8px; 
-    text-decoration: none;
-}
-.CountBox p { 
-    border-top : 1px solid #ddd; 
-    border-bottom : 1px solid #ddd; 
-    display:block; 
-    float:left; 
-    padding: 4px 8px; 
-}
-
-.priceWrap { 
-    float:right; 
-    font-size: 20px;
-}
-
-.priceWrap span::after { 
-    content : " 원";
-}
-</style>
 <script>
     $(document).ready(function(){
-        $('.CountBox a').click(function(event){
-            event.preventDefault();
-
-            var $total_num = $('input[name=number]').val();
-            var $unit_price = $('input[name=price]').val();
-            
-            if($(this).attr('type') == 'minus'){
-                $total_num -= (($total_num == 1)? 0 : 1)
-            }else if($(this).attr('type') == 'plus'){
-                $total_num ++
-            }
-
-            $('input[name=number]').val($total_num);
-            $('input[name=amount]').val($total_num*$unit_price);
-            $('#amountHtml').html($total_num);
-            $('#priceHtml').html($total_num*$unit_price); 
-
+        //상품후기 평점순 정렬
+        $('.order_rates.reviews').click(function(e){
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: '/board/reviews/orderRates',
+                data: '<%=product.id%>',
+                success: function(reviews){
+                    console.log(reviews);
+                    $('.reviews_row').remove();
+                    $('#reviews_table').append(function(){
+                        var str ="";
+                        reviews.forEach(function(review){
+                            var star_str = "";
+                            for(var i=0;i<review.star;i++){
+                                star_str += `<img src="/images/rate_star.gif"> `
+                            }
+                            str += `<tr class="pfc_table_datarow reviews_row">
+                                        <td>`+ review.id + `</td>
+                                        <td class="datarow_review">`
+                                                + review.content +
+                                        `</td>
+                                        <td class="datarow_rates">`
+                                            + star_str +
+                                        `</td>
+                                        <td>
+                                            <div>` + review.User.username + `</div>
+                                            <div>` + review.createdAt + `</div>
+                                        </td>
+                                    </tr>`
+                        })
+                        return str;
+                    })
+                },
+                error: function(){
+                    alert('ajax통신오류');
+                }
+            })
         })
 
-        $('#order').click(function(event){
+        //상품후기 최신순 정렬
+        $('.order_newest.reviews').click(function(e){
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: '/board/reviews/newest',
+                data: '<%=product.id%>',
+                success: function(reviews){
+                    console.log(reviews);
+                    $('.reviews_row').remove();
+                    $('#reviews_table').append(function(){
+                        var str ="";
+                        reviews.forEach(function(review){
+                            var star_str = "";
+                            for(var i=0;i<review.star;i++){
+                                star_str += `<img src="/images/rate_star.gif"> `
+                            }
+                            str += `<tr class="pfc_table_datarow reviews_row">
+                                        <td>`+ review.id + `</td>
+                                        <td class="datarow_review">`
+                                                + review.content +
+                                        `</td>
+                                        <td class="datarow_rates">`
+                                            + star_str +
+                                        `</td>
+                                        <td>
+                                            <div>` + qna.id + `</div>
+                                            <div>` + review.createdAt + `</div>
+                                        </td>
+                                    </tr>`
+                        })
+                        return str;
+                    })
+                },
+                error: function(){
+                    alert('ajax통신오류');
+                }
+            })
+        })
+
+        //상품문의 답변완료 정렬
+        $('.order_rates.qnas').click(function(e){
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: '/board/qnas/complete',
+                data: '<%=product.id%>',
+                success: function(qnas){
+                    console.log(qnas);
+                    $('.qnas_row').remove();
+                    $('#qnas_table').append(function(){
+                        var str ="";
+                        qnas.forEach(function(qna){
+                            str += `<tr class="pfc_table_datarow qnas_row">
+                                        <td>`+ qna.id + `</td>
+                                        <td class="datarow_review">`
+                                                + qna.status +
+                                        `</td>
+                                        <td class="datarow_rates">`
+                                            + qna.content +
+                                        `</td>
+                                        <td>
+                                            <div>` + (qna.User) ? "ssfsdfsdf" : "asd" + `</div>
+                                            <div>` + qna.createdAt + `</div>
+                                        </td>
+                                    </tr>`
+                        })
+                        return str;
+                    })
+                },
+                error: function(){
+                    alert('ajax통신오류');
+                }
+            })
+        })
+
+        //상품문의 전체보기 정렬
+        $('.order_newest.qnas').click(function(e){
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: '/board/qnas/all',
+                data: '<%=product.id%>',
+                success: function(qnas){
+                    console.log(qnas);
+                    $('.qnas_row').remove();
+                    $('#qnas_table').append(function(){
+                        var str ="";
+                        qnas.forEach(function(qna){
+                            str += `<tr class="pfc_table_datarow qnas_row">
+                                        <td>`+ qna.id + `</td>
+                                        <td class="datarow_review">`
+                                                + qna.status +
+                                        `</td>
+                                        <td class="datarow_rates">`
+                                            + qna.content +
+                                        `</td>
+                                        <td>
+                                            <div>` + (qna.User) ? qna.User.dataValues.username : "" + `</div>
+                                            <div>` + qna.createdAt + `</div>
+                                        </td>
+                                    </tr>`
+                        })
+                        return str;
+                    })
+                },
+                error: function(){
+                    alert('ajax통신오류');
+                }
+            })
+        })
+
+        $('.pfc_desc').click(function(){
+            $('.pfc_desc_activated')[0].scrollIntoView({
+                behavior : 'smooth',
+                block : 'start'
+            })
+            return false;
+        })
+        $('.pfc_review').click(function(){
+            $('.pfc_review_activated')[0].scrollIntoView({
+                behavior : 'smooth',
+                block : 'start'
+            })
+            return false;
+        })
+        $('.pfc_inquiry').click(function(){
+            $('.pfc_inquiry_activated')[0].scrollIntoView({
+                behavior : 'smooth',
+                block : 'start'
+            })
+            return false;
+        })
+        $('.pfc_delivery').click(function(){
+            $('.pfc_delivery_activated')[0].scrollIntoView({
+                behavior : 'smooth',
+                block : 'start'
+            })
+            return false;
+        })
+
+        $('.product_detail_quantity').on('input', function(){
+            var price = <%=product.price%>;
+            var amount =  $(this).val();
+            $('#priceSpan').text(price*amount + '원');
+            $('#amountSpan').text('(' + amount + '개)');
+        })
+
+        // $('.CountBox a').click(function(event){
+        //     event.preventDefault();
+
+        //     var $total_num = $('input[name=number]').val();
+        //     var $unit_price = $('input[name=price]').val();
+            
+        //     if($(this).attr('type') == 'minus'){
+        //         $total_num -= (($total_num == 1)? 0 : 1)
+        //     }else if($(this).attr('type') == 'plus'){
+        //         $total_num ++
+        //     }
+
+        //     $('input[name=number]').val($total_num);
+        //     $('input[name=amount]').val($total_num*$unit_price);
+        //     $('#amountHtml').html($total_num);
+        //     $('#priceHtml').html($total_num*$unit_price); 
+
+        // })
+
+        //구매하기 버튼클릭
+        $('#directOrder').click(function(event){
             var productId = <%=product.id%>;
-            var thumbnail = "<%=product.thumbnail%>";
-            var name = "<%=product.name%>";
-            var price = "<%=product.price%>";
             var number = $('input[name=number]').val();
+            var couponId = $('#sales_availability option:selected').val();
+            var optionId = $('#additional_purchase option:selected').val();
 
-            var cartList = {};
+            var orderList = {};
 
-            cartList[productId] = {
-                name : name,
-                thumbnail : thumbnail,
+            orderList[productId] = {
                 number : number,
-                price : price
+                couponId : couponId,
+                optionId : optionId
             }; 
             
             //로그인이 되어있는 경우 => 바로 주문 페이지로 이동
             if($('.logout').html()){
-                $(this).attr('href', '/nonCartOrder?orderedProduct=' + escape(JSON.stringify(cartList)));
+                $(this).attr('href', '/order?orderList=' + escape(JSON.stringify(orderList)));
             }else{
                 //비로그인인 경우
-                $(this).attr('href','/accounts/login?orderedProduct=' + escape(JSON.stringify(cartList)));
+                $(this).attr('href','/accounts/login?orderList=' + escape(JSON.stringify(orderList)));
             }
         })
 
-        $('#cartForm').submit(function(event){
-            event.preventDefault();
-            if(confirm('장바구니에 담겠습니까?')){
-                //장바구니에 담길 ID,사진,이름,가격,갯수를 받는다
-                var productId = <%=product.id%>;
-                var thumbnail = "<%=product.thumbnail%>";
-                var name = "<%=product.name%>";
-                var price = "<%=product.price%>";
-                var number = $('input[name=number]').val();
+        //장바구니 버튼클릭
+        $('#cartInsert').click(function(e){
+            e.preventDefault();
+            var productId = <%=product.id%>;
+            var number = $('input[name=number]').val();
+            var couponId = $('#sales_availability option:selected').val();
+            var optionId = $('#additional_purchase option:selected').val();
 
-                var cartList = {};
-                var totalAmount = 0;
-                var now = new Date();
-                var time = now.getTime();
-                //한시간짜리 쿠키
-                time += 3600*1000;
-                now.setTime(time);
+            var cartList = {};
 
-                cartList[productId] = {
-                        name : name,
-                        thumbnail : thumbnail,
-                        number : number,
-                        price : price
-                        }; 
-                
-                $.ajax({
-                    url: '/product/<%=product.id%>',
-                    method: 'POST',
-                    data: JSON.stringify(cartList),
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    success: function(data){
-                        console.log("성공")
-                    },
-                    error: function(error){
-                        console.log("에러")
+            cartList[productId] = {
+                number : number,
+                couponId : couponId,
+                optionId : optionId
+            }; 
+
+            //담긴 쿠키 없으면 ""인데, 이것도 split함수 먹히니까 노상관 
+            //쿠키를 새로 갱신하는 방식이다. 기존의 쿠키를 새로운 변수에다가 넣어서 갱신하는 방식!
+            (document.cookie).split(';').forEach(function(cookie){
+                // 구워진 쿠키 있는 경우
+                if(cookie !== undefined && cookie.indexOf('cartList') !== -1){
+                    var originalCartList = decodeURIComponent(unescape(cookie));
+                    while(originalCartList.charAt(0) == ' '){
+                        originalCartList = originalCartList.substring(1);
                     }
-                });
-                
-                //담긴 쿠키 없으면 ""인데, 이것도 split함수 먹히니까 노상관 
-                //쿠키를 새로 갱신하는 방식이다. 기존의 쿠키를 새로운 변수에다가 넣어서 갱신하는 방식!
-                (document.cookie).split(';').forEach(function(cookie){
-                    // 구워진 쿠키 있는 경우
-                    if(cookie !== undefined && cookie.indexOf('cartList') !== -1){
-                        var originalCartList = decodeURIComponent(unescape(cookie));
-                        while(originalCartList.charAt(0) == ' '){
-                            originalCartList = originalCartList.substring(1);
-                        }
-                        var decodedOriginalCartList = JSON.parse(originalCartList.substring(9, originalCartList.length));
-                        for( let key in decodedOriginalCartList ){
-                            // 담았던 물건이랑 겹치는 경우
-                            if(key == productId){
-                                alert("이미 담으신 물건입니다. 지금 담으신 수량으로 대체합니다")
-                            }else{
-                                cartList[key] = decodedOriginalCartList[key];
-                            }
+                    var decodedOriginalCartList = JSON.parse(originalCartList.substring(9, originalCartList.length));
+                    for( let key in decodedOriginalCartList ){
+                        // 담았던 물건이랑 겹치는 경우
+                        if(key == productId){
+                            alert("이미 담으신 물건입니다. 지금 담으신 수량으로 대체합니다")
+                            //cartList 서버로 전송
+                            $.ajax({
+                                url: '/product/<%=product.id%>/cartDuplication',
+                                method: 'POST',
+                                data: JSON.stringify(cartList),
+                                dataType: 'json',
+                                contentType: 'application/json',
+                                success: function(data){
+                                    console.log("db.cart레코드에 업데이트되었습니다.");
+                                },
+                                error: function(error){
+                                    console.log("에러")
+                                }
+                            });
                         }
                     }
-                }); 
+                }else{
+                    console.log('처음 담는 물건');
+                    //cartList 서버로 전송
+                    $.ajax({
+                        url: '/product/<%=product.id%>',
+                        method: 'POST',
+                        data: JSON.stringify(cartList),
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function(data){
+                            console.log("db.cart레코드에 기록되었습니다.");
+                        },
+                        error: function(error){
+                            console.log("에러")
+                        }
+                    });
+                }
+            }); 
+            
+            // 쿠키에 domain 설정을 해주게 되면 IE에서는 동작하지 않는다. 
+            document.cookie = "cartList" + "=" + escape(JSON.stringify(cartList)) + "; path=/; expires= false;"; 
+            alert('장바구니에 담았습니다.');
+        })
+
+    //     $('#cartForm').submit(function(event){
+    //         event.preventDefault();
+    //         if(confirm('장바구니에 담겠습니까?')){
+    //             //장바구니에 담길 ID,사진,이름,가격,갯수를 받는다
+    //             var productId = <%=product.id%>;
+    //             var thumbnail = "<%=product.thumbnail%>";
+    //             var name = "<%=product.name%>";
+    //             var price = "<%=product.price%>";
+    //             var number = $('input[name=number]').val();
+
+    //             var cartList = {};
+    //             var totalAmount = 0;
+    //             var now = new Date();
+    //             var time = now.getTime();
+    //             //한시간짜리 쿠키
+    //             time += 3600*1000;
+    //             now.setTime(time);
+
+    //             cartList[productId] = {
+    //                     name : name,
+    //                     thumbnail : thumbnail,
+    //                     number : number,
+    //                     price : price
+    //                     }; 
                 
-                // 쿠키에 domain 설정을 해주게 되면 IE에서는 동작하지 않는다. 
-                document.cookie = "cartList" + "=" + escape(JSON.stringify(cartList)) + "; path=/; expires= false;"; 
-                alert('장바구니에 담았습니다.');
-            } 
-        });
+    //             $.ajax({
+    //                 url: '/product/<%=product.id%>',
+    //                 method: 'POST',
+    //                 data: JSON.stringify(cartList),
+    //                 dataType: 'json',
+    //                 contentType: 'application/json',
+    //                 success: function(data){
+    //                     console.log("성공")
+    //                 },
+    //                 error: function(error){
+    //                     console.log("에러")
+    //                 }
+    //             });
+                
+    //             //담긴 쿠키 없으면 ""인데, 이것도 split함수 먹히니까 노상관 
+    //             //쿠키를 새로 갱신하는 방식이다. 기존의 쿠키를 새로운 변수에다가 넣어서 갱신하는 방식!
+    //             (document.cookie).split(';').forEach(function(cookie){
+    //                 // 구워진 쿠키 있는 경우
+    //                 if(cookie !== undefined && cookie.indexOf('cartList') !== -1){
+    //                     var originalCartList = decodeURIComponent(unescape(cookie));
+    //                     while(originalCartList.charAt(0) == ' '){
+    //                         originalCartList = originalCartList.substring(1);
+    //                     }
+    //                     var decodedOriginalCartList = JSON.parse(originalCartList.substring(9, originalCartList.length));
+    //                     for( let key in decodedOriginalCartList ){
+    //                         // 담았던 물건이랑 겹치는 경우
+    //                         if(key == productId){
+    //                             alert("이미 담으신 물건입니다. 지금 담으신 수량으로 대체합니다")
+    //                         }else{
+    //                             cartList[key] = decodedOriginalCartList[key];
+    //                         }
+    //                     }
+    //                 }
+    //             }); 
+                
+    //             // 쿠키에 domain 설정을 해주게 되면 IE에서는 동작하지 않는다. 
+    //             document.cookie = "cartList" + "=" + escape(JSON.stringify(cartList)) + "; path=/; expires= false;"; 
+    //             alert('장바구니에 담았습니다.');
+    //         } 
+    //     });
     });
 </script>
-<% include ../footer.ejs %>
+<% include ../partials/footer.ejs %>

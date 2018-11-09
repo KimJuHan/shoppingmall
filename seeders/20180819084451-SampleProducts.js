@@ -4,8 +4,12 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Products', [{
       name: 'mango',
+      price: 100,
+      sale_price: 100,
+      product_num: '11111111111',
+      bestProduct : 'on',
       thumbnail: 'macbook2.jpg'
-    }, {name: 'koo', thumbnail: 'macbook1.jpg'}, { name: 'kjh', thumbnail: 'macbook2.jpg'}], {});
+    }],{});
   },
 
   down: (queryInterface, Sequelize) => {

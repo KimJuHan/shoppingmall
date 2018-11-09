@@ -52,7 +52,7 @@ exports.signUp = function(req, res){
             addressCode: req.body.register_first_address + " " + req.body.register_last_address,
             phone: req.body.register_phone1 + req.body.register_phone2 + req.body.register_phone3,
             mobile: req.body.register_mobile1 + req.body.register_mobile2 + req.body.register_mobile3,
-            email: req.body.register_email + "@" + req.body.selectEmail,
+            email: req.body.register_email + "@" + req.body.register_email_address,
             smsConsent: req.body.smsConsent,
             emailConsent: req.body.emailConsent
         }).then(function(){
@@ -66,15 +66,15 @@ exports.login = function(req, res){
         var nonUserOrder = req.query.orderType
         req.session.orderType = nonUserOrder;
     }
-    if(req.query.orderedProduct){
-        var orderedProduct = req.query.orderedProduct
-        req.session.orderedProduct = orderedProduct
+    if(req.query.orderList){
+        var orderList = req.query.orderList
+        req.session.orderList = orderList
     }
     if(req.query.checkout){
         var checkout = req.query.checkout;
         req.session.checkout = checkout;
     }
-    res.render('accounts/loginForm', { flashMessage : req.flash().error, nonUserOrder : ((nonUserOrder) ? nonUserOrder : ""), orderedProduct  : ((orderedProduct) ? escape(orderedProduct) : ""), nonUserCheckout : ((checkout) ? checkout : "")})
+    res.render('accounts/loginForm', { flashMessage : req.flash().error, nonUserOrder : ((nonUserOrder) ? nonUserOrder : ""), orderList  : ((orderList) ? (orderList) : ""), nonUserCheckout : ((checkout) ? checkout : "")})
 }
 
 exports.loginAuthentication = function(req, res){
@@ -88,10 +88,10 @@ exports.loginAuthentication = function(req, res){
             var x = req.query.orderType;
             x = x.replace(/["]/gi,'')
             res.send('<script>alert("로그인 성공");location.href="/cart/order?orderType=' + x + '"</script>')
-        }else if(req.query.orderedProduct){
+        }else if(req.query.orderList){
             //상품상세페이지에서 바로주문하기
-            var x = req.query.orderedProduct;
-            res.send('<script>alert("로그인 성공");location.href="/nonCartOrder?orderedProduct=' + escape(x) + '"</script>')
+            var x = req.query.orderList;
+            res.send('<script>alert("로그인 성공");location.href="/order?orderList=' + x + '"</script>')
         }else{
             //그냥 로그인페이지에서 로그인
             res.send('<script>alert("로그인 성공");location.href="/";</script>');

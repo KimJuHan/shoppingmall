@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var boardController = require('../controllers/boardController');
 var path = require('path');
+var db = require('../models');
 
 //multer settings
 var uploaddir = path.join(__dirname, '../public/uploads');
@@ -40,6 +41,40 @@ router.post('/QnA/write', boardController.QnAWrite);
 
 //리뷰페이지
 router.get('/reviews', boardController.review);
+
+//리뷰ajax최신순으로 
+router.post('/reviews/newest', async function(req, res){
+    var productId = Object.keys(req.body)[0]
+    const reviews = await db.Reviews.findAll({where : { ProductId : productId }, order: [['createdAt', 'DESC']], include : [db.Users]})
+    console.log(reviews);
+    res.send(reviews);
+})
+
+//리뷰ajax평점순으로 
+router.post('/reviews/orderRates', async function(req, res){
+    var productId = Object.keys(req.body)[0]
+    const reviews = await db.Reviews.findAll({where : { ProductId : productId }, order: [['star', 'DESC']], include : [db.Users]})
+    res.send(reviews);
+})
+
+//상품문의ajax답변완료
+router.post('/qnas/complete', async function(req, res){
+    var productId = Object.keys(req.body)[0];
+    const qnas = await db.QnAs.findAll({
+        where : { ProductId : productId, status : "답변완료" },
+        include : [db.Users]
+    });
+    console.log(qnas);
+    res.send(qnas);
+})
+
+//상품문의ajax전체보기
+router.post('/qnas/all', async function(req, res){
+    const qnas = await db.QnAs.findAll({
+        include : [db.Users]
+    });
+    res.send(qnas);
+}) 
 
 //공지사항페이지
 router.get('/notice', boardController.notice);
