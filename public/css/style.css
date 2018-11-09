@@ -13,7 +13,8 @@ body {
 }
 
 /* reset */
-body, ul, h1, h2, h3, h4, h5, h6, p{
+
+body, ul, h1, h2, h3, h4, h5, h6, p {
     margin: 0;
     padding: 0;
 }
@@ -25,6 +26,10 @@ li {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+input:focus, textarea:focus, button:focus {
+    outline: none;
 }
 
 /* layouts */
@@ -117,6 +122,7 @@ a {
 .l-col-12-6 {
     width: 50%;
 }
+<<<<<<< HEAD
 
 .l-col-12-3 {
     width: 25%;
@@ -126,6 +132,17 @@ a {
     margin: 0;
 }
 
+=======
+
+.l-col-12-3 {
+    width: 25%;
+}
+
+.l-row-no-margin {
+    margin: 0;
+}
+
+>>>>>>> ade0d7398efc0eb91da82ec2bc14e6587164780a
 .l-col-no-padding {
     padding: 0;
 }
@@ -861,7 +878,11 @@ select {
     font-family: inherit; /* 폰트 상속 */ 
     line-height: 19px;
     padding-top: 0.23rem;
+<<<<<<< HEAD
     background: url("/images/updownarrowgrey.png") no-repeat 97.5% 60%;
+=======
+    background: url(images/updownarrowgrey.png) no-repeat 97.5% 60%;
+>>>>>>> ade0d7398efc0eb91da82ec2bc14e6587164780a
     background-size: 12%;
     /* 네이티브 화살표 대체 */ 
     border: 1px solid #d7d5d5;
@@ -1030,7 +1051,11 @@ select option span{
 
 .product_detail_selection {
     width: 100%;
+<<<<<<< HEAD
     background: url(/images/updownarrowgrey.png) no-repeat 97.5% 60%;
+=======
+    background: url(images/updownarrowgrey.png) no-repeat 97.5% 60%;
+>>>>>>> ade0d7398efc0eb91da82ec2bc14e6587164780a
 /*    background: url(images/arrow_down.png) */
     background-size: 2.5%;
 }
@@ -1139,7 +1164,11 @@ select option span{
     padding-top: 1.4em 0;
 }
 
+<<<<<<< HEAD
 /* 상품후기부분 */
+=======
+/* 상품후기 및 문의부분 (테이블형식) */
+>>>>>>> ade0d7398efc0eb91da82ec2bc14e6587164780a
 
 .pfc_table_order {
     margin-top: 3rem;
@@ -1176,6 +1205,7 @@ select option span{
 
 .pfc_table_headrow {
     border-top: 1px solid #333;
+<<<<<<< HEAD
 }
 
 .pfc_table th {
@@ -1203,6 +1233,31 @@ select option span{
     margin-left: -4px;
 }
 
+=======
+}
+
+.pfc_table th {
+    line-height: 40px;
+}
+
+.pfc_table_datarow {
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    height: 90px;
+    line-height: 23px;
+    text-align: center;
+}
+
+.datarow_review, .datarow_inquiry{
+    text-align: left;
+    padding: 20px 30px;
+}
+
+.datarow_inquiry_condition span {
+    color: #f44289;
+}
+
+>>>>>>> ade0d7398efc0eb91da82ec2bc14e6587164780a
 .datarow_rates img:first-child {
     margin-left: 0;
 }
@@ -1237,7 +1292,9 @@ select option span{
     color: white;
 }
 
+/* review 작성버튼 누르면 생기는 form */
 
+<<<<<<< HEAD
 
 
 /* 상품문의부분 */
@@ -1247,4 +1304,190 @@ select option span{
 
 
 /* 배송안내부분 */
+=======
+.pfc_review_container, .pfc_inquiry_container {
+    display: none;
+}
+
+.pfc_customer_container {
+/*    position: relative;*/
+    border: 1px solid #aaa;
+    margin-top: 5rem;
+    padding: 2rem 1rem;
+    padding-bottom: 5px;
+}
+
+.pfc_customer_information {
+    overflow: hidden;
+    color: #747579;
+}
+
+.pfc_customer_information h3, .pfc_inquiry_title h3{
+    padding: 0.5rem 2rem;
+    border-right: 1px solid #dadada;
+    background-color: #dadada;
+    color: #747579;
+}
+
+.pfc_inquiry_title {
+    display: inline-block;
+    border: 1px solid #dadada;
+    margin-bottom: 1rem;
+}
+
+.pfc_inquiry_title select {
+    width: 200px;
+    background-color: #fff;
+    border: 0;
+    background-size: 5%;
+}
+
+.pfc_customer_information li:first-child {
+    margin-left: 0;
+}
+
+.pfc_customer_information li {
+    float: left;
+    margin-left: 2rem;
+    border: 1px solid #dadada;
+}
+
+.pfc_customer_information li input {
+    width: 198px;
+    height: 22px;
+    border: 0;
+}
+
+.pfc_customer_password {
+    margin-left: 1px;
+}
+
+.pfc_customer_password:disabled {
+    background-color: #dadada;
+    margin-left: 0px;
+    padding-top: 1.2px;
+}
+
+.is_inquiry_secret {
+    margin-left: 10px;
+    margin-right: -1px;
+    width: 12.5px;
+    height: 12.5px;
+}
+
+.pfc_customer_form {
+    overflow: hidden;   
+}
+
+.pfc_customer_textarea {
+    border: 1px solid #c9c9c9;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 2rem;
+    padding: 2rem;
+    font-size: 1.3rem;
+    overflow: scroll;
+}
+
+.pfc_customer_form a {
+    display: inline-block;
+}
+
+.pfc_customer_submit, .pfc_customer_form a {
+    position: relative;
+    float: right;
+    border: 1px solid #c9c9c9;
+    color: #6c686b;
+    padding: 10px 15px;
+    margin: 1rem 0;
+}
+
+.pfc_customer_image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background-color: green;
+}
+
+input[value="리뷰작성"], input[value="문의하기"]{
+    font-size: 12px;
+}
+
+.pfc_customer_submit {
+    height: 35.31px;
+    margin-left: 1rem;
+    font-size: 11px;
+}
+
+.pfc_customer_submit:hover, .pfc_customer_form a:hover {
+    border: 1px solid #333;
+    background-color: #333;
+    color: white;
+}
+
+.pfc_review_stars {
+/*    background-color: green;    */
+    line-height: 40px;
+}
+
+.star_container {
+    line-height: 10px;
+    display: inline-block;
+/*    background-color: black;*/
+    vertical-align: bottom;
+}
+
+.star_container label {
+    margin-right: 3px;
+}
+
+.etc_span_container {
+    line-height: 40px;
+}
+
+.etc_span {
+    color: #727072;
+    margin-left: 1px;
+    line-height: 10px;
+    vertical-align: bottom;
+}
+
+/* 배송/교환/환불 */
+
+.pfc_delivery_desc_container {
+    margin: 3rem 0;
+}
+
+.pfc_delivery_desc {
+    line-height: 1.8rem;
+}
+
+.pfc_delivery_category {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    background-image: url(images/category_down.png);
+    background-repeat: no-repeat;
+    padding-right: 1.2rem;
+    background-position: 100% 50%;
+    background-size: 8px;   
+    box-sizing: border-box;
+}
+
+.pfc_delivery_category:hover {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #333;
+}
+
+.pfc_delivery_content {
+    display: none;
+}
+
+.delivery_notification {
+    display: inline;
+}
+>>>>>>> ade0d7398efc0eb91da82ec2bc14e6587164780a
 
